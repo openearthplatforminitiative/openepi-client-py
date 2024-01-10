@@ -1,43 +1,63 @@
+from pydantic import BaseModel, Field, model_validator, computed_field
 from httpx import AsyncClient, Client
 from datetime import datetime
 from openepi_client.weather._weather_types import METJSONSunrise, METJSONForecast
-from openepi_client import openepi_settings
+from openepi_client import openepi_settings, GeoLocation
 
 
-class SunriseRequest:
-    def __init__(
-        self, lat: float, lon: float, date: datetime | None = datetime.today()
-    ):
-        self.params = {"lat": lat, "lon": lon, "date": date.strftime("%Y-%m-%d")}
-        self.sunrise_endpoint = f"{openepi_settings.api_root_url}/weather/sunrise"
+class SunriseRequest(BaseModel):
+    geolocation: GeoLocation = Field(..., description="The geolocation to query for")
+    date: datetime | None = Field(
+        default_factory=datetime.today, description="The date to query for"
+    )
+    _sunrise_endpoint = f"{openepi_settings.api_root_url}/weather/sunrise"
+
+    @computed_field
+    @property
+    def _params(self) -> dict:
+        return {
+            "lat": self.geolocation.lat,
+            "lon": self.geolocation.lon,
+            "date": self.date.strftime("%Y-%m-%d"),
+        }
 
     def get_sync(self) -> METJSONSunrise:
         with Client() as client:
-            response = client.get(self.sunrise_endpoint, params=self.params)
+            response = client.get(self._sunrise_endpoint, params=self._params)
             return METJSONSunrise(**response.json())
 
     async def get_async(self) -> METJSONSunrise:
         async with AsyncClient() as async_client:
-            response = await async_client.get(self.sunrise_endpoint, params=self.params)
+            response = await async_client.get(
+                self._sunrise_endpoint, params=self._params
+            )
             return METJSONSunrise(**response.json())
 
 
-class LocationForecastRequest:
-    def __init__(self, lat: float, lon: float, altitude: int):
-        self.params = {"lat": lat, "lon": lon, "altitude": altitude}
-        self.location_forecast_endpoint = (
-            f"{openepi_settings.api_root_url}/weather/locationforecast"
-        )
+class LocationForecastRequest(BaseModel):
+    geolocation: GeoLocation = Field(..., description="The geolocation to query for")
+    _location_forecast_endpoint = (
+        f"{openepi_settings.api_root_url}/weather/locationforecast"
+    )
+
+    @computed_field
+    @property
+    def _params(self) -> dict:
+        return {
+            "lat": self.geolocation.lat,
+            "lon": self.geolocation.lon,
+            "altitude": self.geolocation.alt,
+        }
 
     def get_sync(self) -> METJSONForecast:
         with Client() as client:
-            response = client.get(self.location_forecast_endpoint, params=self.params)
+            response = client.get(self._location_forecast_endpoint, params=self._params)
             return METJSONForecast(**response.json())
 
     async def get_async(self) -> METJSONForecast:
         async with AsyncClient() as async_client:
             response = await async_client.get(
-                self.location_forecast_endpoint, params=self.params
+                self._location_forecast_endpoint, params=self._params
             )
             return METJSONForecast(**response.json())
 
@@ -45,30 +65,26 @@ class LocationForecastRequest:
 class WeatherClient:
     @staticmethod
     def get_sunrise(
-        lat: float,
-        lon: float,
+        geolocation: GeoLocation,
         date: datetime | None = datetime.today(),
     ) -> METJSONSunrise:
-        return SunriseRequest(lat, lon, date).get_sync()
+        return SunriseRequest(geolocation=geolocation, date=date).get_sync()
 
     @staticmethod
-    def get_location_forecast(
-        lat: float, lon: float, altitude: int | None = 0
-    ) -> METJSONForecast:
-        return LocationForecastRequest(lat, lon, altitude).get_sync()
+    def get_location_forecast(geolocation: GeoLocation) -> METJSONForecast:
+        return LocationForecastRequest(geolocation=geolocation).get_sync()
 
 
 class AsyncWeatherClient:
     @staticmethod
     async def get_sunrise(
-        lat: float,
-        lon: float,
+        geolocation: GeoLocation,
         date: datetime | None = datetime.today(),
     ) -> METJSONSunrise:
-        return await SunriseRequest(lat, lon, date).get_async()
+        return await SunriseRequest(geolocation=geolocation, date=date).get_async()
 
     @staticmethod
     async def get_location_forecast(
-        lat: float, lon: float, altitude: int | None = 0
+        geolocation: GeoLocation,
     ) -> METJSONForecast:
-        return await LocationForecastRequest(lat, lon, altitude).get_async()
+        return await LocationForecastRequest(geolocation=geolocation).get_async()
