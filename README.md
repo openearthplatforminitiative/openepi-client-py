@@ -1,4 +1,4 @@
-# openepi-client-py
+# openepi-client
 A python client for accessing data from OpenEPI.
 
 ## Table of Contents
@@ -9,6 +9,9 @@ A python client for accessing data from OpenEPI.
   - [Sync usage](#sync-usage-1)
   - [Async usage](#async-usage-1)
 - [Flood predictions](#flood)
+  - [Sync usage](#sync-usage-2)
+  - [Async usage](#async-usage-2)
+- [Deforestation](#flood)
   - [Sync usage](#sync-usage-2)
   - [Async usage](#async-usage-2)
 

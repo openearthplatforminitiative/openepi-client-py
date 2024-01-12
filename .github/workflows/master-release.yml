@@ -1,0 +1,82 @@
+name: Master Release
+on:
+  push:
+    branches: [ 63-publishing ]
+    paths-ignore:
+      - 'deployment/**'
+
+jobs:
+  build:
+    name: Build the library
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install Poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
+
+      - name: Install dependencies
+        run: poetry install --no-root
+
+      - name: Run pytest
+        run: poetry run pytest
+
+#      - name: Build distribution
+#        run: poetry build
+#
+#      - name: Store the distribution
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: python-package-distribution
+#          path: dist/
+
+  publish:
+    name: Release the library
+    runs-on: ubuntu-latest
+    concurrency: release
+    permissions:
+      id-token: write
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Python Semantic Release
+        uses: python-semantic-release/python-semantic-release@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+
+#  publish-to-testpypi:
+#    name: Publish Python 🐍 distribution 📦 to TestPyPI
+#    needs:
+#      - build
+#    runs-on: ubuntu-latest
+#
+#    environment:
+#      name: testpypi
+#      url: https://test.pypi.org/p/openepi-client
+#
+#    permissions:
+#      id-token: write  # IMPORTANT: mandatory for trusted publishing
+#
+#    steps:
+#      - name: Download all the dists
+#        uses: actions/download-artifact@v3
+#        with:
+#          name: python-package-distribution
+#          path: dist/
+#      - name: Publish distribution 📦 to TestPyPI
+#        uses: pypa/gh-action-pypi-publish@release/v1
+#        with:
+#          repository-url: https://test.pypi.org/legacy/
