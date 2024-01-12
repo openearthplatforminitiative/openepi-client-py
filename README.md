@@ -118,6 +118,31 @@ detailed = await AsyncFloodClient.get_detailed(geolocation=GeoLocation(lat=51.50
 detailed = await AsyncFloodClient.get_detailed(bounding_box=BoundingBox(min_lat=4.764412, min_lon=22.0, max_lat=5.015732, max_lon=23.05))
 ```
 
+## Deforestation
+### Sync usage
+```python
+from openepi_client import GeoLocation, BoundingBox
+from openepi_client.deforestation import DeforestationClient
+
+# Get the yearly forest cover loss within a river basin for a given geolocation
+forest_loss = DeforestationClient.get_basin(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
+
+# Get yearly forest cover loss for all river basins within the given bounding box
+forest_loss = DeforestationClient.get_basin(bounding_box=BoundingBox(min_lat=30.909622, min_lon=28.850951, max_lat=-1.041395, max_lon=-2.840114))
+```
+
+
+### Async usage
+```python
+from openepi_client import GeoLocation, BoundingBox
+from openepi_client.deforestation import AsyncDeforestationClient
+
+# Get the return period thresholds for a given geolocation
+forest_loss = await AsyncDeforestationClient.get_basin(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
+
+# Get yearly forest cover loss for all river basins within the given bounding box
+forest_loss = await AsyncDeforestationClient.get_basin(bounding_box=BoundingBox(min_lat=30.909622, min_lon=28.850951, max_lat=-1.041395, max_lon=-2.840114))
+```
 
 ## Updating the client
 The following commands are used to update the client types. The commands are run from the root of the project.
@@ -125,4 +150,5 @@ The following commands are used to update the client types. The commands are run
  poetry run datamodel-codegen --url https://api-test.openepi.io/weather/openapi.json --output openepi_client/weather/_weather_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel
  poetry run datamodel-codegen --url https://api-test.openepi.io/geocoding/openapi.json --output openepi_client/geocoding/_geocoding_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel
  poetry run datamodel-codegen --url https://api-test.openepi.io/flood/openapi.json --output openepi_client/flood/_flood_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel
+ poetry run datamodel-codegen --url https://api-test.openepi.io/deforestation/openapi.json --output openepi_client/deforestation/_deforestation_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel
 ```
