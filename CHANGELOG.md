@@ -6,6 +6,8 @@
 
 ### Unknown
 
+* Issue-63: Build-pipeline ([`0d2d853`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/0d2d8530071f28484d5bd73e5224e43091adcc5e))
+
 * Issue-63: Changes to be able to publish library ([`fd79834`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/fd79834b795bc2655afac3715a9dc873406f1442))
 
 * Merge pull request #4 from openearthplatforminitiative/63-client-for-deforestation

@@ -28,7 +28,7 @@ jobs:
 #        run: poetry run pytest
 
   release:
-    name: Create a Github release
+    name: Create a Github release and build distribution
 #    needs: test
     runs-on: ubuntu-latest
     permissions:
@@ -40,23 +40,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Python Semantic Release
-        uses: python-semantic-release/python-semantic-release@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-  build:
-    name: Build the release
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
       - name: Set up python
         uses: actions/setup-python@v4
         with:
           python-version: '3.12'
+
+      - name: Python Semantic Release
+        uses: python-semantic-release/python-semantic-release@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Poetry
         run: curl -sSL https://install.python-poetry.org | python3 -
@@ -75,7 +67,7 @@ jobs:
 
   publish-to-testpypi:
     name: Publish distribution to TestPyPI
-    needs: build
+    needs: release
     runs-on: ubuntu-latest
 
     environment:
