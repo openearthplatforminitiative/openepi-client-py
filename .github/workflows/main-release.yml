@@ -1,11 +1,10 @@
-name: Master Release
+name: Main Release
 on:
   push:
-    branches: [ 63-publishing ]
-    paths-ignore:
-      - 'deployment/**'
+    branches: [ main ]
 
 jobs:
+# TODO: Rewrite the tests, so that they don't fail on server-side errors
 #  test:
 #    name: Run unit-tests
 #    runs-on: ubuntu-latest
@@ -65,14 +64,10 @@ jobs:
           name: python-package-distribution
           path: dist/
 
-  publish-to-testpypi:
-    name: Publish distribution to TestPyPI
+  publish-to-pypi:
+    name: Publish distribution to PyPI
     needs: release
     runs-on: ubuntu-latest
-
-    environment:
-      name: testpypi
-      url: https://test.pypi.org/p/openepi-client
 
     permissions:
       id-token: write
@@ -84,7 +79,5 @@ jobs:
           name: python-package-distribution
           path: dist/
 
-      - name: Publish distribution to TestPyPI
+      - name: Publish distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          repository-url: https://test.pypi.org/legacy/

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openepi-client"
-version = "0.0.0"
+version = "0.0.2"
 description = "A python library for interacting with the OpenEPI data"
 authors = ["Kenneth Stigen <kenneth.stigen@knowit.no>"]
 readme = "README.md"
@@ -13,15 +13,11 @@ version_toml = [
     "pyproject.toml:tool.poetry.version",
 ]
 
-[tool.semantic_release.branches.63-publishing]
-match = "63-publishing"
-
 [tool.poetry.dependencies]
 python = "^3.12"
 httpx = "^0.25.2"
 pydantic = "^2.4.2"
 pydantic-settings = "^2.0.3"
-#setuptools = "^68.2.2"
 
 
 [tool.poetry.group.dev.dependencies]
