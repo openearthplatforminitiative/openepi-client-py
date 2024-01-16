@@ -1,8 +1,10 @@
 from setuptools import find_packages, setup
 
+__version__ = "0.0.2"
+
 setup(
     name="openepi-client",
     packages=find_packages(),
-    version="0.0.1",
+    version=__version__,
     description="A python library for interacting with the OpenEPI data",
 )

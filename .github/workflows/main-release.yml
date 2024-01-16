@@ -1,0 +1,83 @@
+name: Main Release
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+# TODO: Rewrite the tests, so that they don't fail on server-side errors
+#  test:
+#    name: Run unit-tests
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#
+#      - name: Set up python
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: '3.12'
+#
+#      - name: Install Poetry
+#        run: curl -sSL https://install.python-poetry.org | python3 -
+#
+#      - name: Install dependencies
+#        run: poetry install --no-root
+#
+#      - name: Run pytest
+#        run: poetry run pytest
+
+  release:
+    name: Create a Github release and build distribution
+#    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Python Semantic Release
+        uses: python-semantic-release/python-semantic-release@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
+
+      - name: Install dependencies
+        run: poetry install --no-root
+
+      - name: Build distribution
+        run: poetry build
+
+      - name: Store the distribution
+        uses: actions/upload-artifact@v3
+        with:
+          name: python-package-distribution
+          path: dist/
+
+  publish-to-pypi:
+    name: Publish distribution to PyPI
+    needs: release
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Download the distribution
+        uses: actions/download-artifact@v3
+        with:
+          name: python-package-distribution
+          path: dist/
+
+      - name: Publish distribution to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
