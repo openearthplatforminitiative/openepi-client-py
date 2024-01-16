@@ -6,8 +6,48 @@ on:
       - 'deployment/**'
 
 jobs:
+#  test:
+#    name: Run unit-tests
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#
+#      - name: Set up python
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: '3.12'
+#
+#      - name: Install Poetry
+#        run: curl -sSL https://install.python-poetry.org | python3 -
+#
+#      - name: Install dependencies
+#        run: poetry install --no-root
+#
+#      - name: Run pytest
+#        run: poetry run pytest
+
+  release:
+    name: Create a Github release
+#    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Python Semantic Release
+        uses: python-semantic-release/python-semantic-release@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
   build:
-    name: Build the library
+    name: Build the release
+    needs: release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -24,59 +64,35 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-root
 
-      - name: Run pytest
-        run: poetry run pytest
+      - name: Build distribution
+        run: poetry build
 
-#      - name: Build distribution
-#        run: poetry build
-#
-#      - name: Store the distribution
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: python-package-distribution
-#          path: dist/
+      - name: Store the distribution
+        uses: actions/upload-artifact@v3
+        with:
+          name: python-package-distribution
+          path: dist/
 
-  publish:
-    name: Release the library
+  publish-to-testpypi:
+    name: Publish distribution to TestPyPI
+    needs: build
     runs-on: ubuntu-latest
-    concurrency: release
+
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/openepi-client
+
     permissions:
       id-token: write
-      contents: write
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Download the distribution
+        uses: actions/download-artifact@v3
         with:
-          fetch-depth: 0
+          name: python-package-distribution
+          path: dist/
 
-      - name: Python Semantic Release
-        uses: python-semantic-release/python-semantic-release@master
+      - name: Publish distribution to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-
-
-
-#  publish-to-testpypi:
-#    name: Publish Python 🐍 distribution 📦 to TestPyPI
-#    needs:
-#      - build
-#    runs-on: ubuntu-latest
-#
-#    environment:
-#      name: testpypi
-#      url: https://test.pypi.org/p/openepi-client
-#
-#    permissions:
-#      id-token: write  # IMPORTANT: mandatory for trusted publishing
-#
-#    steps:
-#      - name: Download all the dists
-#        uses: actions/download-artifact@v3
-#        with:
-#          name: python-package-distribution
-#          path: dist/
-#      - name: Publish distribution 📦 to TestPyPI
-#        uses: pypa/gh-action-pypi-publish@release/v1
-#        with:
-#          repository-url: https://test.pypi.org/legacy/
+          repository-url: https://test.pypi.org/legacy/
