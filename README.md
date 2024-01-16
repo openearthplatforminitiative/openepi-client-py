@@ -1,5 +1,6 @@
 # openepi-client
 A python client for accessing data from OpenEPI.
+Can be installed from PyPI on [https://pypi.org/project/openepi-client/](https://pypi.org/project/openepi-client/)
 
 ## Table of Contents
 - [Weather Data](#weather)
