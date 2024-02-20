@@ -15,6 +15,9 @@ Can be installed from PyPI on [https://pypi.org/project/openepi-client/](https:/
 - [Deforestation](#flood)
   - [Sync usage](#sync-usage-2)
   - [Async usage](#async-usage-2)
+- [Soil Information](#soil)
+  - [Sync usage](#sync-usage-4) 
+  - [Async usage](#async-usage-4)
 
 ## Weather
 ### Sync usage
@@ -141,11 +144,86 @@ forest_loss = DeforestationClient.get_basin(bounding_box=BoundingBox(min_lat=30.
 from openepi_client import GeoLocation, BoundingBox
 from openepi_client.deforestation import AsyncDeforestationClient
 
-# Get the return period thresholds for a given geolocation
+# Get the yearly forest cover loss within a river basin for a given geolocation
 forest_loss = await AsyncDeforestationClient.get_basin(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
 
 # Get yearly forest cover loss for all river basins within the given bounding box
 forest_loss = await AsyncDeforestationClient.get_basin(bounding_box=BoundingBox(min_lat=30.909622, min_lon=28.850951, max_lat=-1.041395, max_lon=-2.840114))
+```
+
+## Soil
+### Sync usage
+```python
+from openepi_client import GeoLocation, BoundingBox
+from openepi_client.soil import SoilClient
+
+# Get the most probable soil type at the queried location
+# and the probability of the top 3 most probable soil types
+soil_type = SoilClient.get_soil_type(
+  geolocation=GeoLocation(lat=60.1, lon=9.58),
+  top_k=3
+)
+
+# Get the mean and the 0.05 quantile of the soil 
+# properties at the queried location and depths       
+properties = ["clay", "silt"]
+depths = ["0-5cm", "5-15cm"]
+values = ["mean", "Q0.05"]
+soil_property = SoilClient.get_soil_property(
+  geolocation=GeoLocation(lat=60.1, lon=9.58), 
+  depths=depths, 
+  properties=properties, 
+  values=values
+)
+
+# Get a summary of the soil types in the queried bounding box, 
+# represented by a mapping of each soil type to the number 
+# of occurrences in the bounding box
+soil_type_summary = SoilClient.get_soil_type_summary(
+  bounding_box=BoundingBox(
+    min_lat=60.1,
+    max_lat=60.12,
+    min_lon=9.58,
+    max_lon=9.6,
+  )
+)
+```
+
+### Async usage
+```python
+from openepi_client import GeoLocation, BoundingBox
+from openepi_client.soil import AsyncSoilClient
+
+# Get the most probable soil type at the queried location
+# and the probability of the top 3 most probable soil types
+soil_type = await AsyncSoilClient.get_soil_type(
+  geolocation=GeoLocation(lat=60.1, lon=9.58),
+  top_k=3
+)
+
+# Get the mean and the 0.05 quantile of the soil 
+# properties at the queried location and depths       
+properties = ["clay", "silt"]
+depths = ["0-5cm", "5-15cm"]
+values = ["mean", "Q0.05"]
+soil_property = await AsyncSoilClient.get_soil_property(
+  geolocation=GeoLocation(lat=60.1, lon=9.58), 
+  depths=depths, 
+  properties=properties, 
+  values=values
+)
+
+# Get a summary of the soil types in the queried bounding box, 
+# represented by a mapping of each soil type to the number 
+# of occurrences in the bounding box
+soil_type_summary = await AsyncSoilClient.get_soil_type_summary(
+  bounding_box=BoundingBox(
+    min_lat=60.1,
+    max_lat=60.12,
+    min_lon=9.58,
+    max_lon=9.6,
+  )
+)
 ```
 
 ## Updating the client
@@ -155,4 +233,5 @@ The following commands are used to update the client types. The commands are run
  poetry run datamodel-codegen --url https://api-test.openepi.io/geocoding/openapi.json --output openepi_client/geocoding/_geocoding_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel
  poetry run datamodel-codegen --url https://api-test.openepi.io/flood/openapi.json --output openepi_client/flood/_flood_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel
  poetry run datamodel-codegen --url https://api-test.openepi.io/deforestation/openapi.json --output openepi_client/deforestation/_deforestation_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel
+ poetry run datamodel-codegen --url https://api-test.openepi.io/soil/openapi.json --output openepi_client/soil/_soil_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel
 ```
