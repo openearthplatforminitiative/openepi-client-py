@@ -61,6 +61,13 @@ class TestFloodClient:
         )
         assert summary
 
+    def test_sync_summary_neighbors(self):
+        summary: SummaryResponseModel = FloodClient.get_summary(
+            geolocation=GeoLocation(lat=self.LAT, lon=self.LON),
+            include_neighbors=True,
+        )
+        assert summary
+
     def test_sync_summary_bounding_box(self):
         summary: SummaryResponseModel = FloodClient.get_summary(
             bounding_box=BoundingBox(
@@ -76,6 +83,17 @@ class TestFloodClient:
     async def test_async_summary_geolocation(self):
         summary = await AsyncFloodClient.get_summary(
             geolocation=GeoLocation(lat=self.LAT, lon=self.LON)
+        )
+        assert summary
+
+    @pytest.mark.asyncio
+    async def test_async_summary_neighbors(self):
+        summary = await AsyncFloodClient.get_summary(
+            geolocation=GeoLocation(
+                lat=self.LAT, 
+                lon=self.LON, 
+                include_neighbors=True
+            )
         )
         assert summary
 
@@ -110,7 +128,7 @@ class TestFloodClient:
     def test_sync_detailed_neighbors(self):
         detailed = FloodClient.get_detailed(
             geolocation=GeoLocation(lat=self.LAT, lon=self.LON),
-            include_neighbours=True,
+            include_neighbors=True,
         )
         assert detailed
 
