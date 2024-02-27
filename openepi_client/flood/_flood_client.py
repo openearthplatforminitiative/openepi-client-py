@@ -134,8 +134,8 @@ class DetailedRequest(BaseModel):
     def _params(self) -> dict:
         params = {
             "include_neighbours": self.include_neighbours,
-            "start_date": self.start_date.strftime("%Y-%m-%d") if self.start_date else None,
-            "end_date": self.end_date.strftime("%Y-%m-%d") if self.end_date else None,
+            "start_date": self.start_date.date().isoformat() if self.start_date else None,
+            "end_date": self.end_date.date().isoformat() if self.end_date else None,
         }
         if self.geolocation:
             params.update({"lat": self.geolocation.lat, "lon": self.geolocation.lon})
