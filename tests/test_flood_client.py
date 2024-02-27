@@ -1,3 +1,4 @@
+from datetime import date, timedelta
 import pytest
 
 from openepi_client.flood import (
@@ -93,6 +94,23 @@ class TestFloodClient:
     def test_sync_detailed_geolocation(self):
         detailed = FloodClient.get_detailed(
             geolocation=GeoLocation(lat=self.LAT, lon=self.LON)
+        )
+        assert detailed
+
+    def test_sync_detailed_date(self):
+        start_date = date.today()
+        end_date = start_date + timedelta(days=4)
+        detailed = FloodClient.get_detailed(
+            geolocation=GeoLocation(lat=self.LAT, lon=self.LON),
+            start_date=start_date,
+            end_date=end_date,
+        )
+        assert detailed
+
+    def test_sync_detailed_neighbors(self):
+        detailed = FloodClient.get_detailed(
+            geolocation=GeoLocation(lat=self.LAT, lon=self.LON),
+            include_neighbours=True,
         )
         assert detailed
 
