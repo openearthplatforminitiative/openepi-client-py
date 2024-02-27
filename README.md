@@ -144,7 +144,7 @@ forest_loss = DeforestationClient.get_basin(bounding_box=BoundingBox(min_lat=30.
 from openepi_client import GeoLocation, BoundingBox
 from openepi_client.deforestation import AsyncDeforestationClient
 
-# Get the yearly forest cover loss within a river basin for a given geolocation
+# Get the return period thresholds for a given geolocation
 forest_loss = await AsyncDeforestationClient.get_basin(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
 
 # Get yearly forest cover loss for all river basins within the given bounding box
