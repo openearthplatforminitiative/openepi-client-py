@@ -70,7 +70,6 @@ class SummaryRequest(BaseModel):
     def check_mutually_exclusive(self) -> "SummaryRequest":
         if not (self.geolocation is not None) ^ (self.bounding_box is not None):
             raise ValueError("Either specify a geolocation or a boundingbox.")
-
         return self
 
     @computed_field
