@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date
 
 from httpx import AsyncClient, Client
 from pydantic import BaseModel, Field, model_validator, computed_field
@@ -112,11 +112,11 @@ class DetailedRequest(BaseModel):
         default=False, description="Whether to include neighbouring locations"
     )
 
-    start_date: datetime | None = Field(
+    start_date: date | None = Field(
         default=None, description="The start date of the query"
     )
 
-    end_date: datetime | None = Field(
+    end_date: date | None = Field(
         default=None, description="The end date of the query"
     )
 
@@ -134,8 +134,8 @@ class DetailedRequest(BaseModel):
     def _params(self) -> dict:
         params = {
             "include_neighbours": self.include_neighbours,
-            "start_date": self.start_date.date().isoformat() if self.start_date else None,
-            "end_date": self.end_date.date().isoformat() if self.end_date else None,
+            "start_date": self.start_date.isoformat() if self.start_date else None,
+            "end_date": self.end_date.isoformat() if self.end_date else None,
         }
         if self.geolocation:
             params.update({"lat": self.geolocation.lat, "lon": self.geolocation.lon})
@@ -189,8 +189,8 @@ class FloodClient:
         geolocation: GeoLocation | None = None,
         bounding_box: BoundingBox | None = None,
         include_neighbours: bool | None = False,
-        start_date: datetime | None = None,
-        end_date: datetime | None = None,
+        start_date: date | None = None,
+        end_date: date | None = None,
     ) -> DetailedResponseModel:
         return DetailedRequest(
             geolocation=geolocation,
@@ -223,8 +223,8 @@ class AsyncFloodClient:
         geolocation: GeoLocation | None = None,
         bounding_box: BoundingBox | None = None,
         include_neighbours: bool | None = False,
-        start_date: datetime | None = None,
-        end_date: datetime | None = None,
+        start_date: date | None = None,
+        end_date: date | None = None,
     ) -> DetailedResponseModel:
         return await DetailedRequest(
             geolocation=geolocation,
