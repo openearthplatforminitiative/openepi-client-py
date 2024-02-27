@@ -158,10 +158,10 @@ from openepi_client import GeoLocation, BoundingBox
 from openepi_client.soil import SoilClient
 
 # Get the most probable soil type at the queried location
-# and the probability of the top 3 most probable soil types
+# and the probability of the top 4 most probable soil types
 soil_type = SoilClient.get_soil_type(
   geolocation=GeoLocation(lat=60.1, lon=9.58),
-  top_k=3
+  top_k=4
 )
 
 # Get the mean and the 0.05 quantile of the soil 
@@ -195,10 +195,10 @@ from openepi_client import GeoLocation, BoundingBox
 from openepi_client.soil import AsyncSoilClient
 
 # Get the most probable soil type at the queried location
-# and the probability of the top 3 most probable soil types
+# and the probability of the top 4 most probable soil types
 soil_type = await AsyncSoilClient.get_soil_type(
   geolocation=GeoLocation(lat=60.1, lon=9.58),
-  top_k=3
+  top_k=4
 )
 
 # Get the mean and the 0.05 quantile of the soil 
