@@ -1,4 +1,5 @@
 from httpx import AsyncClient, Client
+import httpx
 from pydantic import BaseModel, Field, computed_field
 from openepi_client import openepi_settings, BoundingBox, GeoLocation
 
@@ -32,13 +33,19 @@ class SoilTypeRequest(BaseModel):
 
     def get_sync(self) -> SoilTypeJSON:
         with Client() as client:
-            response = client.get(self._soil_type_endpoint, params=self._params)
+            response = client.get(
+                self._soil_type_endpoint,
+                params=self._params,
+                timeout=httpx.Timeout(None),
+            )
             return SoilTypeJSON(**response.json())
 
     async def get_async(self) -> SoilTypeJSON:
         async with AsyncClient() as async_client:
             response = await async_client.get(
-                self._soil_type_endpoint, params=self._params
+                self._soil_type_endpoint,
+                params=self._params,
+                timeout=httpx.Timeout(None),
             )
             return SoilTypeJSON(**response.json())
 
@@ -62,13 +69,19 @@ class SoilTypeSummaryRequest(BaseModel):
 
     def get_sync(self) -> SoilTypeSummaryJSON:
         with Client() as client:
-            response = client.get(self._soil_type_summary_endpoint, params=self._params)
+            response = client.get(
+                self._soil_type_summary_endpoint,
+                params=self._params,
+                timeout=httpx.Timeout(None),
+            )
             return SoilTypeSummaryJSON(**response.json())
 
     async def get_async(self) -> SoilTypeSummaryJSON:
         async with AsyncClient() as async_client:
             response = await async_client.get(
-                self._soil_type_summary_endpoint, params=self._params
+                self._soil_type_summary_endpoint,
+                params=self._params,
+                timeout=httpx.Timeout(None),
             )
             return SoilTypeSummaryJSON(**response.json())
 
@@ -115,13 +128,19 @@ class SoilPropertyRequest(BaseModel):
 
     def get_sync(self) -> SoilPropertyJSON:
         with Client() as client:
-            response = client.get(self._soil_propery_endpoint, params=self._params)
+            response = client.get(
+                self._soil_propery_endpoint,
+                params=self._params,
+                timeout=httpx.Timeout(None),
+            )
             return SoilPropertyJSON(**response.json())
 
     async def get_async(self) -> SoilPropertyJSON:
         async with AsyncClient() as async_client:
             response = await async_client.get(
-                self._soil_propery_endpoint, params=self._params
+                self._soil_propery_endpoint,
+                params=self._params,
+                timeout=httpx.Timeout(None),
             )
             return SoilPropertyJSON(**response.json())
 
