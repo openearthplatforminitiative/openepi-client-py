@@ -114,27 +114,27 @@ from openepi_client.flood import AsyncFloodClient
 from datetime import date, timedelta
 
 # Get the return period thresholds for a given geolocation
-thresholds = await AsyncFloodClient.get_threshold(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
+thresholds = await AsyncFloodClient.get_threshold(geolocation=GeoLocation(lat=-3.422, lon=30.075))
 
 # Get the return period thresholds for a given bounding box
 thresholds = await AsyncFloodClient.get_threshold(bounding_box=BoundingBox(min_lat=4.764412, min_lon=22.0, max_lat=5.015732, max_lon=23.05))
 
 # Get a summary flood forecast for a given coordinate
-summary = await AsyncFloodClient.get_summary(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
+summary = await AsyncFloodClient.get_summary(geolocation=GeoLocation(lat=-3.422, lon=30.075))
 
 # Get a summary flood forecast for a given coordinate and include neighboring cells
-summary = await AsyncFloodClient.get_summary(geolocation=GeoLocation(lat=51.5074, lon=0.1278), include_neighbors=True)
+summary = await AsyncFloodClient.get_summary(geolocation=GeoLocation(lat=-3.422, lon=30.075), include_neighbors=True)
 
 # Get a summary flood forecast for a given bounding box
 summary = await AsyncFloodClient.get_summary(bounding_box=BoundingBox(min_lat=4.764412, min_lon=22.0, max_lat=5.015732, max_lon=23.05))
 
 # Get a detailed flood forecast for a given coordinate
-detailed = await AsyncFloodClient.get_detailed(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
+detailed = await AsyncFloodClient.get_detailed(geolocation=GeoLocation(lat=-3.422, lon=30.075))
 
 # Get a detailed flood forecast for a given coordinate and timeframe (inclusive bounds)
 start_date = date.today()
 end_date = start_date + timedelta(days=4)
-detailed = await AsyncFloodClient.get_detailed(geolocation=GeoLocation(lat=51.5074, lon=0.1278), start_date=start_date, end_date=end_date)
+detailed = await AsyncFloodClient.get_detailed(geolocation=GeoLocation(lat=-3.422, lon=30.075), start_date=start_date, end_date=end_date)
 
 # Get a detailed flood forecast for a given bounding box
 detailed = await AsyncFloodClient.get_detailed(bounding_box=BoundingBox(min_lat=4.764412, min_lon=22.0, max_lat=5.015732, max_lon=23.05))
