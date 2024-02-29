@@ -2,6 +2,19 @@
 
 
 
+## v0.0.5 (2024-02-29)
+
+### Fix
+
+* fix: coordinates within ROI bounds for flood ([`dee5ead`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/dee5ead93add9903543b0c364a6d8c4f42b76740))
+
+### Unknown
+
+* Merge pull request #8 from openearthplatforminitiative/fix/example-code
+
+fix issues with example code ([`ade8807`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/ade8807cb1a9b58b579e96ac8be1389f65035939))
+
+
 ## v0.0.4 (2024-02-27)
 
 ### Fix
@@ -9,6 +22,8 @@
 * fix: dummy commit for version bump ([`57b549f`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/57b549f4ad842432df3427e21064c800bf1d19c4))
 
 ### Unknown
+
+* fix issues with example code ([`55b8498`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/55b8498f1b097eb6ff6c91201dc078387fa2ddbe))
 
 * Merge pull request #7 from openearthplatforminitiative/fix/flood-date-parsing
 
