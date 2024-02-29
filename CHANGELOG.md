@@ -2,6 +2,17 @@
 
 
 
+## v0.0.7 (2024-02-29)
+
+### Unknown
+
+* Merge pull request #6 from openearthplatforminitiative/feat/soil
+
+Feat/soil ([`2c13817`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/2c13817e26c44ee3fc00c64c78c83c89982dbad7))
+
+* Merge branch &#39;main&#39; into feat/soil ([`0c9763c`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/0c9763cb443968689aace11d6911f10aa202c3c7))
+
+
 ## v0.0.6 (2024-02-29)
 
 ### Unknown
@@ -14,6 +25,8 @@ fix: neighbors can be included in summary forecast ([`1dbe5b0`](https://github.c
 ## v0.0.5 (2024-02-29)
 
 ### Fix
+
+* fix: commit for version bump ([`2016e12`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/2016e123e922701ff05529f516ff7c4cd7aa8765))
 
 * fix: coordinates within ROI bounds for flood ([`dee5ead`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/dee5ead93add9903543b0c364a6d8c4f42b76740))
 
@@ -36,6 +49,12 @@ fix issues with example code ([`ade8807`](https://github.com/openearthplatformin
 
 * fix issues with example code ([`55b8498`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/55b8498f1b097eb6ff6c91201dc078387fa2ddbe))
 
+* revert change
+
+Will be addressed in separate PR ([`d660b74`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/d660b743f35d5752ceba20f054786506e2882670))
+
+* disable timeout for soil queries ([`3013e07`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/3013e07c5be73ed77b666c6f5498b7c156f05af1))
+
 * Merge pull request #7 from openearthplatforminitiative/fix/flood-date-parsing
 
 datetime params need to be parsed ([`3e54774`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/3e54774c57ec19d8098e5544928687257cc6edd7))
@@ -47,6 +66,12 @@ datetime params need to be parsed ([`3e54774`](https://github.com/openearthplatf
 * add more flood test cases ([`9864d23`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/9864d238724f0ad71352205d441e65db79f4c348))
 
 * datetime params need to be parsed ([`52bc5e8`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/52bc5e8e5555beac28b10b03aae587508d820445))
+
+* use new soil api openapi.json for types ([`a578962`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/a578962e44dc0864846b966c43e712dc758043af))
+
+* Use datamodel-codegen on newest soil-api ([`72677ca`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/72677cae94c8dce1734ce577803cbcc0192f8708))
+
+* add soil to client library ([`0773c8c`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/0773c8c23c1dcad1e5ee5d6277d14fc9a6a2289c))
 
 
 ## v0.0.3 (2024-01-16)
