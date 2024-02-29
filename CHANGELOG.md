@@ -2,6 +2,53 @@
 
 
 
+## v0.0.6 (2024-02-29)
+
+### Unknown
+
+* Merge pull request #9 from openearthplatforminitiative/fix/neighbors-in-flood-summary
+
+fix: neighbors can be included in summary forecast ([`1dbe5b0`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/1dbe5b03b6c5609bd0bcdfbddedf4917a89d499f))
+
+
+## v0.0.5 (2024-02-29)
+
+### Fix
+
+* fix: coordinates within ROI bounds for flood ([`dee5ead`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/dee5ead93add9903543b0c364a6d8c4f42b76740))
+
+* fix: neighbors can be included in summary forecast ([`dc289cc`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/dc289cc042ffecc89c32c2690555dd50e62ce45a))
+
+### Unknown
+
+* Merge pull request #8 from openearthplatforminitiative/fix/example-code
+
+fix issues with example code ([`ade8807`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/ade8807cb1a9b58b579e96ac8be1389f65035939))
+
+
+## v0.0.4 (2024-02-27)
+
+### Fix
+
+* fix: dummy commit for version bump ([`57b549f`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/57b549f4ad842432df3427e21064c800bf1d19c4))
+
+### Unknown
+
+* fix issues with example code ([`55b8498`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/55b8498f1b097eb6ff6c91201dc078387fa2ddbe))
+
+* Merge pull request #7 from openearthplatforminitiative/fix/flood-date-parsing
+
+datetime params need to be parsed ([`3e54774`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/3e54774c57ec19d8098e5544928687257cc6edd7))
+
+* use date instead of datetime for flood ([`1580f38`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/1580f385d371794d748c5e8b232f429377ddc9a9))
+
+* use date() with isoformat() ([`e48fd99`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/e48fd992b8b89904a867088d288cc68b9c43f931))
+
+* add more flood test cases ([`9864d23`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/9864d238724f0ad71352205d441e65db79f4c348))
+
+* datetime params need to be parsed ([`52bc5e8`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/52bc5e8e5555beac28b10b03aae587508d820445))
+
+
 ## v0.0.3 (2024-01-16)
 
 ### Fix

@@ -1,3 +1,4 @@
+from datetime import date, timedelta
 import pytest
 
 from openepi_client.flood import (
@@ -60,6 +61,13 @@ class TestFloodClient:
         )
         assert summary
 
+    def test_sync_summary_neighbors(self):
+        summary: SummaryResponseModel = FloodClient.get_summary(
+            geolocation=GeoLocation(lat=self.LAT, lon=self.LON),
+            include_neighbors=True,
+        )
+        assert summary
+
     def test_sync_summary_bounding_box(self):
         summary: SummaryResponseModel = FloodClient.get_summary(
             bounding_box=BoundingBox(
@@ -79,6 +87,17 @@ class TestFloodClient:
         assert summary
 
     @pytest.mark.asyncio
+    async def test_async_summary_neighbors(self):
+        summary = await AsyncFloodClient.get_summary(
+            geolocation=GeoLocation(
+                lat=self.LAT, 
+                lon=self.LON, 
+                include_neighbors=True
+            )
+        )
+        assert summary
+
+    @pytest.mark.asyncio
     async def test_async_summary_bounding_box(self):
         summary = await AsyncFloodClient.get_summary(
             bounding_box=BoundingBox(
@@ -93,6 +112,23 @@ class TestFloodClient:
     def test_sync_detailed_geolocation(self):
         detailed = FloodClient.get_detailed(
             geolocation=GeoLocation(lat=self.LAT, lon=self.LON)
+        )
+        assert detailed
+
+    def test_sync_detailed_date(self):
+        start_date = date.today()
+        end_date = start_date + timedelta(days=4)
+        detailed = FloodClient.get_detailed(
+            geolocation=GeoLocation(lat=self.LAT, lon=self.LON),
+            start_date=start_date,
+            end_date=end_date,
+        )
+        assert detailed
+
+    def test_sync_detailed_neighbors(self):
+        detailed = FloodClient.get_detailed(
+            geolocation=GeoLocation(lat=self.LAT, lon=self.LON),
+            include_neighbors=True,
         )
         assert detailed
 
