@@ -12,9 +12,9 @@ Can be installed from PyPI on [https://pypi.org/project/openepi-client/](https:/
 - [Flood predictions](#flood)
   - [Sync usage](#sync-usage-2)
   - [Async usage](#async-usage-2)
-- [Deforestation](#flood)
-  - [Sync usage](#sync-usage-2)
-  - [Async usage](#async-usage-2)
+- [Deforestation](#deforestation)
+  - [Sync usage](#sync-usage-3)
+  - [Async usage](#async-usage-3)
 
 ## Weather
 ### Sync usage
@@ -26,50 +26,50 @@ from openepi_client.weather import WeatherClient
 sunrise_sunset = WeatherClient.get_sunrise(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
 
 # Getting the weather forecast for a location
-forecast = WeatherClient.get_location_forecast(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
+forecast = WeatherClient.get_location_forecast(geolocation=GeoLocation(lat=51.5074, lon=0.1278, alt=0))
 ```
 
 ### Async usage
 ```python
+from openepi_client import GeoLocation
 from openepi_client.weather import AsyncWeatherClient
 
 # Getting the sunrise and sunset times for a location
-sunrise_sunset = await AsyncWeatherClient.get_sunrise(lat=51.5074, lon=0.1278)
+sunrise_sunset = await AsyncWeatherClient.get_sunrise(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
 
 # Getting the weather forecast for a location
-forecast = await AsyncWeatherClient.get_location_forecast(lat=51.5074, lon=0.1278)
-
-# Searching for coordinates for a location
-feature_collection = await AsyncGeocodeClient.geocode(q="Kigali, Rwanda")
+forecast = await AsyncWeatherClient.get_location_forecast(geolocation=GeoLocation(lat=51.5074, lon=0.1278, alt=0))
 ```
 
 ## Geocoding
 ### Sync usage
 ```python
+from openepi_client import GeoLocation
 from openepi_client.geocoding import GeocodeClient
 
 # Searching for the coordinates to a named place
 feature_collection = GeocodeClient.geocode(q="Kigali, Rwanda")
 
 # Geocode with priority to a lat and lon
-feature_collection = GeocodeClient.geocode(q="Kigali, Rwanda", lat=51.5074, lon=0.1278)
+feature_collection = GeocodeClient.geocode(q="Kigali, Rwanda", geolocation=GeoLocation(lat=51.5074, lon=0.1278))
 
 # Reverse geocode
-feature_collection = GeocodeClient.reverse_geocode(lat=51.5074, lon=0.1278)
+feature_collection = GeocodeClient.reverse_geocode(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
 ```
 
 ### Async usage
 ```python
+from openepi_client import GeoLocation
 from openepi_client.geocoding import AsyncGeocodeClient
 
 # Searching for coordinates for a location
 feature_collection = await AsyncGeocodeClient.geocode(q="Kigali, Rwanda")
 
 # Geocode with priority to a lat and lon
-feature_collection = await AsyncGeocodeClient.geocode(q="Kigali, Rwanda", lat=51.5074, lon=0.1278)
+feature_collection = await AsyncGeocodeClient.geocode(q="Kigali, Rwanda", geolocation=GeoLocation(lat=51.5074, lon=0.1278))
 
 # Reverse geocode
-feature_collection = await AsyncGeocodeClient.reverse_geocode(lat=51.5074, lon=0.1278)
+feature_collection = await AsyncGeocodeClient.reverse_geocode(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
 ```
 
 ## Flood
@@ -77,21 +77,30 @@ feature_collection = await AsyncGeocodeClient.reverse_geocode(lat=51.5074, lon=0
 ```python
 from openepi_client import GeoLocation, BoundingBox
 from openepi_client.flood import FloodClient
+from datetime import date, timedelta
 
 # Get the return period thresholds for a given geolocation
-thresholds = FloodClient.get_threshold(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
+thresholds = FloodClient.get_threshold(geolocation=GeoLocation(lat=-3.422, lon=30.075))
 
 # Get the return period thresholds for a given bounding box
 thresholds = FloodClient.get_threshold(bounding_box=BoundingBox(min_lat=4.764412, min_lon=22.0, max_lat=5.015732, max_lon=23.05))
 
 # Get a summary flood forecast for a given coordinate
-summary = FloodClient.get_summary(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
+summary = FloodClient.get_summary(geolocation=GeoLocation(lat=-3.422, lon=30.075))
+
+# Get a summary flood forecast for a given coordinate and include neighboring cells
+summary = FloodClient.get_summary(geolocation=GeoLocation(lat=-3.422, lon=30.075), include_neighbors=True)
 
 # Get a summary flood forecast for a given bounding box
 summary = FloodClient.get_summary(bounding_box=BoundingBox(min_lat=4.764412, min_lon=22.0, max_lat=5.015732, max_lon=23.05))
 
 # Get a detailed flood forecast for a given coordinate
-detailed = FloodClient.get_detailed(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
+detailed = FloodClient.get_detailed(geolocation=GeoLocation(lat=-3.422, lon=30.075))
+
+# Get a detailed flood forecast for a given coordinate and timeframe (inclusive bounds)
+start_date = date.today()
+end_date = start_date + timedelta(days=4)
+detailed = FloodClient.get_detailed(geolocation=GeoLocation(lat=-3.422, lon=30.075), start_date=start_date, end_date=end_date)
 
 # Get a detailed flood forecast for a given bounding box
 detailed = FloodClient.get_detailed(bounding_box=BoundingBox(min_lat=4.764412, min_lon=22.0, max_lat=5.015732, max_lon=23.05))
@@ -102,21 +111,30 @@ detailed = FloodClient.get_detailed(bounding_box=BoundingBox(min_lat=4.764412, m
 ```python
 from openepi_client import GeoLocation, BoundingBox
 from openepi_client.flood import AsyncFloodClient
+from datetime import date, timedelta
 
 # Get the return period thresholds for a given geolocation
-thresholds = await AsyncFloodClient.get_threshold(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
+thresholds = await AsyncFloodClient.get_threshold(geolocation=GeoLocation(lat=-3.422, lon=30.075))
 
 # Get the return period thresholds for a given bounding box
 thresholds = await AsyncFloodClient.get_threshold(bounding_box=BoundingBox(min_lat=4.764412, min_lon=22.0, max_lat=5.015732, max_lon=23.05))
 
 # Get a summary flood forecast for a given coordinate
-summary = await AsyncFloodClient.get_summary(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
+summary = await AsyncFloodClient.get_summary(geolocation=GeoLocation(lat=-3.422, lon=30.075))
+
+# Get a summary flood forecast for a given coordinate and include neighboring cells
+summary = await AsyncFloodClient.get_summary(geolocation=GeoLocation(lat=-3.422, lon=30.075), include_neighbors=True)
 
 # Get a summary flood forecast for a given bounding box
 summary = await AsyncFloodClient.get_summary(bounding_box=BoundingBox(min_lat=4.764412, min_lon=22.0, max_lat=5.015732, max_lon=23.05))
 
 # Get a detailed flood forecast for a given coordinate
-detailed = await AsyncFloodClient.get_detailed(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
+detailed = await AsyncFloodClient.get_detailed(geolocation=GeoLocation(lat=-3.422, lon=30.075))
+
+# Get a detailed flood forecast for a given coordinate and timeframe (inclusive bounds)
+start_date = date.today()
+end_date = start_date + timedelta(days=4)
+detailed = await AsyncFloodClient.get_detailed(geolocation=GeoLocation(lat=-3.422, lon=30.075), start_date=start_date, end_date=end_date)
 
 # Get a detailed flood forecast for a given bounding box
 detailed = await AsyncFloodClient.get_detailed(bounding_box=BoundingBox(min_lat=4.764412, min_lon=22.0, max_lat=5.015732, max_lon=23.05))
@@ -129,7 +147,7 @@ from openepi_client import GeoLocation, BoundingBox
 from openepi_client.deforestation import DeforestationClient
 
 # Get the yearly forest cover loss within a river basin for a given geolocation
-forest_loss = DeforestationClient.get_basin(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
+forest_loss = DeforestationClient.get_basin(geolocation=GeoLocation(lat=5.175, lon=37.124))
 
 # Get yearly forest cover loss for all river basins within the given bounding box
 forest_loss = DeforestationClient.get_basin(bounding_box=BoundingBox(min_lat=30.909622, min_lon=28.850951, max_lat=-1.041395, max_lon=-2.840114))
@@ -141,8 +159,8 @@ forest_loss = DeforestationClient.get_basin(bounding_box=BoundingBox(min_lat=30.
 from openepi_client import GeoLocation, BoundingBox
 from openepi_client.deforestation import AsyncDeforestationClient
 
-# Get the return period thresholds for a given geolocation
-forest_loss = await AsyncDeforestationClient.get_basin(geolocation=GeoLocation(lat=51.5074, lon=0.1278))
+# Get the yearly forest cover loss within a river basin for a given geolocation
+forest_loss = await AsyncDeforestationClient.get_basin(geolocation=GeoLocation(lat=5.175, lon=37.124))
 
 # Get yearly forest cover loss for all river basins within the given bounding box
 forest_loss = await AsyncDeforestationClient.get_basin(bounding_box=BoundingBox(min_lat=30.909622, min_lon=28.850951, max_lat=-1.041395, max_lon=-2.840114))
