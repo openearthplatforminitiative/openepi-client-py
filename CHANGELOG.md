@@ -2,11 +2,22 @@
 
 
 
+## v0.0.6 (2024-02-29)
+
+### Unknown
+
+* Merge pull request #9 from openearthplatforminitiative/fix/neighbors-in-flood-summary
+
+fix: neighbors can be included in summary forecast ([`1dbe5b0`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/1dbe5b03b6c5609bd0bcdfbddedf4917a89d499f))
+
+
 ## v0.0.5 (2024-02-29)
 
 ### Fix
 
 * fix: coordinates within ROI bounds for flood ([`dee5ead`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/dee5ead93add9903543b0c364a6d8c4f42b76740))
+
+* fix: neighbors can be included in summary forecast ([`dc289cc`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/dc289cc042ffecc89c32c2690555dd50e62ce45a))
 
 ### Unknown
 
