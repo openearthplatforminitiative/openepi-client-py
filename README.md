@@ -18,6 +18,9 @@ Can be installed from PyPI on [https://pypi.org/project/openepi-client/](https:/
 - [Soil Information](#soil)
   - [Sync usage](#sync-usage-4) 
   - [Async usage](#async-usage-4)
+- [Crop Health Information](#crop-health)
+  - [Sync usage](#sync-usage-5)
+  - [Sync usage](#async-usage-5)
 
 ## Weather
 ### Sync usage
@@ -243,6 +246,45 @@ soil_type_summary = await AsyncSoilClient.get_soil_type_summary(
   )
 )
 ```
+
+## Crop Health
+### Sync usage
+```python
+import os
+from openepi_client import 
+from openepi_client.crop_health import CropHealthClient
+
+image_path = os.path.abspath("cocoa.jpg")
+
+# Get the predicted health of the crop pictured in cocoa.jpg with the binary model.
+health = CropHealthClient.get_binary_health_prediction(image_path)
+
+# Get the predicted health of the crop and a probability of what diseases it might be, based on the singleHLT model.
+health = CropHealthClient.get_singleHLT_health_prediction(image_path)
+
+# Get the predicted health of the crop and a probability of what diseases it might be, based on the multiHLT model.
+health = CropHealthClient.get_multiHLT_health_prediction(image_path)
+```
+
+
+### Async usage
+```python
+import os
+from openepi_client import 
+from openepi_client.crop_health import AsyncCropHealthClient
+
+image_path = os.path.abspath("cocoa.jpg")
+
+# Get the predicted health of the crop pictured in cocoa.jpg with the binary model.
+health = await AsyncCropHealthClient.get_binary_health_prediction(image_path)
+
+# Get the predicted health of the crop and a probability of what diseases it might be, based on the singleHLT model.
+health = await AsyncCropHealthClient.get_singleHLT_health_prediction(image_path)
+
+# Get the predicted health of the crop and a probability of what diseases it might be, based on the multiHLT model.
+health = await AsyncCropHealthClient.get_multiHLT_health_prediction(image_path)
+```
+
 
 ## Updating the client
 The following commands are used to update the client types. The commands are run from the root of the project.
