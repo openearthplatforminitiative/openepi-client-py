@@ -14,120 +14,120 @@ from typing_extensions import Literal
 class DetailedProperties(BaseModel):
     issued_on: date = Field(
         ...,
-        description='The date the summary forecast was issued on. The GloFAS hydrological model is run every day at 00:00 UTC.',
-        examples=['2023-11-07'],
-        title='Issued On',
+        description="The date the summary forecast was issued on. The GloFAS hydrological model is run every day at 00:00 UTC.",
+        examples=["2023-11-07"],
+        title="Issued On",
     )
     valid_for: date = Field(
         ...,
-        description='The date of the 24-hour forecast period for the flood. The forecast uses the discharge expected between 00:00 UTC and 23:59 UTC of that day.',
-        examples=['2023-12-01'],
-        title='Valid For',
+        description="The date of the 24-hour forecast period for the flood. The forecast uses the discharge expected between 00:00 UTC and 23:59 UTC of that day.",
+        examples=["2023-12-01"],
+        title="Valid For",
     )
     step: conint(ge=1, le=30) = Field(
         ...,
-        description='The time step number of the forecast data.',
+        description="The time step number of the forecast data.",
         examples=[22],
-        title='Step',
+        title="Step",
     )
     p_above_2y: confloat(ge=0.0, le=1.0) = Field(
         ...,
-        description='Probability of exceedance over the 2-year return period threshold.',
+        description="Probability of exceedance over the 2-year return period threshold.",
         examples=[0.8627450980392157],
-        title='P Above 2Y',
+        title="P Above 2Y",
     )
     p_above_5y: confloat(ge=0.0, le=1.0) = Field(
         ...,
-        description='Probability of exceedance over the 5-year return period threshold.',
+        description="Probability of exceedance over the 5-year return period threshold.",
         examples=[0.29411764705882354],
-        title='P Above 5Y',
+        title="P Above 5Y",
     )
     p_above_20y: confloat(ge=0.0, le=1.0) = Field(
         ...,
-        description='Probability of exceedance over the 20-year return period threshold.',
+        description="Probability of exceedance over the 20-year return period threshold.",
         examples=[0.0196078431372549],
-        title='P Above 20Y',
+        title="P Above 20Y",
     )
     min_dis: confloat(ge=0.0) = Field(
         ...,
-        description='Minimum forecasted discharge in m^3/s.',
+        description="Minimum forecasted discharge in m^3/s.",
         examples=[16.2890625],
-        title='Min Dis',
+        title="Min Dis",
     )
     Q1_dis: confloat(ge=0.0) = Field(
         ...,
-        description='First quartile of forecasted discharge in m^3/s.',
+        description="First quartile of forecasted discharge in m^3/s.",
         examples=[21.83984375],
-        title='Q1 Dis',
+        title="Q1 Dis",
     )
     median_dis: confloat(ge=0.0) = Field(
         ...,
-        description='Median forecasted discharge in m^3/s.',
+        description="Median forecasted discharge in m^3/s.",
         examples=[24.87109375],
-        title='Median Dis',
+        title="Median Dis",
     )
     Q3_dis: confloat(ge=0.0) = Field(
         ...,
-        description='Third quartile of forecasted discharge in m^3/s.',
+        description="Third quartile of forecasted discharge in m^3/s.",
         examples=[27.44921875],
-        title='Q3 Dis',
+        title="Q3 Dis",
     )
     max_dis: confloat(ge=0.0) = Field(
         ...,
-        description='Maximum forecasted discharge in m^3/s.',
+        description="Maximum forecasted discharge in m^3/s.",
         examples=[39.64062599],
-        title='Max Dis',
+        title="Max Dis",
     )
 
 
-class GeometryType(RootModel[Literal['Polygon']]):
-    root: Literal['Polygon'] = Field(..., title='GeometryType')
+class GeometryType(RootModel[Literal["Polygon"]]):
+    root: Literal["Polygon"] = Field(..., title="GeometryType")
 
 
-class IntensityEnum(RootModel[Literal['P', 'R', 'Y', 'G']]):
-    root: Literal['P', 'R', 'Y', 'G'] = Field(..., title='IntensityEnum')
+class IntensityEnum(RootModel[Literal["P", "R", "Y", "G"]]):
+    root: Literal["P", "R", "Y", "G"] = Field(..., title="IntensityEnum")
 
 
-class PeakTimingEnum(RootModel[Literal['BB', 'GC', 'GB']]):
-    root: Literal['BB', 'GC', 'GB'] = Field(..., title='PeakTimingEnum')
+class PeakTimingEnum(RootModel[Literal["BB", "GC", "GB"]]):
+    root: Literal["BB", "GC", "GB"] = Field(..., title="PeakTimingEnum")
 
 
-class TendencyEnum(RootModel[Literal['U', 'D', 'C']]):
-    root: Literal['U', 'D', 'C'] = Field(..., title='TendencyEnum')
+class TendencyEnum(RootModel[Literal["U", "D", "C"]]):
+    root: Literal["U", "D", "C"] = Field(..., title="TendencyEnum")
 
 
 class ThresholdProperties(BaseModel):
     threshold_2y: confloat(ge=0.0) = Field(
         ...,
-        description='The 2-year return period threshold in m^3/s.',
+        description="The 2-year return period threshold in m^3/s.",
         examples=[17.34925885],
-        title='Threshold 2Y',
+        title="Threshold 2Y",
     )
     threshold_5y: confloat(ge=0.0) = Field(
         ...,
-        description='The 5-year return period threshold in m^3/s.',
+        description="The 5-year return period threshold in m^3/s.",
         examples=[19.26002567],
-        title='Threshold 5Y',
+        title="Threshold 5Y",
     )
     threshold_20y: confloat(ge=0.0) = Field(
         ...,
-        description='The 20-year return period threshold in m^3/s.',
+        description="The 20-year return period threshold in m^3/s.",
         examples=[30.15522911],
-        title='Threshold 20Y',
+        title="Threshold 20Y",
     )
 
 
 class ValidationError(BaseModel):
-    loc: List[Union[str, int]] = Field(..., title='Location')
-    msg: str = Field(..., title='Message')
-    type: str = Field(..., title='Error Type')
+    loc: List[Union[str, int]] = Field(..., title="Location")
+    msg: str = Field(..., title="Message")
+    type: str = Field(..., title="Error Type")
 
 
 class Geometry(BaseModel):
     type: GeometryType = Field(
         ...,
         description="The nature of the geometry type, which is 'Polygon' for this model.",
-        examples=['Polygon'],
+        examples=["Polygon"],
     )
     coordinates: List[List[List[float]]] = Field(
         ...,
@@ -143,126 +143,126 @@ class Geometry(BaseModel):
                 ]
             ]
         ],
-        title='Coordinates',
+        title="Coordinates",
     )
 
 
 class HTTPValidationError(BaseModel):
-    detail: Optional[List[ValidationError]] = Field(None, title='Detail')
+    detail: Optional[List[ValidationError]] = Field(None, title="Detail")
 
 
 class SummaryProperties(BaseModel):
     issued_on: date = Field(
         ...,
-        description='The date the summary forecast was issued on. The GloFAS hydrological model is run every day at 00:00 UTC.',
-        examples=['2023-11-07'],
-        title='Issued On',
+        description="The date the summary forecast was issued on. The GloFAS hydrological model is run every day at 00:00 UTC.",
+        examples=["2023-11-07"],
+        title="Issued On",
     )
     peak_step: conint(ge=1, le=30) = Field(
         ...,
-        description='The step number at which the peak occurs, ranging from 1 to 30.',
+        description="The step number at which the peak occurs, ranging from 1 to 30.",
         examples=[1],
-        title='Peak Step',
+        title="Peak Step",
     )
     peak_day: date = Field(
         ...,
-        description='The date on which the flood peak is forecasted to occur, assuming UTC timezone.',
-        examples=['2023-11-07'],
-        title='Peak Day',
+        description="The date on which the flood peak is forecasted to occur, assuming UTC timezone.",
+        examples=["2023-11-07"],
+        title="Peak Day",
     )
     peak_timing: PeakTimingEnum = Field(
         ...,
-        description='The timing of the flood peak indicated by border and grayed colors. BB: Black border, peak forecasted within days 1-3. GC: Grayed color, peak forecasted after day 10 with <30% probability of exceeding the 2-year return period threshold in first 10 days. GB: Gray border, floods of some severity in first 10 days and peak after day 3.',
-        examples=['BB'],
+        description="The timing of the flood peak indicated by border and grayed colors. BB: Black border, peak forecasted within days 1-3. GC: Grayed color, peak forecasted after day 10 with <30% probability of exceeding the 2-year return period threshold in first 10 days. GB: Gray border, floods of some severity in first 10 days and peak after day 3.",
+        examples=["BB"],
     )
     max_median_dis: confloat(ge=0.0) = Field(
         ...,
-        description='The maximum of the median discharges over the forecast horizon in m^3/s.',
+        description="The maximum of the median discharges over the forecast horizon in m^3/s.",
         examples=[314.96875],
-        title='Max Median Dis',
+        title="Max Median Dis",
     )
     min_median_dis: confloat(ge=0.0) = Field(
         ...,
-        description='The minimum of the median discharges over the forecast horizon in m^3/s.',
+        description="The minimum of the median discharges over the forecast horizon in m^3/s.",
         examples=[89.9921875],
-        title='Min Median Dis',
+        title="Min Median Dis",
     )
     control_dis: confloat(ge=0.0) = Field(
         ...,
-        description='The control discharge in m^3/s. Currently taken to be the median discharge of the first day in forecasted.',
+        description="The control discharge in m^3/s. Currently taken to be the median discharge of the first day in forecasted.",
         examples=[314.96875],
-        title='Control Dis',
+        title="Control Dis",
     )
     max_max_dis: confloat(ge=0.0) = Field(
         ...,
-        description='The maximum of the maximum discharges over the forecast horizon in m^3/s.',
+        description="The maximum of the maximum discharges over the forecast horizon in m^3/s.",
         examples=[340.7265625],
-        title='Max Max Dis',
+        title="Max Max Dis",
     )
     min_min_dis: confloat(ge=0.0) = Field(
         ...,
-        description='The minimum of the minimum discharges over the forecast horizon in m^3/s.',
+        description="The minimum of the minimum discharges over the forecast horizon in m^3/s.",
         examples=[67.703125],
-        title='Min Min Dis',
+        title="Min Min Dis",
     )
     tendency: TendencyEnum = Field(
         ...,
-        description='The flood tendency (indicated by shape) according to the evolution of flood intensity signal over the forecast horizon. U: Upward triangle, increasing trend over the next 30-days with 30-day max median exceeding initial (control) discharge by >10%. D: Downward triangle, decreasing trend over the next 30-days with 30-day max median not exceeding initial discharge by >10% and min median is >=10% below initial discharge. C: Circle, stagnant flow with no significant trend detected.',
-        examples=['U'],
+        description="The flood tendency (indicated by shape) according to the evolution of flood intensity signal over the forecast horizon. U: Upward triangle, increasing trend over the next 30-days with 30-day max median exceeding initial (control) discharge by >10%. D: Downward triangle, decreasing trend over the next 30-days with 30-day max median not exceeding initial discharge by >10% and min median is >=10% below initial discharge. C: Circle, stagnant flow with no significant trend detected.",
+        examples=["U"],
     )
     max_p_above_20y: confloat(ge=0.0, le=1.0) = Field(
         ...,
-        description='The maximum probability of exceeding the 20-year return period threshold over the forecast horizon.',
+        description="The maximum probability of exceeding the 20-year return period threshold over the forecast horizon.",
         examples=[1.0],
-        title='Max P Above 20Y',
+        title="Max P Above 20Y",
     )
     max_p_above_5y: confloat(ge=0.0, le=1.0) = Field(
         ...,
-        description='The maximum probability of exceeding the 5-year return period threshold over the forecast horizon.',
+        description="The maximum probability of exceeding the 5-year return period threshold over the forecast horizon.",
         examples=[1.0],
-        title='Max P Above 5Y',
+        title="Max P Above 5Y",
     )
     max_p_above_2y: confloat(ge=0.0, le=1.0) = Field(
         ...,
-        description='The maximum probability of exceeding the 2-year return period threshold over the forecast horizon.',
+        description="The maximum probability of exceeding the 2-year return period threshold over the forecast horizon.",
         examples=[1.0],
-        title='Max P Above 2Y',
+        title="Max P Above 2Y",
     )
     intensity: IntensityEnum = Field(
         ...,
-        description='The flood intensity (indicated by color) relating to maximum return period threshold exceedance probabilities over the forecast horizon. P: Purple, maximum 20-year exceedance probability >=30%; R: Red, maximum for 20-year <30% and 5-year >=30%; Y: Yellow, maximum for 5-year <30% and 2-year >=30%; G: Gray, no flood signal (2-year <30%).',
-        examples=['P'],
+        description="The flood intensity (indicated by color) relating to maximum return period threshold exceedance probabilities over the forecast horizon. P: Purple, maximum 20-year exceedance probability >=30%; R: Red, maximum for 20-year <30% and 5-year >=30%; Y: Yellow, maximum for 5-year <30% and 2-year >=30%; G: Gray, no flood signal (2-year <30%).",
+        examples=["P"],
     )
 
 
 class ThresholdFeature(BaseModel):
-    id: str = Field(..., description='A unique identifier for the feature.', title='Id')
-    type: Literal['Feature'] = Field(
+    id: str = Field(..., description="A unique identifier for the feature.", title="Id")
+    type: Literal["Feature"] = Field(
         ...,
         description="The type of the feature, typically 'Feature' for GeoJSON objects.",
-        examples=['Feature'],
-        title='Type',
+        examples=["Feature"],
+        title="Type",
     )
     geometry: Geometry = Field(
         ...,
-        description='The geometric details of the feature, including its type and coordinates.',
+        description="The geometric details of the feature, including its type and coordinates.",
     )
     properties: ThresholdProperties = Field(
         ...,
-        description='Properties defining flood thresholds for various return periods, used to categorize flood risk.',
+        description="Properties defining flood thresholds for various return periods, used to categorize flood risk.",
     )
 
 
 class ThresholdFeatureCollection(BaseModel):
-    type: Literal['FeatureCollection'] = Field(
+    type: Literal["FeatureCollection"] = Field(
         ...,
         description="The type of the collection, typically 'FeatureCollection' for a group of features.",
-        title='Type',
+        title="Type",
     )
     features: List[ThresholdFeature] = Field(
         ...,
-        description='A collection of threshold features, each outlining the specific discharge thresholds associated with different return period flood risks.',
-        title='Features',
+        description="A collection of threshold features, each outlining the specific discharge thresholds associated with different return period flood risks.",
+        title="Features",
     )
 
 
@@ -274,33 +274,33 @@ class ThresholdResponseModel(BaseModel):
 
 
 class DetailedFeature(BaseModel):
-    id: str = Field(..., description='A unique identifier for the feature.', title='Id')
-    type: Literal['Feature'] = Field(
+    id: str = Field(..., description="A unique identifier for the feature.", title="Id")
+    type: Literal["Feature"] = Field(
         ...,
         description="The type of the feature, typically 'Feature' for GeoJSON objects.",
-        examples=['Feature'],
-        title='Type',
+        examples=["Feature"],
+        title="Type",
     )
     geometry: Geometry = Field(
         ...,
-        description='The geometric details of the feature, including its type and coordinates.',
+        description="The geometric details of the feature, including its type and coordinates.",
     )
     properties: DetailedProperties = Field(
         ...,
-        description='Specific properties of the detailed forecast, including probabilities for different return periods and discharge statistics.',
+        description="Specific properties of the detailed forecast, including probabilities for different return periods and discharge statistics.",
     )
 
 
 class DetailedFeatureCollection(BaseModel):
-    type: Literal['FeatureCollection'] = Field(
+    type: Literal["FeatureCollection"] = Field(
         ...,
         description="The type of the collection, typically 'FeatureCollection' for a group of features.",
-        title='Type',
+        title="Type",
     )
     features: List[DetailedFeature] = Field(
         ...,
-        description='A collection of detailed forecasts, providing extensive forecast data including detailed probabilities and discharge information.',
-        title='Features',
+        description="A collection of detailed forecasts, providing extensive forecast data including detailed probabilities and discharge information.",
+        title="Features",
     )
 
 
@@ -316,33 +316,33 @@ class DetailedResponseModel(BaseModel):
 
 
 class SummaryFeature(BaseModel):
-    id: str = Field(..., description='A unique identifier for the feature.', title='Id')
-    type: Literal['Feature'] = Field(
+    id: str = Field(..., description="A unique identifier for the feature.", title="Id")
+    type: Literal["Feature"] = Field(
         ...,
         description="The type of the feature, typically 'Feature' for GeoJSON objects.",
-        examples=['Feature'],
-        title='Type',
+        examples=["Feature"],
+        title="Type",
     )
     geometry: Geometry = Field(
         ...,
-        description='The geometric details of the feature, including its type and coordinates.',
+        description="The geometric details of the feature, including its type and coordinates.",
     )
     properties: SummaryProperties = Field(
         ...,
-        description='Specific properties of the summary forecast, including various attributes like tendency, peak step, and intensity.',
+        description="Specific properties of the summary forecast, including various attributes like tendency, peak step, and intensity.",
     )
 
 
 class SummaryFeatureCollection(BaseModel):
-    type: Literal['FeatureCollection'] = Field(
+    type: Literal["FeatureCollection"] = Field(
         ...,
         description="The type of the collection, typically 'FeatureCollection' for a group of features.",
-        title='Type',
+        title="Type",
     )
     features: List[SummaryFeature] = Field(
         ...,
-        description='A collection of summary forecasts, each containing specific forecast information for a queried location.',
-        title='Features',
+        description="A collection of summary forecasts, each containing specific forecast information for a queried location.",
+        title="Features",
     )
 
 
