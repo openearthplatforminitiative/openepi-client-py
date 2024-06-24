@@ -12,7 +12,7 @@ openepi_settings = OpenEpiSettings()
 class GeoLocation(BaseModel):
     lat: float = Field(..., description="Latitude of the location")
     lon: float = Field(..., description="Longitude of the location")
-    alt: float | None = Field(default=None, description="Altitude of the location")
+    alt: int | None = Field(default=None, description="Altitude of the location")
 
 
 class BoundingBox(BaseModel):
