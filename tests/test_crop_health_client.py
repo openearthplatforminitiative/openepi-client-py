@@ -5,7 +5,7 @@ from openepi_client.crop_health import CropHealthClient, AsyncCropHealthClient
 
 
 class TestCropHealthClient:
-    image_path = os.path.abspath("tests/assets/cocoa.jpg")
+    image_path = os.path.abspath("tests/assets/plant.jpg")
 
     def test_sync_get_binary_health(self):
         health = CropHealthClient.get_binary_health_prediction(self.image_path)
