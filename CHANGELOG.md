@@ -1,6 +1,35 @@
 # CHANGELOG
 
+## v0.1.0 (2024-06-24)
 
+### Feature
+
+* feat: add tests for the crop health client ([`a9b1513`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/a9b15136d5472e2bf0e41bd99d92e0d4726a5f00))
+
+* feat: add crop health client and types ([`378201c`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/378201cb6a8073b0a8c01796b7146d615378254d))
+
+### Fix
+
+* fix: changes type of Geolocation altitude to int
+
+The tests failed because of this type error. ([`c99c961`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/c99c961f18276d88252d3c838a39d5c38f5f053e))
+
+* fix: Removes cocoa picture. Replaced with picture with universal license. ([`47a8929`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/47a892956e9cf338322ce02e7b968681a1522945))
+
+* fix: add type generation command for crop health
+
+Also adds input file type. This ensures that the command loads the
+specification as openapi. ([`f55be27`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/f55be276b1f502c4809707c806bc776ae72bde90))
+
+### Unknown
+
+* Merge pull request #10 from openearthplatforminitiative/add-crop-health
+
+Add crop health ([`74ac8b9`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/74ac8b98d29c84212986071b2fcff2ae530adaee))
+
+* Removes unused import from readme example ([`2678ce6`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/2678ce66206d37e23e37335e75c1c38757e77f8c))
+
+* Add crop health to README ([`21e63ca`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/21e63cabb334cc6bed62163d3b103d7a63b08a9e))
 
 ## v0.0.7 (2024-02-29)
 
@@ -12,7 +41,6 @@ Feat/soil ([`2c13817`](https://github.com/openearthplatforminitiative/openepi-cl
 
 * Merge branch &#39;main&#39; into feat/soil ([`0c9763c`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/0c9763cb443968689aace11d6911f10aa202c3c7))
 
-
 ## v0.0.6 (2024-02-29)
 
 ### Unknown
@@ -20,7 +48,6 @@ Feat/soil ([`2c13817`](https://github.com/openearthplatforminitiative/openepi-cl
 * Merge pull request #9 from openearthplatforminitiative/fix/neighbors-in-flood-summary
 
 fix: neighbors can be included in summary forecast ([`1dbe5b0`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/1dbe5b03b6c5609bd0bcdfbddedf4917a89d499f))
-
 
 ## v0.0.5 (2024-02-29)
 
@@ -37,7 +64,6 @@ fix: neighbors can be included in summary forecast ([`1dbe5b0`](https://github.c
 * Merge pull request #8 from openearthplatforminitiative/fix/example-code
 
 fix issues with example code ([`ade8807`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/ade8807cb1a9b58b579e96ac8be1389f65035939))
-
 
 ## v0.0.4 (2024-02-27)
 
@@ -73,7 +99,6 @@ datetime params need to be parsed ([`3e54774`](https://github.com/openearthplatf
 
 * add soil to client library ([`0773c8c`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/0773c8c23c1dcad1e5ee5d6277d14fc9a6a2289c))
 
-
 ## v0.0.3 (2024-01-16)
 
 ### Fix
@@ -85,7 +110,6 @@ datetime params need to be parsed ([`3e54774`](https://github.com/openearthplatf
 * 63 publishing (#5)
 
 fix: automatic publishing to pypi ([`f82569a`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/f82569a94bb6e59ff510e719690bff48d0dfafe7))
-
 
 ## v0.0.2 (2024-01-12)
 
