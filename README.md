@@ -251,7 +251,6 @@ soil_type_summary = await AsyncSoilClient.get_soil_type_summary(
 ### Sync usage
 ```python
 import os
-from openepi_client import 
 from openepi_client.crop_health import CropHealthClient
 
 image_path = os.path.abspath("cocoa.jpg")
@@ -270,7 +269,6 @@ health = CropHealthClient.get_multiHLT_health_prediction(image_path)
 ### Async usage
 ```python
 import os
-from openepi_client import 
 from openepi_client.crop_health import AsyncCropHealthClient
 
 image_path = os.path.abspath("cocoa.jpg")
