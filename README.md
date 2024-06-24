@@ -18,6 +18,9 @@ Can be installed from PyPI on [https://pypi.org/project/openepi-client/](https:/
 - [Soil Information](#soil)
   - [Sync usage](#sync-usage-4) 
   - [Async usage](#async-usage-4)
+- [Crop Health Information](#crop-health)
+  - [Sync usage](#sync-usage-5)
+  - [Sync usage](#async-usage-5)
 
 ## Weather
 ### Sync usage
@@ -244,12 +247,50 @@ soil_type_summary = await AsyncSoilClient.get_soil_type_summary(
 )
 ```
 
+## Crop Health
+### Sync usage
+```python
+import os
+from openepi_client.crop_health import CropHealthClient
+
+image_path = os.path.abspath("cocoa.jpg")
+
+# Get the predicted health of the crop pictured in cocoa.jpg with the binary model.
+health = CropHealthClient.get_binary_health_prediction(image_path)
+
+# Get the predicted health of the crop and a probability of what diseases it might be, based on the singleHLT model.
+health = CropHealthClient.get_singleHLT_health_prediction(image_path)
+
+# Get the predicted health of the crop and a probability of what diseases it might be, based on the multiHLT model.
+health = CropHealthClient.get_multiHLT_health_prediction(image_path)
+```
+
+
+### Async usage
+```python
+import os
+from openepi_client.crop_health import AsyncCropHealthClient
+
+image_path = os.path.abspath("cocoa.jpg")
+
+# Get the predicted health of the crop pictured in cocoa.jpg with the binary model.
+health = await AsyncCropHealthClient.get_binary_health_prediction(image_path)
+
+# Get the predicted health of the crop and a probability of what diseases it might be, based on the singleHLT model.
+health = await AsyncCropHealthClient.get_singleHLT_health_prediction(image_path)
+
+# Get the predicted health of the crop and a probability of what diseases it might be, based on the multiHLT model.
+health = await AsyncCropHealthClient.get_multiHLT_health_prediction(image_path)
+```
+
+
 ## Updating the client
 The following commands are used to update the client types. The commands are run from the root of the project.
 ```bash
- poetry run datamodel-codegen --url https://api-test.openepi.io/weather/openapi.json --output openepi_client/weather/_weather_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel
- poetry run datamodel-codegen --url https://api-test.openepi.io/geocoding/openapi.json --output openepi_client/geocoding/_geocoding_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel
- poetry run datamodel-codegen --url https://api-test.openepi.io/flood/openapi.json --output openepi_client/flood/_flood_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel
- poetry run datamodel-codegen --url https://api-test.openepi.io/deforestation/openapi.json --output openepi_client/deforestation/_deforestation_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel
- poetry run datamodel-codegen --url https://api-test.openepi.io/soil/openapi.json --output openepi_client/soil/_soil_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel
+poetry run datamodel-codegen --url https://api-test.openepi.io/weather/openapi.json --output openepi_client/weather/_weather_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel --input-file-type "openapi"
+poetry run datamodel-codegen --url https://api-test.openepi.io/geocoding/openapi.json --output openepi_client/geocoding/_geocoding_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel --input-file-type "openapi"
+poetry run datamodel-codegen --url https://api-test.openepi.io/flood/openapi.json --output openepi_client/flood/_flood_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel --input-file-type "openapi"
+poetry run datamodel-codegen --url https://api-test.openepi.io/deforestation/openapi.json --output openepi_client/deforestation/_deforestation_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel --input-file-type "openapi"
+poetry run datamodel-codegen --url https://api-test.openepi.io/soil/openapi.json --output openepi_client/soil/_soil_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel --input-file-type "openapi"
+poetry run datamodel-codegen --url https://api-test.openepi.io/crop-health/openapi.json --output openepi_client/crop_health/_crop_health_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel --input-file-type "openapi"
 ```
