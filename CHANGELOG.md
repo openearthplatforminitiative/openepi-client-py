@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v0.1.1 (2024-06-25)
+
+### Fix
+
+* fix: add CI checks ([`04271be`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/04271bea0d0770c4acded6c28991990e8da882c0))
+
+### Unknown
+
+* Merge pull request #11 from openearthplatforminitiative/fix/add-ci-checks
+
+fix: add CI checks ([`fa368a1`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/fa368a18e53c38a5e30f21c5043eadf04d1e3adb))
+
+* run black formatting ([`6472fc1`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/6472fc1b7e021d1ce9d142d14c0b09959ac1d53e))
+
 ## v0.1.0 (2024-06-24)
 
 ### Feature
