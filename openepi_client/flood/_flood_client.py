@@ -123,9 +123,7 @@ class DetailedRequest(BaseModel):
         default=None, description="The start date of the query"
     )
 
-    end_date: date | None = Field(
-        default=None, description="The end date of the query"
-    )
+    end_date: date | None = Field(default=None, description="The end date of the query")
 
     _detailed_endpoint: str = f"{openepi_settings.api_root_url}/flood/detailed"
 
@@ -186,11 +184,11 @@ class FloodClient:
     @staticmethod
     def get_summary(
         geolocation: GeoLocation | None = None,
-        bounding_box: BoundingBox | None = None, 
+        bounding_box: BoundingBox | None = None,
         include_neighbors: bool | None = False,
     ) -> SummaryResponseModel:
         return SummaryRequest(
-            geolocation=geolocation, 
+            geolocation=geolocation,
             bounding_box=bounding_box,
             include_neighbors=include_neighbors,
         ).get_sync()

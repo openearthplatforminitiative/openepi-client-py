@@ -89,11 +89,7 @@ class TestFloodClient:
     @pytest.mark.asyncio
     async def test_async_summary_neighbors(self):
         summary = await AsyncFloodClient.get_summary(
-            geolocation=GeoLocation(
-                lat=self.LAT, 
-                lon=self.LON, 
-                include_neighbors=True
-            )
+            geolocation=GeoLocation(lat=self.LAT, lon=self.LON, include_neighbors=True)
         )
         assert summary
 

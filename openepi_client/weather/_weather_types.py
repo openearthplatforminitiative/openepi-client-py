@@ -10,193 +10,193 @@ from pydantic import BaseModel, Field, RootModel
 from typing_extensions import Literal
 
 
-class FeatureType(RootModel[Literal['Feature']]):
-    root: Literal['Feature'] = Field(..., title='FeatureType')
+class FeatureType(RootModel[Literal["Feature"]]):
+    root: Literal["Feature"] = Field(..., title="FeatureType")
 
 
 class ForecastTimeInstant(BaseModel):
     air_pressure_at_sea_level: Optional[float] = Field(
         None,
-        description='Air pressure at sea level',
+        description="Air pressure at sea level",
         examples=[1017.23],
-        title='Air Pressure At Sea Level',
+        title="Air Pressure At Sea Level",
     )
     air_temperature: Optional[float] = Field(
-        None, description='Air temperature', examples=[17.1], title='Air Temperature'
+        None, description="Air temperature", examples=[17.1], title="Air Temperature"
     )
     cloud_area_fraction: Optional[float] = Field(
         None,
-        description='Amount of sky covered by clouds.',
+        description="Amount of sky covered by clouds.",
         examples=[95.2],
-        title='Cloud Area Fraction',
+        title="Cloud Area Fraction",
     )
     cloud_area_fraction_high: Optional[float] = Field(
         None,
-        description='Amount of sky covered by clouds at high elevation.',
+        description="Amount of sky covered by clouds at high elevation.",
         examples=[95.2],
-        title='Cloud Area Fraction High',
+        title="Cloud Area Fraction High",
     )
     cloud_area_fraction_low: Optional[float] = Field(
         None,
-        description='Amount of sky covered by clouds at low elevation.',
+        description="Amount of sky covered by clouds at low elevation.",
         examples=[95.2],
-        title='Cloud Area Fraction Low',
+        title="Cloud Area Fraction Low",
     )
     cloud_area_fraction_medium: Optional[float] = Field(
         None,
-        description='Amount of sky covered by clouds at medium elevation.',
+        description="Amount of sky covered by clouds at medium elevation.",
         examples=[95.2],
-        title='Cloud Area Fraction Medium',
+        title="Cloud Area Fraction Medium",
     )
     dew_point_temperature: Optional[float] = Field(
         None,
-        description='Dew point temperature at sea level',
+        description="Dew point temperature at sea level",
         examples=[8.1],
-        title='Dew Point Temperature',
+        title="Dew Point Temperature",
     )
     fog_area_fraction: Optional[float] = Field(
         None,
-        description='Amount of area covered by fog.',
+        description="Amount of area covered by fog.",
         examples=[95.2],
-        title='Fog Area Fraction',
+        title="Fog Area Fraction",
     )
     relative_humidity: Optional[float] = Field(
         None,
-        description='Amount of humidity in the air.',
+        description="Amount of humidity in the air.",
         examples=[81.1],
-        title='Relative Humidity',
+        title="Relative Humidity",
     )
     wind_from_direction: Optional[float] = Field(
         None,
-        description='The directon which moves towards',
+        description="The directon which moves towards",
         examples=[121.3],
-        title='Wind From Direction',
+        title="Wind From Direction",
     )
     wind_speed: Optional[float] = Field(
-        None, description='Speed of wind', examples=[5.9], title='Wind Speed'
+        None, description="Speed of wind", examples=[5.9], title="Wind Speed"
     )
     wind_speed_of_gust: Optional[float] = Field(
         None,
-        description='Speed of wind gust',
+        description="Speed of wind gust",
         examples=[15.9],
-        title='Wind Speed Of Gust',
+        title="Wind Speed Of Gust",
     )
 
 
 class ForecastTimePeriod(BaseModel):
     air_temperature_max: Optional[float] = Field(
         None,
-        description='Maximum air temperature in period',
+        description="Maximum air temperature in period",
         examples=[17.1],
-        title='Air Temperature Max',
+        title="Air Temperature Max",
     )
     air_temperature_min: Optional[float] = Field(
         None,
-        description='Minimum air temperature in period',
+        description="Minimum air temperature in period",
         examples=[11.1],
-        title='Air Temperature Min',
+        title="Air Temperature Min",
     )
     precipitation_amount: Optional[float] = Field(
         None,
-        description='Best estimate for amount of precipitation for this period',
+        description="Best estimate for amount of precipitation for this period",
         examples=[1.71],
-        title='Precipitation Amount',
+        title="Precipitation Amount",
     )
     precipitation_amount_max: Optional[float] = Field(
         None,
-        description='Maximum amount of precipitation for this period',
+        description="Maximum amount of precipitation for this period",
         examples=[4.32],
-        title='Precipitation Amount Max',
+        title="Precipitation Amount Max",
     )
     precipitation_amount_min: Optional[float] = Field(
         None,
-        description='Minimum amount of precipitation for this period',
+        description="Minimum amount of precipitation for this period",
         examples=[4.32],
-        title='Precipitation Amount Min',
+        title="Precipitation Amount Min",
     )
     probability_of_precipitation: Optional[float] = Field(
         None,
-        description='Probability of any precipitation coming for this period',
+        description="Probability of any precipitation coming for this period",
         examples=[37.0],
-        title='Probability Of Precipitation',
+        title="Probability Of Precipitation",
     )
     probability_of_thunder: Optional[float] = Field(
         None,
-        description='Probability of any thunder coming for this period',
+        description="Probability of any thunder coming for this period",
         examples=[54.32],
-        title='Probability Of Thunder',
+        title="Probability Of Thunder",
     )
     ultraviolet_index_clear_sky_max: Optional[float] = Field(
         None,
-        description='Maximum ultraviolet index if sky is clear',
+        description="Maximum ultraviolet index if sky is clear",
         examples=[1.0],
-        title='Ultraviolet Index Clear Sky Max',
+        title="Ultraviolet Index Clear Sky Max",
     )
 
 
 class ForecastUnits(BaseModel):
     air_pressure_at_sea_level: Optional[str] = Field(
-        None, examples=['hPa'], title='Air Pressure At Sea Level'
+        None, examples=["hPa"], title="Air Pressure At Sea Level"
     )
     air_temperature: Optional[str] = Field(
-        None, examples=['C'], title='Air Temperature'
+        None, examples=["C"], title="Air Temperature"
     )
     air_temperature_max: Optional[str] = Field(
-        None, examples=['C'], title='Air Temperature Max'
+        None, examples=["C"], title="Air Temperature Max"
     )
     air_temperature_min: Optional[str] = Field(
-        None, examples=['C'], title='Air Temperature Min'
+        None, examples=["C"], title="Air Temperature Min"
     )
     cloud_area_fraction: Optional[str] = Field(
-        None, examples=['%'], title='Cloud Area Fraction'
+        None, examples=["%"], title="Cloud Area Fraction"
     )
     cloud_area_fraction_high: Optional[str] = Field(
-        None, examples=['%'], title='Cloud Area Fraction High'
+        None, examples=["%"], title="Cloud Area Fraction High"
     )
     cloud_area_fraction_low: Optional[str] = Field(
-        None, examples=['%'], title='Cloud Area Fraction Low'
+        None, examples=["%"], title="Cloud Area Fraction Low"
     )
     cloud_area_fraction_medium: Optional[str] = Field(
-        None, examples=['%'], title='Cloud Area Fraction Medium'
+        None, examples=["%"], title="Cloud Area Fraction Medium"
     )
     dew_point_temperature: Optional[str] = Field(
-        None, examples=['C'], title='Dew Point Temperature'
+        None, examples=["C"], title="Dew Point Temperature"
     )
     fog_area_fraction: Optional[str] = Field(
-        None, examples=['%'], title='Fog Area Fraction'
+        None, examples=["%"], title="Fog Area Fraction"
     )
     precipitation_amount: Optional[str] = Field(
-        None, examples=['mm'], title='Precipitation Amount'
+        None, examples=["mm"], title="Precipitation Amount"
     )
     precipitation_amount_max: Optional[str] = Field(
-        None, examples=['mm'], title='Precipitation Amount Max'
+        None, examples=["mm"], title="Precipitation Amount Max"
     )
     precipitation_amount_min: Optional[str] = Field(
-        None, examples=['mm'], title='Precipitation Amount Min'
+        None, examples=["mm"], title="Precipitation Amount Min"
     )
     probability_of_precipitation: Optional[str] = Field(
-        None, examples=['%'], title='Probability Of Precipitation'
+        None, examples=["%"], title="Probability Of Precipitation"
     )
     probability_of_thunder: Optional[str] = Field(
-        None, examples=['%'], title='Probability Of Thunder'
+        None, examples=["%"], title="Probability Of Thunder"
     )
     relative_humidity: Optional[str] = Field(
-        None, examples=['%'], title='Relative Humidity'
+        None, examples=["%"], title="Relative Humidity"
     )
     ultraviolet_index_clear_sky_max: Optional[str] = Field(
-        None, examples=['1'], title='Ultraviolet Index Clear Sky Max'
+        None, examples=["1"], title="Ultraviolet Index Clear Sky Max"
     )
     wind_from_direction: Optional[str] = Field(
-        None, examples=['degrees'], title='Wind From Direction'
+        None, examples=["degrees"], title="Wind From Direction"
     )
-    wind_speed: Optional[str] = Field(None, examples=['m/s'], title='Wind Speed')
+    wind_speed: Optional[str] = Field(None, examples=["m/s"], title="Wind Speed")
     wind_speed_of_gust: Optional[str] = Field(
-        None, examples=['m/s'], title='Wind Speed Of Gust'
+        None, examples=["m/s"], title="Wind Speed Of Gust"
     )
 
 
-class GeometryType(RootModel[Literal['Point']]):
-    root: Literal['Point'] = Field(..., title='GeometryType')
+class GeometryType(RootModel[Literal["Point"]]):
+    root: Literal["Point"] = Field(..., title="GeometryType")
 
 
 class Instant(BaseModel):
@@ -207,211 +207,211 @@ class Meta(BaseModel):
     units: ForecastUnits
     updated_at: str = Field(
         ...,
-        description='Update time for this forecast',
-        examples=['2019-12-03T13:52:13Z'],
-        title='Updated At',
+        description="Update time for this forecast",
+        examples=["2019-12-03T13:52:13Z"],
+        title="Updated At",
     )
 
 
 class SolarTime(BaseModel):
-    time: str = Field(..., examples=['2019-12-03T13:52:13Z'], title='Time')
+    time: str = Field(..., examples=["2019-12-03T13:52:13Z"], title="Time")
 
 
-class Type(RootModel[Literal['Feature']]):
-    root: Literal['Feature'] = Field(..., title='Type')
+class Type(RootModel[Literal["Feature"]]):
+    root: Literal["Feature"] = Field(..., title="Type")
 
 
 class ValidationError(BaseModel):
-    loc: List[Union[str, int]] = Field(..., title='Location')
-    msg: str = Field(..., title='Message')
-    type: str = Field(..., title='Error Type')
+    loc: List[Union[str, int]] = Field(..., title="Location")
+    msg: str = Field(..., title="Message")
+    type: str = Field(..., title="Error Type")
 
 
 class WeatherSymbol(
     RootModel[
         Literal[
-            'clearsky_day',
-            'clearsky_night',
-            'clearsky_polartwilight',
-            'fair_day',
-            'fair_night',
-            'fair_polartwilight',
-            'lightssnowshowersandthunder_day',
-            'lightssnowshowersandthunder_night',
-            'lightssnowshowersandthunder_polartwilight',
-            'lightsnowshowers_day',
-            'lightsnowshowers_night',
-            'lightsnowshowers_polartwilight',
-            'heavyrainandthunder',
-            'heavysnowandthunder',
-            'rainandthunder',
-            'heavysleetshowersandthunder_day',
-            'heavysleetshowersandthunder_night',
-            'heavysleetshowersandthunder_polartwilight',
-            'heavysnow',
-            'heavyrainshowers_day',
-            'heavyrainshowers_night',
-            'heavyrainshowers_polartwilight',
-            'lightsleet',
-            'heavyrain',
-            'lightrainshowers_day',
-            'lightrainshowers_night',
-            'lightrainshowers_polartwilight',
-            'heavysleetshowers_day',
-            'heavysleetshowers_night',
-            'heavysleetshowers_polartwilight',
-            'lightsleetshowers_day',
-            'lightsleetshowers_night',
-            'lightsleetshowers_polartwilight',
-            'snow',
-            'heavyrainshowersandthunder_day',
-            'heavyrainshowersandthunder_night',
-            'heavyrainshowersandthunder_polartwilight',
-            'snowshowers_day',
-            'snowshowers_night',
-            'snowshowers_polartwilight',
-            'fog',
-            'snowshowersandthunder_day',
-            'snowshowersandthunder_night',
-            'snowshowersandthunder_polartwilight',
-            'lightsnowandthunder',
-            'heavysleetandthunder',
-            'lightrain',
-            'rainshowersandthunder_day',
-            'rainshowersandthunder_night',
-            'rainshowersandthunder_polartwilight',
-            'rain',
-            'lightsnow',
-            'lightrainshowersandthunder_day',
-            'lightrainshowersandthunder_night',
-            'lightrainshowersandthunder_polartwilight',
-            'heavysleet',
-            'sleetandthunder',
-            'lightrainandthunder',
-            'sleet',
-            'lightssleetshowersandthunder_day',
-            'lightssleetshowersandthunder_night',
-            'lightssleetshowersandthunder_polartwilight',
-            'lightsleetandthunder',
-            'partlycloudy_day',
-            'partlycloudy_night',
-            'partlycloudy_polartwilight',
-            'sleetshowersandthunder_day',
-            'sleetshowersandthunder_night',
-            'sleetshowersandthunder_polartwilight',
-            'rainshowers_day',
-            'rainshowers_night',
-            'rainshowers_polartwilight',
-            'snowandthunder',
-            'sleetshowers_day',
-            'sleetshowers_night',
-            'sleetshowers_polartwilight',
-            'cloudy',
-            'heavysnowshowersandthunder_day',
-            'heavysnowshowersandthunder_night',
-            'heavysnowshowersandthunder_polartwilight',
-            'heavysnowshowers_day',
-            'heavysnowshowers_night',
-            'heavysnowshowers_polartwilight',
+            "clearsky_day",
+            "clearsky_night",
+            "clearsky_polartwilight",
+            "fair_day",
+            "fair_night",
+            "fair_polartwilight",
+            "lightssnowshowersandthunder_day",
+            "lightssnowshowersandthunder_night",
+            "lightssnowshowersandthunder_polartwilight",
+            "lightsnowshowers_day",
+            "lightsnowshowers_night",
+            "lightsnowshowers_polartwilight",
+            "heavyrainandthunder",
+            "heavysnowandthunder",
+            "rainandthunder",
+            "heavysleetshowersandthunder_day",
+            "heavysleetshowersandthunder_night",
+            "heavysleetshowersandthunder_polartwilight",
+            "heavysnow",
+            "heavyrainshowers_day",
+            "heavyrainshowers_night",
+            "heavyrainshowers_polartwilight",
+            "lightsleet",
+            "heavyrain",
+            "lightrainshowers_day",
+            "lightrainshowers_night",
+            "lightrainshowers_polartwilight",
+            "heavysleetshowers_day",
+            "heavysleetshowers_night",
+            "heavysleetshowers_polartwilight",
+            "lightsleetshowers_day",
+            "lightsleetshowers_night",
+            "lightsleetshowers_polartwilight",
+            "snow",
+            "heavyrainshowersandthunder_day",
+            "heavyrainshowersandthunder_night",
+            "heavyrainshowersandthunder_polartwilight",
+            "snowshowers_day",
+            "snowshowers_night",
+            "snowshowers_polartwilight",
+            "fog",
+            "snowshowersandthunder_day",
+            "snowshowersandthunder_night",
+            "snowshowersandthunder_polartwilight",
+            "lightsnowandthunder",
+            "heavysleetandthunder",
+            "lightrain",
+            "rainshowersandthunder_day",
+            "rainshowersandthunder_night",
+            "rainshowersandthunder_polartwilight",
+            "rain",
+            "lightsnow",
+            "lightrainshowersandthunder_day",
+            "lightrainshowersandthunder_night",
+            "lightrainshowersandthunder_polartwilight",
+            "heavysleet",
+            "sleetandthunder",
+            "lightrainandthunder",
+            "sleet",
+            "lightssleetshowersandthunder_day",
+            "lightssleetshowersandthunder_night",
+            "lightssleetshowersandthunder_polartwilight",
+            "lightsleetandthunder",
+            "partlycloudy_day",
+            "partlycloudy_night",
+            "partlycloudy_polartwilight",
+            "sleetshowersandthunder_day",
+            "sleetshowersandthunder_night",
+            "sleetshowersandthunder_polartwilight",
+            "rainshowers_day",
+            "rainshowers_night",
+            "rainshowers_polartwilight",
+            "snowandthunder",
+            "sleetshowers_day",
+            "sleetshowers_night",
+            "sleetshowers_polartwilight",
+            "cloudy",
+            "heavysnowshowersandthunder_day",
+            "heavysnowshowersandthunder_night",
+            "heavysnowshowersandthunder_polartwilight",
+            "heavysnowshowers_day",
+            "heavysnowshowers_night",
+            "heavysnowshowers_polartwilight",
         ]
     ]
 ):
     root: Literal[
-        'clearsky_day',
-        'clearsky_night',
-        'clearsky_polartwilight',
-        'fair_day',
-        'fair_night',
-        'fair_polartwilight',
-        'lightssnowshowersandthunder_day',
-        'lightssnowshowersandthunder_night',
-        'lightssnowshowersandthunder_polartwilight',
-        'lightsnowshowers_day',
-        'lightsnowshowers_night',
-        'lightsnowshowers_polartwilight',
-        'heavyrainandthunder',
-        'heavysnowandthunder',
-        'rainandthunder',
-        'heavysleetshowersandthunder_day',
-        'heavysleetshowersandthunder_night',
-        'heavysleetshowersandthunder_polartwilight',
-        'heavysnow',
-        'heavyrainshowers_day',
-        'heavyrainshowers_night',
-        'heavyrainshowers_polartwilight',
-        'lightsleet',
-        'heavyrain',
-        'lightrainshowers_day',
-        'lightrainshowers_night',
-        'lightrainshowers_polartwilight',
-        'heavysleetshowers_day',
-        'heavysleetshowers_night',
-        'heavysleetshowers_polartwilight',
-        'lightsleetshowers_day',
-        'lightsleetshowers_night',
-        'lightsleetshowers_polartwilight',
-        'snow',
-        'heavyrainshowersandthunder_day',
-        'heavyrainshowersandthunder_night',
-        'heavyrainshowersandthunder_polartwilight',
-        'snowshowers_day',
-        'snowshowers_night',
-        'snowshowers_polartwilight',
-        'fog',
-        'snowshowersandthunder_day',
-        'snowshowersandthunder_night',
-        'snowshowersandthunder_polartwilight',
-        'lightsnowandthunder',
-        'heavysleetandthunder',
-        'lightrain',
-        'rainshowersandthunder_day',
-        'rainshowersandthunder_night',
-        'rainshowersandthunder_polartwilight',
-        'rain',
-        'lightsnow',
-        'lightrainshowersandthunder_day',
-        'lightrainshowersandthunder_night',
-        'lightrainshowersandthunder_polartwilight',
-        'heavysleet',
-        'sleetandthunder',
-        'lightrainandthunder',
-        'sleet',
-        'lightssleetshowersandthunder_day',
-        'lightssleetshowersandthunder_night',
-        'lightssleetshowersandthunder_polartwilight',
-        'lightsleetandthunder',
-        'partlycloudy_day',
-        'partlycloudy_night',
-        'partlycloudy_polartwilight',
-        'sleetshowersandthunder_day',
-        'sleetshowersandthunder_night',
-        'sleetshowersandthunder_polartwilight',
-        'rainshowers_day',
-        'rainshowers_night',
-        'rainshowers_polartwilight',
-        'snowandthunder',
-        'sleetshowers_day',
-        'sleetshowers_night',
-        'sleetshowers_polartwilight',
-        'cloudy',
-        'heavysnowshowersandthunder_day',
-        'heavysnowshowersandthunder_night',
-        'heavysnowshowersandthunder_polartwilight',
-        'heavysnowshowers_day',
-        'heavysnowshowers_night',
-        'heavysnowshowers_polartwilight',
-    ] = Field(..., title='WeatherSymbol')
+        "clearsky_day",
+        "clearsky_night",
+        "clearsky_polartwilight",
+        "fair_day",
+        "fair_night",
+        "fair_polartwilight",
+        "lightssnowshowersandthunder_day",
+        "lightssnowshowersandthunder_night",
+        "lightssnowshowersandthunder_polartwilight",
+        "lightsnowshowers_day",
+        "lightsnowshowers_night",
+        "lightsnowshowers_polartwilight",
+        "heavyrainandthunder",
+        "heavysnowandthunder",
+        "rainandthunder",
+        "heavysleetshowersandthunder_day",
+        "heavysleetshowersandthunder_night",
+        "heavysleetshowersandthunder_polartwilight",
+        "heavysnow",
+        "heavyrainshowers_day",
+        "heavyrainshowers_night",
+        "heavyrainshowers_polartwilight",
+        "lightsleet",
+        "heavyrain",
+        "lightrainshowers_day",
+        "lightrainshowers_night",
+        "lightrainshowers_polartwilight",
+        "heavysleetshowers_day",
+        "heavysleetshowers_night",
+        "heavysleetshowers_polartwilight",
+        "lightsleetshowers_day",
+        "lightsleetshowers_night",
+        "lightsleetshowers_polartwilight",
+        "snow",
+        "heavyrainshowersandthunder_day",
+        "heavyrainshowersandthunder_night",
+        "heavyrainshowersandthunder_polartwilight",
+        "snowshowers_day",
+        "snowshowers_night",
+        "snowshowers_polartwilight",
+        "fog",
+        "snowshowersandthunder_day",
+        "snowshowersandthunder_night",
+        "snowshowersandthunder_polartwilight",
+        "lightsnowandthunder",
+        "heavysleetandthunder",
+        "lightrain",
+        "rainshowersandthunder_day",
+        "rainshowersandthunder_night",
+        "rainshowersandthunder_polartwilight",
+        "rain",
+        "lightsnow",
+        "lightrainshowersandthunder_day",
+        "lightrainshowersandthunder_night",
+        "lightrainshowersandthunder_polartwilight",
+        "heavysleet",
+        "sleetandthunder",
+        "lightrainandthunder",
+        "sleet",
+        "lightssleetshowersandthunder_day",
+        "lightssleetshowersandthunder_night",
+        "lightssleetshowersandthunder_polartwilight",
+        "lightsleetandthunder",
+        "partlycloudy_day",
+        "partlycloudy_night",
+        "partlycloudy_polartwilight",
+        "sleetshowersandthunder_day",
+        "sleetshowersandthunder_night",
+        "sleetshowersandthunder_polartwilight",
+        "rainshowers_day",
+        "rainshowers_night",
+        "rainshowers_polartwilight",
+        "snowandthunder",
+        "sleetshowers_day",
+        "sleetshowers_night",
+        "sleetshowers_polartwilight",
+        "cloudy",
+        "heavysnowshowersandthunder_day",
+        "heavysnowshowersandthunder_night",
+        "heavysnowshowersandthunder_polartwilight",
+        "heavysnowshowers_day",
+        "heavysnowshowers_night",
+        "heavysnowshowers_polartwilight",
+    ] = Field(..., title="WeatherSymbol")
 
 
 class WeatherApiModelsMetSunriseTypesForecast(BaseModel):
-    body: str = Field(..., title='Body')
+    body: str = Field(..., title="Body")
     sunrise: SolarTime
     sunset: SolarTime
 
 
 class WeatherApiModelsMetSunriseTypesPointGeometry(BaseModel):
     coordinates: List[float] = Field(
-        ..., examples=[[60.5, 11.59, 1001]], min_length=2, title='Coordinates'
+        ..., examples=[[60.5, 11.59, 1001]], min_length=2, title="Coordinates"
     )
     type: GeometryType
 
@@ -419,10 +419,10 @@ class WeatherApiModelsMetSunriseTypesPointGeometry(BaseModel):
 class WeatherApiModelsMetWeatherTypesPointGeometry(BaseModel):
     coordinates: List[float] = Field(
         ...,
-        description='[longitude, latitude, altitude]. All numbers in decimal.',
+        description="[longitude, latitude, altitude]. All numbers in decimal.",
         examples=[[60.5, 11.59, 1001]],
         min_length=2,
-        title='Coordinates',
+        title="Coordinates",
     )
     type: GeometryType
 
@@ -432,13 +432,13 @@ class ForecastSummary(BaseModel):
 
 
 class HTTPValidationError(BaseModel):
-    detail: Optional[List[ValidationError]] = Field(None, title='Detail')
+    detail: Optional[List[ValidationError]] = Field(None, title="Detail")
 
 
 class METJSONSunrise(BaseModel):
-    copyright: str = Field(..., title='Copyright')
-    licenseURL: str = Field(..., title='Licenseurl')
-    type: Type = Field(..., examples=['Feature'])
+    copyright: str = Field(..., title="Copyright")
+    licenseURL: str = Field(..., title="Licenseurl")
+    type: Type = Field(..., examples=["Feature"])
     geometry: WeatherApiModelsMetSunriseTypesPointGeometry
     properties: WeatherApiModelsMetSunriseTypesForecast
 
@@ -460,42 +460,42 @@ class Next6Hours(BaseModel):
 
 class Data(BaseModel):
     instant: Instant = Field(
-        ..., description='Parameters which applies to this exact point in time'
+        ..., description="Parameters which applies to this exact point in time"
     )
     next_12_hours: Optional[Next12Hours] = Field(
         None,
-        description='Parameters with validity times over twelve hours. Will not exist for all time steps.',
+        description="Parameters with validity times over twelve hours. Will not exist for all time steps.",
     )
     next_1_hours: Optional[Next1Hours] = Field(
         None,
-        description='Parameters with validity times over one hour. Will not exist for all time steps.',
+        description="Parameters with validity times over one hour. Will not exist for all time steps.",
     )
     next_6_hours: Optional[Next6Hours] = Field(
         None,
-        description='Parameters with validity times over six hours. Will not exist for all time steps.',
+        description="Parameters with validity times over six hours. Will not exist for all time steps.",
     )
 
 
 class ForecastTimeStep(BaseModel):
-    data: Data = Field(..., description='Forecast for a specific time')
+    data: Data = Field(..., description="Forecast for a specific time")
     time: str = Field(
         ...,
-        description='The time these forecast values are valid for. Timestamp in format YYYY-MM-DDThh:mm:ssZ (ISO 8601)',
-        examples=['2019-12-03T14:00:00Z'],
-        title='Time',
+        description="The time these forecast values are valid for. Timestamp in format YYYY-MM-DDThh:mm:ssZ (ISO 8601)",
+        examples=["2019-12-03T14:00:00Z"],
+        title="Time",
     )
 
 
 class WeatherApiModelsMetWeatherTypesForecast(BaseModel):
     meta: Meta
-    timeseries: List[ForecastTimeStep] = Field(..., title='Timeseries')
+    timeseries: List[ForecastTimeStep] = Field(..., title="Timeseries")
 
 
 class METJSONForecast(BaseModel):
     geometry: WeatherApiModelsMetWeatherTypesPointGeometry
     properties: WeatherApiModelsMetWeatherTypesForecast
     type: Optional[FeatureType] = Field(
-        'Feature',
-        description='The feature type of this geojson-object',
-        examples=['Feature'],
+        "Feature",
+        description="The feature type of this geojson-object",
+        examples=["Feature"],
     )
