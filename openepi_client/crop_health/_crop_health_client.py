@@ -3,9 +3,9 @@ from httpx import AsyncClient, Client
 
 from openepi_client import openepi_settings
 from openepi_client.crop_health._crop_health_types import (
-    SingleHLTHealthPredictionResponse,
-    MultiHLTHealthPredictionResponse,
-    BinaryHealthPredictionResponse,
+    SingleHLTPredictionResponse,
+    MultiHLTPredictionResponse,
+    BinaryPredictionResponse,
 )
 
 
@@ -31,70 +31,70 @@ class PredictionRequest(BaseModel):
 
 
 class BinaryHealthPredictionRequest(PredictionRequest):
-    def get_sync(self) -> BinaryHealthPredictionResponse:
+    def get_sync(self) -> BinaryPredictionResponse:
         with Client() as client:
             response = client.post(
                 f"{self._prediction_endpoint}/binary", content=self._params
             )
-            return BinaryHealthPredictionResponse(**response.json())
+            return BinaryPredictionResponse(**response.json())
 
-    async def get_async(self) -> BinaryHealthPredictionResponse:
+    async def get_async(self) -> BinaryPredictionResponse:
         async with AsyncClient() as async_client:
             response = await async_client.post(
                 f"{self._prediction_endpoint}/binary", content=self._params
             )
-            return BinaryHealthPredictionResponse(**response.json())
+            return BinaryPredictionResponse(**response.json())
 
 
 class SingleHLTHealthPredictionRequest(PredictionRequest):
-    def get_sync(self) -> SingleHLTHealthPredictionResponse:
+    def get_sync(self) -> SingleHLTPredictionResponse:
         with Client() as client:
             response = client.post(
                 f"{self._prediction_endpoint}/single-HLT", content=self._params
             )
-            return SingleHLTHealthPredictionResponse(**response.json())
+            return SingleHLTPredictionResponse(**response.json())
 
-    async def get_async(self) -> SingleHLTHealthPredictionResponse:
+    async def get_async(self) -> SingleHLTPredictionResponse:
         async with AsyncClient() as async_client:
             response = await async_client.post(
                 f"{self._prediction_endpoint}/single-HLT", content=self._params
             )
-            return SingleHLTHealthPredictionResponse(**response.json())
+            return SingleHLTPredictionResponse(**response.json())
 
 
 class MultiHLTHealthPredictionRequest(PredictionRequest):
-    def get_sync(self) -> MultiHLTHealthPredictionResponse:
+    def get_sync(self) -> MultiHLTPredictionResponse:
         with Client() as client:
             response = client.post(
                 f"{self._prediction_endpoint}/multi-HLT", content=self._params
             )
-            return MultiHLTHealthPredictionResponse(**response.json())
+            return MultiHLTPredictionResponse(**response.json())
 
-    async def get_async(self) -> MultiHLTHealthPredictionResponse:
+    async def get_async(self) -> MultiHLTPredictionResponse:
         async with AsyncClient() as async_client:
             response = await async_client.post(
                 f"{self._prediction_endpoint}/multi-HLT", content=self._params
             )
-            return MultiHLTHealthPredictionResponse(**response.json())
+            return MultiHLTPredictionResponse(**response.json())
 
 
 class CropHealthClient:
     @staticmethod
     def get_binary_health_prediction(
         image_path: str | None = None,
-    ) -> BinaryHealthPredictionResponse:
+    ) -> BinaryPredictionResponse:
         return BinaryHealthPredictionRequest(image_path=image_path).get_sync()
 
     @staticmethod
     def get_singleHLT_health_prediction(
         image_path: str | None = None,
-    ) -> SingleHLTHealthPredictionResponse:
+    ) -> SingleHLTPredictionResponse:
         return SingleHLTHealthPredictionRequest(image_path=image_path).get_sync()
 
     @staticmethod
     def get_multiHLT_health_prediction(
         image_path: str | None = None,
-    ) -> MultiHLTHealthPredictionResponse:
+    ) -> MultiHLTPredictionResponse:
         return MultiHLTHealthPredictionRequest(image_path=image_path).get_sync()
 
 
@@ -102,17 +102,17 @@ class AsyncCropHealthClient:
     @staticmethod
     async def get_binary_health_prediction(
         image_path: str | None = None,
-    ) -> BinaryHealthPredictionResponse:
+    ) -> BinaryPredictionResponse:
         return await BinaryHealthPredictionRequest(image_path=image_path).get_async()
 
     @staticmethod
     async def get_singleHLT_health_prediction(
         image_path: str | None = None,
-    ) -> SingleHLTHealthPredictionResponse:
+    ) -> SingleHLTPredictionResponse:
         return await SingleHLTHealthPredictionRequest(image_path=image_path).get_async()
 
     @staticmethod
     async def get_multiHLT_health_prediction(
         image_path: str | None = None,
-    ) -> MultiHLTHealthPredictionResponse:
+    ) -> MultiHLTPredictionResponse:
         return await MultiHLTHealthPredictionRequest(image_path=image_path).get_async()
