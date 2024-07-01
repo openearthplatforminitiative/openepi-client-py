@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v0.1.2 (2024-07-01)
+
+### Fix
+
+* fix: Bumping version number ([`e0df06e`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/e0df06e0a42e6058b15eb0962169385a9d0cbaf2))
+
+### Unknown
+
+* Adding project urls (#12) ([`fb8f447`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/fb8f447326d18ac4ff222f404553808423ce461c))
+
 ## v0.1.1 (2024-06-25)
 
 ### Fix
