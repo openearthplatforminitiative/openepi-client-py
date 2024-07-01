@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v0.1.3 (2024-07-01)
+
+### Fix
+
+* fix: use correct naming ([`dec78fb`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/dec78fb26dbe8eae62e726f136d054b220d18fdb))
+
+* fix: use new crop health naming ([`ab43240`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/ab432407db737e7da8a8bed0a218d4f05392a987))
+
+### Unknown
+
+* Merge pull request #13 from openearthplatforminitiative/fix/new-crop-health-naming
+
+fix: use new crop health naming ([`e17f373`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/e17f3732da4b2a84c8f6373dcf023bb3f5088ccf))
+
 ## v0.1.2 (2024-07-01)
 
 ### Fix
