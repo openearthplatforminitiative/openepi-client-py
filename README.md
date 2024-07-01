@@ -283,7 +283,6 @@ health = await AsyncCropHealthClient.get_singleHLT_health_prediction(image_path)
 health = await AsyncCropHealthClient.get_multiHLT_health_prediction(image_path)
 ```
 
-
 ## Updating the client
 The following commands are used to update the client types. The commands are run from the root of the project.
 ```bash
@@ -294,3 +293,4 @@ poetry run datamodel-codegen --url https://api-test.openepi.io/deforestation/ope
 poetry run datamodel-codegen --url https://api-test.openepi.io/soil/openapi.json --output openepi_client/soil/_soil_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel --input-file-type "openapi"
 poetry run datamodel-codegen --url https://api-test.openepi.io/crop-health/openapi.json --output openepi_client/crop_health/_crop_health_types.py --enum-field-as-literal all --output-model-type pydantic_v2.BaseModel --input-file-type "openapi"
 ```
+
