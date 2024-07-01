@@ -30,7 +30,7 @@ class PredictionRequest(BaseModel):
         return open(self.image_path, "rb").read()
 
 
-class BinaryHealthPredictionRequest(PredictionRequest):
+class BinaryPredictionRequest(PredictionRequest):
     def get_sync(self) -> BinaryPredictionResponse:
         with Client() as client:
             response = client.post(
@@ -46,7 +46,7 @@ class BinaryHealthPredictionRequest(PredictionRequest):
             return BinaryPredictionResponse(**response.json())
 
 
-class SingleHLTHealthPredictionRequest(PredictionRequest):
+class SingleHLTPredictionRequest(PredictionRequest):
     def get_sync(self) -> SingleHLTPredictionResponse:
         with Client() as client:
             response = client.post(
@@ -62,7 +62,7 @@ class SingleHLTHealthPredictionRequest(PredictionRequest):
             return SingleHLTPredictionResponse(**response.json())
 
 
-class MultiHLTHealthPredictionRequest(PredictionRequest):
+class MultiHLTPredictionRequest(PredictionRequest):
     def get_sync(self) -> MultiHLTPredictionResponse:
         with Client() as client:
             response = client.post(
@@ -83,19 +83,19 @@ class CropHealthClient:
     def get_binary_health_prediction(
         image_path: str | None = None,
     ) -> BinaryPredictionResponse:
-        return BinaryHealthPredictionRequest(image_path=image_path).get_sync()
+        return BinaryPredictionRequest(image_path=image_path).get_sync()
 
     @staticmethod
     def get_singleHLT_health_prediction(
         image_path: str | None = None,
     ) -> SingleHLTPredictionResponse:
-        return SingleHLTHealthPredictionRequest(image_path=image_path).get_sync()
+        return SingleHLTPredictionRequest(image_path=image_path).get_sync()
 
     @staticmethod
     def get_multiHLT_health_prediction(
         image_path: str | None = None,
     ) -> MultiHLTPredictionResponse:
-        return MultiHLTHealthPredictionRequest(image_path=image_path).get_sync()
+        return MultiHLTPredictionRequest(image_path=image_path).get_sync()
 
 
 class AsyncCropHealthClient:
@@ -103,16 +103,16 @@ class AsyncCropHealthClient:
     async def get_binary_health_prediction(
         image_path: str | None = None,
     ) -> BinaryPredictionResponse:
-        return await BinaryHealthPredictionRequest(image_path=image_path).get_async()
+        return await BinaryPredictionRequest(image_path=image_path).get_async()
 
     @staticmethod
     async def get_singleHLT_health_prediction(
         image_path: str | None = None,
     ) -> SingleHLTPredictionResponse:
-        return await SingleHLTHealthPredictionRequest(image_path=image_path).get_async()
+        return await SingleHLTPredictionRequest(image_path=image_path).get_async()
 
     @staticmethod
     async def get_multiHLT_health_prediction(
         image_path: str | None = None,
     ) -> MultiHLTPredictionResponse:
-        return await MultiHLTHealthPredictionRequest(image_path=image_path).get_async()
+        return await MultiHLTPredictionRequest(image_path=image_path).get_async()
