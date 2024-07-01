@@ -29,3 +29,7 @@ datamodel-code-generator = "^0.25.2"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[project.urls]
+homepage = "https://www.openepi.io/"
+source = "https://github.com/openearthplatforminitiative/openepi-client-py"
