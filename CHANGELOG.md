@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v0.1.4 (2024-07-01)
+
+### Fix
+
+* fix: use correct health naming ([`3edc52a`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/3edc52a6b25df9e102bced82b311ec48f07dd099))
+
+### Unknown
+
+* Merge pull request #14 from openearthplatforminitiative/fix/health-naming
+
+fix: use correct health naming ([`ddbc533`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/ddbc53368e037c3911e573b33db08bf18f0a0b76))
+
 ## v0.1.3 (2024-07-01)
 
 ### Fix
