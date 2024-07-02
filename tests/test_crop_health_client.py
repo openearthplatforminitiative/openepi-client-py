@@ -18,9 +18,7 @@ class TestCropHealthClient:
         assert all(v is not None for _, v in health)
 
         # Assert that the sum of all values is approx equal to 1.0
-        assert sum(v for _, v in health) == pytest.approx(
-            1.0, rel=1e-1
-        )
+        assert sum(v for _, v in health) == pytest.approx(1.0, rel=1e-1)
 
     def test_sync_get_singleHLT_health(self):
         with open(self.image_path, "rb") as f:
@@ -31,9 +29,7 @@ class TestCropHealthClient:
         assert all(v is not None for _, v in health)
 
         # Assert that the sum of all values is approx equal to 1.0
-        assert sum(v for _, v in health) == pytest.approx(
-            1.0, rel=1e-1
-        )
+        assert sum(v for _, v in health) == pytest.approx(1.0, rel=1e-1)
 
     def test_sync_get_multiHLT_health(self):
         with open(self.image_path, "rb") as f:
@@ -44,9 +40,7 @@ class TestCropHealthClient:
         assert all(v is not None for _, v in health)
 
         # Assert that the sum of all values is approx equal to 1.0
-        assert sum(v for _, v in health) == pytest.approx(
-            1.0, rel=1e-1
-        )
+        assert sum(v for _, v in health) == pytest.approx(1.0, rel=1e-1)
 
     @pytest.mark.asyncio
     async def test_async_get_binary_health(self):
@@ -58,9 +52,7 @@ class TestCropHealthClient:
         assert all(v is not None for _, v in health)
 
         # Assert that the sum of all values is approx equal to 1.0
-        assert sum(v for _, v in health) == pytest.approx(
-            1.0, rel=1e-1
-        )
+        assert sum(v for _, v in health) == pytest.approx(1.0, rel=1e-1)
 
     @pytest.mark.asyncio
     async def test_async_get_singleHLT_health(self):
@@ -72,9 +64,7 @@ class TestCropHealthClient:
         assert all(v is not None for _, v in health)
 
         # Assert that the sum of all values is approx equal to 1.0
-        assert sum(v for _, v in health) == pytest.approx(
-            1.0, rel=1e-1
-        )
+        assert sum(v for _, v in health) == pytest.approx(1.0, rel=1e-1)
 
     @pytest.mark.asyncio
     async def test_async_get_multiHLT_health(self):
@@ -86,9 +76,7 @@ class TestCropHealthClient:
         assert all(v is not None for _, v in health)
 
         # Assert that the sum of all values is approx equal to 1.0
-        assert sum(v for _, v in health) == pytest.approx(
-            1.0, rel=1e-1
-        )
+        assert sum(v for _, v in health) == pytest.approx(1.0, rel=1e-1)
 
     def test_empty_image_data(self):
         # Test with empty bytes
