@@ -64,7 +64,7 @@ class TestCropHealthClient:
         with open(self.image_path, "rb") as f:
             image_data = f.read()
             health = await AsyncCropHealthClient.get_multiHLT_prediction(image_data)
-            
+
         # Assert that the sum of all values is approx equal to 1.0
         assert sum(v for _, v in health if v is not None) == pytest.approx(
             1.0, rel=1e-1
