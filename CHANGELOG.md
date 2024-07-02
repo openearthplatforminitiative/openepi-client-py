@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## v0.1.5 (2024-07-02)
+
+### Fix
+
+* fix: adjust tests to new crop API ([`7760160`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/7760160ffe1187ea755ed38e6d39011e0d399a6e))
+
+* fix: adjust tests ([`dccffd2`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/dccffd258121fffd9fb4e9ad50b0e58e66ef185d))
+
+* fix: spacing ([`e20eb96`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/e20eb96670682b2b48dada95d668e61b9eb059cd))
+
+* fix: spacing ([`3788321`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/378832186edfc4ea368fe5fa62b459ac626fadb0))
+
+* fix: make image_data mandatory ([`6fb8309`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/6fb83090995892481e592ac2b838c2c4d766822e))
+
+* fix: crop health takes bytes as input ([`7c70e07`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/7c70e072b51dd5ff1622c47efda8616384d8d9eb))
+
+### Unknown
+
+* Merge pull request #15 from openearthplatforminitiative/fix/crop-reads-bytes
+
+Fix/crop reads bytes ([`1708ba0`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/1708ba06dc8a1c2b9819f058f1e738bdb2aece64))
+
+* remove topk ([`5644bea`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/5644beab82421a0f0863ffd3d6eebbc4c4946103))
+
+* formatting ([`e738c32`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/e738c32ecdac5afc819a25d0d97740a322d520b4))
+
+* remove unnecessary None check ([`6456ad8`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/6456ad82f031801df2be28713a75125b3f4fca59))
+
+* formatting ([`b9c23f5`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/b9c23f5cd4ac0545cd686f6935d3014407f79332))
+
+* update crop types ([`cdcba47`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/cdcba47463afbfa9639015ffd3628fcd2c72791c))
+
 ## v0.1.4 (2024-07-01)
 
 ### Fix
