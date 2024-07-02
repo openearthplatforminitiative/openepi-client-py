@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, computed_field, model_validator, FilePath
+from pydantic import BaseModel, Field, computed_field, model_validator
 from httpx import AsyncClient, Client
 
 from openepi_client import openepi_settings
@@ -10,24 +10,22 @@ from openepi_client.crop_health._crop_health_types import (
 
 
 class PredictionRequest(BaseModel):
-    image_path: FilePath | None = Field(
-        default=None, description="The full filepath of the image"
-    )
+    image_data: bytes = Field(..., description="The image data as bytes")
 
     _prediction_endpoint: str = (
         f"{openepi_settings.api_root_url}/crop-health/predictions"
     )
 
     @model_validator(mode="after")
-    def check_mutually_exclusive(self) -> "PredictionRequest":
-        if not (self.image_path is not None):
-            raise ValueError("Specify image path")
+    def check_image_data(self) -> "PredictionRequest":
+        if not self.image_data:
+            raise ValueError("Image data must be provided and non-empty")
         return self
 
     @computed_field
     @property
     def _params(self) -> bytes:
-        return open(self.image_path, "rb").read()
+        return self.image_data
 
 
 class BinaryPredictionRequest(PredictionRequest):
@@ -80,39 +78,39 @@ class MultiHLTPredictionRequest(PredictionRequest):
 
 class CropHealthClient:
     @staticmethod
-    def get_binary_health_prediction(
-        image_path: str | None = None,
+    def get_binary_prediction(
+        image_data: bytes,
     ) -> BinaryPredictionResponse:
-        return BinaryPredictionRequest(image_path=image_path).get_sync()
+        return BinaryPredictionRequest(image_data=image_data).get_sync()
 
     @staticmethod
-    def get_singleHLT_health_prediction(
-        image_path: str | None = None,
+    def get_singleHLT_prediction(
+        image_data: bytes,
     ) -> SingleHLTPredictionResponse:
-        return SingleHLTPredictionRequest(image_path=image_path).get_sync()
+        return SingleHLTPredictionRequest(image_data=image_data).get_sync()
 
     @staticmethod
-    def get_multiHLT_health_prediction(
-        image_path: str | None = None,
+    def get_multiHLT_prediction(
+        image_data: bytes,
     ) -> MultiHLTPredictionResponse:
-        return MultiHLTPredictionRequest(image_path=image_path).get_sync()
+        return MultiHLTPredictionRequest(image_data=image_data).get_sync()
 
 
 class AsyncCropHealthClient:
     @staticmethod
-    async def get_binary_health_prediction(
-        image_path: str | None = None,
+    async def get_binary_prediction(
+        image_data: bytes,
     ) -> BinaryPredictionResponse:
-        return await BinaryPredictionRequest(image_path=image_path).get_async()
+        return await BinaryPredictionRequest(image_data=image_data).get_async()
 
     @staticmethod
-    async def get_singleHLT_health_prediction(
-        image_path: str | None = None,
+    async def get_singleHLT_prediction(
+        image_data: bytes,
     ) -> SingleHLTPredictionResponse:
-        return await SingleHLTPredictionRequest(image_path=image_path).get_async()
+        return await SingleHLTPredictionRequest(image_data=image_data).get_async()
 
     @staticmethod
-    async def get_multiHLT_health_prediction(
-        image_path: str | None = None,
+    async def get_multiHLT_prediction(
+        image_data: bytes,
     ) -> MultiHLTPredictionResponse:
-        return await MultiHLTPredictionRequest(image_path=image_path).get_async()
+        return await MultiHLTPredictionRequest(image_data=image_data).get_async()
