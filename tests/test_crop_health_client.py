@@ -7,7 +7,6 @@ from openepi_client.crop_health import CropHealthClient, AsyncCropHealthClient
 
 class TestCropHealthClient:
     image_path = os.path.abspath("tests/assets/plant.jpg")
-    topk = 5  # number of non-null values returned by the (non binary) models
 
     def test_sync_get_binary_health(self):
         with open(self.image_path, "rb") as f:
