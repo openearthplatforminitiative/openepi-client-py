@@ -10,6 +10,27 @@ from openepi_client.crop_health._crop_health_types import (
 
 
 class PredictionRequest(BaseModel):
+    """
+    Base class for prediction requests.
+
+    Parameters
+    ----------
+    image_data : bytes
+        The image data as bytes.
+
+    Attributes
+    ----------
+    _prediction_endpoint : str
+        The endpoint URL for predictions.
+
+    Methods
+    -------
+    check_image_data()
+        Validates that image data is provided and non-empty.
+    _params()
+        Returns the image data as bytes.
+    """
+
     image_data: bytes = Field(..., description="The image data as bytes")
 
     _prediction_endpoint: str = (
@@ -29,6 +50,22 @@ class PredictionRequest(BaseModel):
 
 
 class BinaryPredictionRequest(PredictionRequest):
+    """
+    Request class for binary predictions.
+
+    Methods
+    -------
+    get_sync()
+        Synchronously gets a binary prediction.
+    get_async()
+        Asynchronously gets a binary prediction.
+
+    Returns
+    -------
+    BinaryPredictionResponse
+        The response containing the binary prediction.
+    """
+
     def get_sync(self) -> BinaryPredictionResponse:
         with Client() as client:
             response = client.post(
@@ -45,6 +82,22 @@ class BinaryPredictionRequest(PredictionRequest):
 
 
 class SingleHLTPredictionRequest(PredictionRequest):
+    """
+    Request class for single HLT predictions.
+
+    Methods
+    -------
+    get_sync()
+        Synchronously gets a single HLT prediction.
+    get_async()
+        Asynchronously gets a single HLT prediction.
+
+    Returns
+    -------
+    SingleHLTPredictionResponse
+        The response containing the single HLT prediction.
+    """
+
     def get_sync(self) -> SingleHLTPredictionResponse:
         with Client() as client:
             response = client.post(
@@ -61,6 +114,22 @@ class SingleHLTPredictionRequest(PredictionRequest):
 
 
 class MultiHLTPredictionRequest(PredictionRequest):
+    """
+    Request class for multi HLT predictions.
+
+    Methods
+    -------
+    get_sync()
+        Synchronously gets a multi HLT prediction.
+    get_async()
+        Asynchronously gets a multi HLT prediction.
+
+    Returns
+    -------
+    MultiHLTPredictionResponse
+        The response containing the multi HLT prediction.
+    """
+
     def get_sync(self) -> MultiHLTPredictionResponse:
         with Client() as client:
             response = client.post(
@@ -77,6 +146,29 @@ class MultiHLTPredictionRequest(PredictionRequest):
 
 
 class CropHealthClient:
+    """
+    Client class for synchronous crop health predictions.
+
+    Methods
+    -------
+    get_binary_prediction(image_data)
+        Gets a binary prediction for the given image data.
+    get_singleHLT_prediction(image_data)
+        Gets a single HLT prediction for the given image data.
+    get_multiHLT_prediction(image_data)
+        Gets a multi HLT prediction for the given image data.
+
+    Parameters
+    ----------
+    image_data : bytes
+        The image data as bytes.
+
+    Returns
+    -------
+    BinaryPredictionResponse, SingleHLTPredictionResponse, or MultiHLTPredictionResponse
+        The response containing the prediction results.
+    """
+
     @staticmethod
     def get_binary_prediction(
         image_data: bytes,
@@ -97,6 +189,29 @@ class CropHealthClient:
 
 
 class AsyncCropHealthClient:
+    """
+    Client class for asynchronous crop health predictions.
+
+    Methods
+    -------
+    get_binary_prediction(image_data)
+        Gets a binary prediction for the given image data asynchronously.
+    get_singleHLT_prediction(image_data)
+        Gets a single HLT prediction for the given image data asynchronously.
+    get_multiHLT_prediction(image_data)
+        Gets a multi HLT prediction for the given image data asynchronously.
+
+    Parameters
+    ----------
+    image_data : bytes
+        The image data as bytes.
+
+    Returns
+    -------
+    BinaryPredictionResponse, SingleHLTPredictionResponse, or MultiHLTPredictionResponse
+        The response containing the prediction results.
+    """
+
     @staticmethod
     async def get_binary_prediction(
         image_data: bytes,
