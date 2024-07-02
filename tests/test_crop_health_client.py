@@ -14,13 +14,10 @@ class TestCropHealthClient:
             image_data = f.read()
             health = CropHealthClient.get_binary_prediction(image_data)
 
-        # Assert that all values (2) are non-null
+        # Assert that all values are non-null
         assert all(v is not None for _, v in health)
 
         # Assert that the sum of all values is approx equal to 1.0
-        # The number of topk values is greater than 2 (the number
-        # of classes in the binary model), so we can guarantee that
-        # the sum of all values is 1.0
         assert sum(v for _, v in health if v is not None) == pytest.approx(
             1.0, rel=1e-1
         )
@@ -30,15 +27,12 @@ class TestCropHealthClient:
             image_data = f.read()
             health = CropHealthClient.get_singleHLT_prediction(image_data)
 
-        # Assert that only the topk values are non-null
-        assert sum(v is not None for _, v in health) == self.topk
+        # Assert that all values are non-null
+        assert all(v is not None for _, v in health)
 
-        # Assert that the sum of all values is greater than topk * 1.0 / number of classes
-        # This is the only guarantee we can make about the output of the model
-        # We cannot guarantee that the topk values sum to 1.0
-        num_classes = sum(1 for _ in health)
-        assert (
-            sum(v for _, v in health if v is not None) >= self.topk * 1.0 / num_classes
+        # Assert that the sum of all values is approx equal to 1.0
+        assert sum(v for _, v in health if v is not None) == pytest.approx(
+            1.0, rel=1e-1
         )
 
     def test_sync_get_multiHLT_health(self):
@@ -46,15 +40,12 @@ class TestCropHealthClient:
             image_data = f.read()
             health = CropHealthClient.get_multiHLT_prediction(image_data)
 
-        # Assert that only the topk values are non-null
-        assert sum(v is not None for _, v in health) == self.topk
+        # Assert that all values are non-null
+        assert all(v is not None for _, v in health)
 
-        # Assert that the sum of all values is greater than topk * 1.0 / number of classes
-        # This is the only guarantee we can make about the output of the model
-        # We cannot guarantee that the topk values sum to 1.0
-        num_classes = sum(1 for _ in health)
-        assert (
-            sum(v for _, v in health if v is not None) >= self.topk * 1.0 / num_classes
+        # Assert that the sum of all values is approx equal to 1.0
+        assert sum(v for _, v in health if v is not None) == pytest.approx(
+            1.0, rel=1e-1
         )
 
     @pytest.mark.asyncio
@@ -63,13 +54,10 @@ class TestCropHealthClient:
             image_data = f.read()
             health = await AsyncCropHealthClient.get_binary_prediction(image_data)
 
-        # Assert that all values (2) are non-null
+        # Assert that all values are non-null
         assert all(v is not None for _, v in health)
 
         # Assert that the sum of all values is approx equal to 1.0
-        # The number of topk values is greater than 2 (the number
-        # of classes in the binary model), so we can guarantee that
-        # the sum of all values is 1.0
         assert sum(v for _, v in health if v is not None) == pytest.approx(
             1.0, rel=1e-1
         )
@@ -80,15 +68,12 @@ class TestCropHealthClient:
             image_data = f.read()
             health = await AsyncCropHealthClient.get_singleHLT_prediction(image_data)
 
-        # Assert that only the topk values are non-null
-        assert sum(v is not None for _, v in health) == self.topk
+        # Assert that all values are non-null
+        assert all(v is not None for _, v in health)
 
-        # Assert that the sum of all values is greater than topk * 1.0 / number of classes
-        # This is the only guarantee we can make about the output of the model
-        # We cannot guarantee that the topk values sum to 1.0
-        num_classes = sum(1 for _ in health)
-        assert (
-            sum(v for _, v in health if v is not None) >= self.topk * 1.0 / num_classes
+        # Assert that the sum of all values is approx equal to 1.0
+        assert sum(v for _, v in health if v is not None) == pytest.approx(
+            1.0, rel=1e-1
         )
 
     @pytest.mark.asyncio
@@ -97,15 +82,12 @@ class TestCropHealthClient:
             image_data = f.read()
             health = await AsyncCropHealthClient.get_multiHLT_prediction(image_data)
 
-        # Assert that only the topk values are non-null
-        assert sum(v is not None for _, v in health) == self.topk
+        # Assert that all values are non-null
+        assert all(v is not None for _, v in health)
 
-        # Assert that the sum of all values is greater than topk * 1.0 / number of classes
-        # This is the only guarantee we can make about the output of the model
-        # We cannot guarantee that the topk values sum to 1.0
-        num_classes = sum(1 for _ in health)
-        assert (
-            sum(v for _, v in health if v is not None) >= self.topk * 1.0 / num_classes
+        # Assert that the sum of all values is approx equal to 1.0
+        assert sum(v for _, v in health if v is not None) == pytest.approx(
+            1.0, rel=1e-1
         )
 
     def test_empty_image_data(self):
