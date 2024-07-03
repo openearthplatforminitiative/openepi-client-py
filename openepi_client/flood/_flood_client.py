@@ -98,7 +98,9 @@ class ThresholdRequest(BaseModel):
         Returns
         -------
         ThresholdResponseModel
-            The flood threshold response data.
+            The flood threshold response data as a JSON object
+            with a `queried_location` key, itself being
+            a GeoJSON FeatureCollection object.
             Consists of the 2-, 5-, and 20-year
             return period thresholds in m^3/s.
         """
@@ -113,7 +115,9 @@ class ThresholdRequest(BaseModel):
         Returns
         -------
         ThresholdResponseModel
-            The flood threshold response data.
+            The flood threshold response data as a JSON object
+            with a `queried_location` key, itself being
+            a GeoJSON FeatureCollection object.
             Consists of the 2-, 5-, and 20-year
             return period thresholds in m^3/s.
         """
@@ -221,7 +225,9 @@ class SummaryRequest(BaseModel):
         Returns
         -------
         SummaryResponseModel
-            The summary flood response data.
+            The summary flood response data as a JSON object with 
+            `queried_location` and `neighboring_location` keys, 
+            both being GeoJSON FeatureCollection objects.
             Consists of a 30-day summary of forecasted
             flooding in the queried location.
         """
@@ -236,7 +242,9 @@ class SummaryRequest(BaseModel):
         Returns
         -------
         SummaryResponseModel
-            The summary flood response data.
+            The summary flood response data as a JSON object with 
+            `queried_location` and `neighboring_location` keys, 
+            both being GeoJSON FeatureCollection objects.
             Consists of a 30-day summary of forecasted
             flooding in the queried location.
         """
@@ -358,7 +366,9 @@ class DetailedRequest(BaseModel):
         Returns
         -------
         DetailedResponseModel
-            The detailed flood response data.
+            The detailed flood response data as a JSON object with 
+            `queried_location` and `neighboring_location` keys,
+            both being GeoJSON FeatureCollection objects.
             Consists of a detailed forecast of flooding
             in the queried location over the specified time period,
             at most 30 days into the future.
@@ -377,7 +387,9 @@ class DetailedRequest(BaseModel):
         Returns
         -------
         DetailedResponseModel
-            The detailed response data.
+            The detailed flood response data as a JSON object with 
+            `queried_location` and `neighboring_location` keys,
+            both being GeoJSON FeatureCollection objects.
             Consists of a detailed forecast of flooding
             in the queried location over the specified time period,
             at most 30 days into the future.
@@ -421,7 +433,9 @@ class FloodClient:
         Returns
         -------
         ThresholdResponseModel
-            The flood threshold response data.
+            The flood threshold response data as a JSON object
+            with a `queried_location` key, itself being
+            a GeoJSON FeatureCollection object.
             Consists of the 2-, 5-, and 20-year
             return period thresholds in m^3/s.
         """
@@ -450,7 +464,9 @@ class FloodClient:
         Returns
         -------
         SummaryResponseModel
-            The summary flood response data.
+            The summary flood response data as a JSON object with 
+            `queried_location` and `neighboring_location` keys, 
+            both being GeoJSON FeatureCollection objects.
             Consists of a 30-day summary of forecasted
             flooding in the queried location.
         """
@@ -487,7 +503,9 @@ class FloodClient:
         Returns
         -------
         DetailedResponseModel
-            The detailed flood response data.
+            The detailed flood response data as a JSON object with 
+            `queried_location` and `neighboring_location` keys,
+            both being GeoJSON FeatureCollection objects.
             Consists of a detailed forecast of flooding
             in the queried location over the specified time period,
             at most 30 days into the future.
@@ -532,7 +550,9 @@ class AsyncFloodClient:
         Returns
         -------
         ThresholdResponseModel
-            The flood threshold response data.
+            The flood threshold response data as a JSON object
+            with a `queried_location` key, itself being
+            a GeoJSON FeatureCollection object.
             Consists of the 2-, 5-, and 20-year
             return period thresholds in m^3/s.
         """
@@ -557,7 +577,9 @@ class AsyncFloodClient:
         Returns
         -------
         SummaryResponseModel
-            The summary flood response data.
+            The summary flood response data as a JSON object with 
+            `queried_location` and `neighboring_location` keys, 
+            both being GeoJSON FeatureCollection objects.
             Consists of a 30-day summary of forecasted
             flooding in the queried location.
         """
@@ -592,7 +614,9 @@ class AsyncFloodClient:
         Returns
         -------
         DetailedResponseModel
-            The detailed flood response data.
+            The detailed flood response data as a JSON object with 
+            `queried_location` and `neighboring_location` keys,
+            both being GeoJSON FeatureCollection objects.
             Consists of a detailed forecast of flooding
             in the queried location over the specified time period,
             at most 30 days into the future.
