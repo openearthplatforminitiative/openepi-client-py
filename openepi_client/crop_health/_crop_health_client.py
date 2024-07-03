@@ -89,7 +89,7 @@ class BinaryPredictionRequest(PredictionRequest):
         Returns
         -------
         BinaryPredictionResponse
-            The response containing the binary prediction.
+            The response containing the binary prediction as a JSON object.
             Consists of a mapping of the binary model classes
             to their respective confidence scores.
         """
@@ -106,7 +106,7 @@ class BinaryPredictionRequest(PredictionRequest):
         Returns
         -------
         BinaryPredictionResponse
-            The response containing the binary prediction.
+            The response containing the binary prediction as a JSON object.
             Consists of a mapping of the binary model classes
             to their respective confidence scores.
         """
@@ -136,7 +136,7 @@ class SingleHLTPredictionRequest(PredictionRequest):
         Returns
         -------
         SingleHLTPredictionResponse
-            The response containing the single HLT prediction.
+            The response containing the single HLT prediction as a JSON object.
             Consists of a mapping of the single HLT model classes
             to their respective confidence scores.
         """
@@ -153,7 +153,7 @@ class SingleHLTPredictionRequest(PredictionRequest):
         Returns
         -------
         SingleHLTPredictionResponse
-            The response containing the single HLT prediction.
+            The response containing the single HLT prediction as a JSON object.
             Consists of a mapping of the single HLT model classes
             to their respective confidence scores.
         """
@@ -183,7 +183,7 @@ class MultiHLTPredictionRequest(PredictionRequest):
         Returns
         -------
         MultiHLTPredictionResponse
-            The response containing the multi HLT prediction.
+            The response containing the multi HLT prediction as a JSON object.
             Consists of a mapping of the multi HLT model classes
             to their respective confidence scores.
         """
@@ -200,7 +200,7 @@ class MultiHLTPredictionRequest(PredictionRequest):
         Returns
         -------
         MultiHLTPredictionResponse
-            The response containing the multi HLT prediction.
+            The response containing the multi HLT prediction as a JSON object.
             Consists of a mapping of the multi HLT model classes
             to their respective confidence scores.
         """
@@ -240,7 +240,7 @@ class CropHealthClient:
         Returns
         -------
         BinaryPredictionResponse
-            The response containing the binary prediction results.
+            The response containing the binary prediction results as a JSON object.
             Consists of a mapping of the binary model classes
             to their respective confidence scores.
         """
@@ -261,7 +261,7 @@ class CropHealthClient:
         Returns
         -------
         SingleHLTPredictionResponse
-            The response containing the single HLT prediction results.
+            The response containing the single HLT prediction results as a JSON object.
             Consists of a mapping of the single HLT model classes
             to their respective confidence scores.
         """
@@ -282,7 +282,7 @@ class CropHealthClient:
         Returns
         -------
         MultiHLTPredictionResponse
-            The response containing the multi HLT prediction results.
+            The response containing the multi HLT prediction results as a JSON object.
             Consists of a mapping of the multi HLT model classes
             to their respective confidence scores.
         """
@@ -318,7 +318,7 @@ class AsyncCropHealthClient:
         Returns
         -------
         BinaryPredictionResponse
-            The response containing the binary prediction results.
+            The response containing the binary prediction results as a JSON object.
             Consists of a mapping of the binary model classes
             to their respective confidence scores.
         """
@@ -339,7 +339,7 @@ class AsyncCropHealthClient:
         Returns
         -------
         SingleHLTPredictionResponse
-            The response containing the single HLT prediction results.
+            The response containing the single HLT prediction results as a JSON object.
             Consists of a mapping of the single HLT model classes
             to their respective confidence scores.
         """
@@ -360,7 +360,7 @@ class AsyncCropHealthClient:
         Returns
         -------
         MultiHLTPredictionResponse
-            The response containing the multi HLT prediction results.
+            The response containing the multi HLT prediction results as a JSON object.
             Consists of a mapping of the multi HLT model classes
             to their respective confidence scores.
         """
