@@ -225,8 +225,8 @@ class SummaryRequest(BaseModel):
         Returns
         -------
         SummaryResponseModel
-            The summary flood response data as a JSON object with 
-            `queried_location` and `neighboring_location` keys, 
+            The summary flood response data as a JSON object with
+            `queried_location` and `neighboring_location` keys,
             both being GeoJSON FeatureCollection objects.
             Consists of a 30-day summary of forecasted
             flooding in the queried location.
@@ -242,8 +242,8 @@ class SummaryRequest(BaseModel):
         Returns
         -------
         SummaryResponseModel
-            The summary flood response data as a JSON object with 
-            `queried_location` and `neighboring_location` keys, 
+            The summary flood response data as a JSON object with
+            `queried_location` and `neighboring_location` keys,
             both being GeoJSON FeatureCollection objects.
             Consists of a 30-day summary of forecasted
             flooding in the queried location.
@@ -366,7 +366,7 @@ class DetailedRequest(BaseModel):
         Returns
         -------
         DetailedResponseModel
-            The detailed flood response data as a JSON object with 
+            The detailed flood response data as a JSON object with
             `queried_location` and `neighboring_location` keys,
             both being GeoJSON FeatureCollection objects.
             Consists of a detailed forecast of flooding
@@ -387,7 +387,7 @@ class DetailedRequest(BaseModel):
         Returns
         -------
         DetailedResponseModel
-            The detailed flood response data as a JSON object with 
+            The detailed flood response data as a JSON object with
             `queried_location` and `neighboring_location` keys,
             both being GeoJSON FeatureCollection objects.
             Consists of a detailed forecast of flooding
@@ -464,8 +464,8 @@ class FloodClient:
         Returns
         -------
         SummaryResponseModel
-            The summary flood response data as a JSON object with 
-            `queried_location` and `neighboring_location` keys, 
+            The summary flood response data as a JSON object with
+            `queried_location` and `neighboring_location` keys,
             both being GeoJSON FeatureCollection objects.
             Consists of a 30-day summary of forecasted
             flooding in the queried location.
@@ -503,7 +503,7 @@ class FloodClient:
         Returns
         -------
         DetailedResponseModel
-            The detailed flood response data as a JSON object with 
+            The detailed flood response data as a JSON object with
             `queried_location` and `neighboring_location` keys,
             both being GeoJSON FeatureCollection objects.
             Consists of a detailed forecast of flooding
@@ -577,8 +577,8 @@ class AsyncFloodClient:
         Returns
         -------
         SummaryResponseModel
-            The summary flood response data as a JSON object with 
-            `queried_location` and `neighboring_location` keys, 
+            The summary flood response data as a JSON object with
+            `queried_location` and `neighboring_location` keys,
             both being GeoJSON FeatureCollection objects.
             Consists of a 30-day summary of forecasted
             flooding in the queried location.
@@ -614,7 +614,7 @@ class AsyncFloodClient:
         Returns
         -------
         DetailedResponseModel
-            The detailed flood response data as a JSON object with 
+            The detailed flood response data as a JSON object with
             `queried_location` and `neighboring_location` keys,
             both being GeoJSON FeatureCollection objects.
             Consists of a detailed forecast of flooding
