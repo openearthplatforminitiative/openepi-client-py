@@ -72,8 +72,8 @@ class SoilTypeRequest(BaseModel):
         -------
         SoilTypeJSON
             The soil type response data.
-            Consists of the most probable soil type at the 
-            queried location, along with the top_k most 
+            Consists of the most probable soil type at the
+            queried location, along with the top_k most
             probable soil types. The probability of each
             soil type is represented as an integer between
             0 and 100.
@@ -94,8 +94,8 @@ class SoilTypeRequest(BaseModel):
         -------
         SoilTypeJSON
             The soil type response data.
-            Consists of the most probable soil type at the 
-            queried location, along with the top_k most 
+            Consists of the most probable soil type at the
+            queried location, along with the top_k most
             probable soil types. The probability of each
             soil type is represented as an integer between
             0 and 100.
@@ -281,11 +281,11 @@ class SoilPropertyRequest(BaseModel):
         -------
         SoilPropertyJSON
             The soil property response data.
-            Consists of the values of the soil properties for the 
-            given location and depths. 
-            Note: The ocs (Organic carbon stocks) property is 
-            only available for the 0-30cm depth and vice versa. 
-            If the depth and property are incompatible, the 
+            Consists of the values of the soil properties for the
+            given location and depths.
+            Note: The ocs (Organic carbon stocks) property is
+            only available for the 0-30cm depth and vice versa.
+            If the depth and property are incompatible, the
             response will not include the property.
         """
         with Client() as client:
@@ -304,11 +304,11 @@ class SoilPropertyRequest(BaseModel):
         -------
         SoilPropertyJSON
             The soil property response data.
-            Consists of the values of the soil properties for the 
-            given location and depths. 
-            Note: The ocs (Organic carbon stocks) property is 
-            only available for the 0-30cm depth and vice versa. 
-            If the depth and property are incompatible, the 
+            Consists of the values of the soil properties for the
+            given location and depths.
+            Note: The ocs (Organic carbon stocks) property is
+            only available for the 0-30cm depth and vice versa.
+            If the depth and property are incompatible, the
             response will not include the property.
         """
         async with AsyncClient() as async_client:
@@ -406,11 +406,11 @@ class SoilClient:
         -------
         SoilPropertyJSON
             The soil property response data.
-            Consists of the values of the soil properties for the 
-            given location and depths. 
-            Note: The ocs (Organic carbon stocks) property is 
-            only available for the 0-30cm depth and vice versa. 
-            If the depth and property are incompatible, the 
+            Consists of the values of the soil properties for the
+            given location and depths.
+            Note: The ocs (Organic carbon stocks) property is
+            only available for the 0-30cm depth and vice versa.
+            If the depth and property are incompatible, the
             response will not include the property.
         """
         return SoilPropertyRequest(
@@ -525,11 +525,11 @@ class AsyncSoilClient:
         -------
         SoilPropertyJSON
             The soil property response data.
-            Consists of the values of the soil properties for the 
-            given location and depths. 
-            Note: The ocs (Organic carbon stocks) property is 
-            only available for the 0-30cm depth and vice versa. 
-            If the depth and property are incompatible, the 
+            Consists of the values of the soil properties for the
+            given location and depths.
+            Note: The ocs (Organic carbon stocks) property is
+            only available for the 0-30cm depth and vice versa.
+            If the depth and property are incompatible, the
             response will not include the property.
         """
         return await SoilPropertyRequest(
