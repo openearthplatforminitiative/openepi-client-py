@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-__version__ = "0.1.12"
+__version__ = "0.1.13"
 
 setup(
     name="openepi-client",

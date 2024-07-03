@@ -1,6 +1,18 @@
 # CHANGELOG
 
+## v0.1.13 (2024-07-03)
+
+### Unknown
+
+* Merge pull request #24 from openearthplatforminitiative/fix/update-crop-readme
+
+fix: adjust the readme to account for new crop changes ([`78cb44b`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/78cb44b51285913716ba2117350b97bfa93dfad4))
+
 ## v0.1.12 (2024-07-03)
+
+### Fix
+
+* fix: adjust the readme to account for new crop changes ([`4e420d4`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/4e420d45eb3dc6475ad29c618e6efcfc956036a2))
 
 ### Unknown
 
