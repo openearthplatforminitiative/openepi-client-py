@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v0.1.14 (2024-07-03)
+
+### Fix
+
+* fix: specify geojson in crops ([`37c6998`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/37c69981f0ff93219407482488c6f6158fb530b4))
+
+### Unknown
+
+* Merge pull request #25 from openearthplatforminitiative/fix/add-geojson-to-crop
+
+fix: specify geojson in crops ([`007a462`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/007a4621585beaa611cf62a8c290d7493deb3b85))
+
 ## v0.1.13 (2024-07-03)
 
 ### Unknown
