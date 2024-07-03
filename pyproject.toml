@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openepi-client"
-version = "0.1.5"
+version = "0.1.6"
 description = "A python library for interacting with the OpenEPI data"
 authors = ["Kenneth Stigen <kenneth.stigen@knowit.no>"]
 readme = "README.md"

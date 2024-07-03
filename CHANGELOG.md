@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v0.1.6 (2024-07-03)
+
+### Fix
+
+* fix: replace _params with _content ([`4d8e622`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/4d8e622a8cfef25f404e90df32733f2aa1d86466))
+
+* fix: first docstring attempt ([`2ba4152`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/2ba41527953b12c6a0526f274c42104dc9d0ed64))
+
+### Unknown
+
+* Merge pull request #16 from openearthplatforminitiative/fix/add-docstring-crop-health
+
+Fix/add docstring crop health ([`6a27463`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/6a27463b1f340cd2aba1d00390d3658193c4e482))
+
 ## v0.1.5 (2024-07-02)
 
 ### Fix
