@@ -1,6 +1,32 @@
 # CHANGELOG
 
+## v0.1.9 (2024-07-03)
+
+### Fix
+
+* fix: specify geojson object ([`f96c256`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/f96c256c81182c48ab0be0e210ae8cf578db9852))
+
+* fix: specify geojson response ([`62724a5`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/62724a56f6b2c6e3b56eb7f1303f62f63f403425))
+
+* fix: add geocoding docstring ([`d91f9d7`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/d91f9d7994e856816bcf9cf273d759baecb507ba))
+
+### Unknown
+
+* Merge pull request #19 from openearthplatforminitiative/fix/add-soil-docs
+
+Fix/add soil docs ([`a8a71a9`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/a8a71a9382fd655f948a74be0f9723f69b497f04))
+
+* Merge pull request #20 from openearthplatforminitiative/fix/add-geocoding-docs
+
+fix: add geocoding docstring ([`548a25a`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/548a25a02b41916733291667c3de3115600f9c10))
+
+* formatting ([`9b695a2`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/9b695a2ca5a7d08f846f9010a50a5c732633d4cb))
+
 ## v0.1.8 (2024-07-03)
+
+### Fix
+
+* fix: add soil docstring ([`845f121`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/845f12194c565173366a58ca93761c31ab1e9022))
 
 ### Unknown
 
