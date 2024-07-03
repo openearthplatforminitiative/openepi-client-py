@@ -10,6 +10,27 @@ from openepi_client.crop_health._crop_health_types import (
 
 
 class PredictionRequest(BaseModel):
+    """
+    Base class for prediction requests.
+
+    Parameters
+    ----------
+    image_data : bytes
+        The image data as bytes.
+
+    Attributes
+    ----------
+    _prediction_endpoint : str
+        The endpoint URL for predictions.
+
+    Methods
+    -------
+    check_image_data()
+        Validates that image data is provided and non-empty.
+    _content()
+        Returns the image data as bytes.
+    """
+
     image_data: bytes = Field(..., description="The image data as bytes")
 
     _prediction_endpoint: str = (
@@ -24,93 +45,263 @@ class PredictionRequest(BaseModel):
 
     @computed_field
     @property
-    def _params(self) -> bytes:
+    def _content(self) -> bytes:
         return self.image_data
 
 
 class BinaryPredictionRequest(PredictionRequest):
+    """
+    Request class for binary predictions.
+
+    Methods
+    -------
+    get_sync()
+        Synchronously gets a binary prediction.
+    get_async()
+        Asynchronously gets a binary prediction.
+
+    Returns
+    -------
+    BinaryPredictionResponse
+        The response containing the binary prediction.
+        Consists of a mapping of the binary model classes
+        to their respective confidence scores.
+    """
+
     def get_sync(self) -> BinaryPredictionResponse:
         with Client() as client:
             response = client.post(
-                f"{self._prediction_endpoint}/binary", content=self._params
+                f"{self._prediction_endpoint}/binary", content=self._content
             )
             return BinaryPredictionResponse(**response.json())
 
     async def get_async(self) -> BinaryPredictionResponse:
         async with AsyncClient() as async_client:
             response = await async_client.post(
-                f"{self._prediction_endpoint}/binary", content=self._params
+                f"{self._prediction_endpoint}/binary", content=self._content
             )
             return BinaryPredictionResponse(**response.json())
 
 
 class SingleHLTPredictionRequest(PredictionRequest):
+    """
+    Request class for single HLT predictions.
+
+    Methods
+    -------
+    get_sync()
+        Synchronously gets a single HLT prediction.
+    get_async()
+        Asynchronously gets a single HLT prediction.
+
+    Returns
+    -------
+    SingleHLTPredictionResponse
+        The response containing the single HLT prediction.
+        Consists of a mapping of the single HLT model classes
+        to their respective confidence scores.
+    """
+
     def get_sync(self) -> SingleHLTPredictionResponse:
         with Client() as client:
             response = client.post(
-                f"{self._prediction_endpoint}/single-HLT", content=self._params
+                f"{self._prediction_endpoint}/single-HLT", content=self._content
             )
             return SingleHLTPredictionResponse(**response.json())
 
     async def get_async(self) -> SingleHLTPredictionResponse:
         async with AsyncClient() as async_client:
             response = await async_client.post(
-                f"{self._prediction_endpoint}/single-HLT", content=self._params
+                f"{self._prediction_endpoint}/single-HLT", content=self._content
             )
             return SingleHLTPredictionResponse(**response.json())
 
 
 class MultiHLTPredictionRequest(PredictionRequest):
+    """
+    Request class for multi HLT predictions.
+
+    Methods
+    -------
+    get_sync()
+        Synchronously gets a multi HLT prediction.
+    get_async()
+        Asynchronously gets a multi HLT prediction.
+
+    Returns
+    -------
+    MultiHLTPredictionResponse
+        The response containing the multi HLT prediction.
+        Consists of a mapping of the multi HLT model classes
+        to their respective confidence scores.
+    """
+
     def get_sync(self) -> MultiHLTPredictionResponse:
         with Client() as client:
             response = client.post(
-                f"{self._prediction_endpoint}/multi-HLT", content=self._params
+                f"{self._prediction_endpoint}/multi-HLT", content=self._content
             )
             return MultiHLTPredictionResponse(**response.json())
 
     async def get_async(self) -> MultiHLTPredictionResponse:
         async with AsyncClient() as async_client:
             response = await async_client.post(
-                f"{self._prediction_endpoint}/multi-HLT", content=self._params
+                f"{self._prediction_endpoint}/multi-HLT", content=self._content
             )
             return MultiHLTPredictionResponse(**response.json())
 
 
 class CropHealthClient:
+    """
+    Client class for synchronous crop health predictions.
+
+    Methods
+    -------
+    get_binary_prediction(image_data)
+        Gets a binary prediction for the given image data.
+    get_singleHLT_prediction(image_data)
+        Gets a single HLT prediction for the given image data.
+    get_multiHLT_prediction(image_data)
+        Gets a multi HLT prediction for the given image data.
+    """
+
     @staticmethod
     def get_binary_prediction(
         image_data: bytes,
     ) -> BinaryPredictionResponse:
+        """
+        Gets a binary prediction for the given image data.
+
+        Parameters
+        ----------
+        image_data : bytes
+            The image data as bytes.
+
+        Returns
+        -------
+        BinaryPredictionResponse
+            The response containing the binary prediction results.
+            Consists of a mapping of the binary model classes
+            to their respective confidence scores.
+        """
         return BinaryPredictionRequest(image_data=image_data).get_sync()
 
     @staticmethod
     def get_singleHLT_prediction(
         image_data: bytes,
     ) -> SingleHLTPredictionResponse:
+        """
+        Gets a single HLT prediction for the given image data.
+
+        Parameters
+        ----------
+        image_data : bytes
+            The image data as bytes.
+
+        Returns
+        -------
+        SingleHLTPredictionResponse
+            The response containing the single HLT prediction results.
+            Consists of a mapping of the single HLT model classes
+            to their respective confidence scores.
+        """
         return SingleHLTPredictionRequest(image_data=image_data).get_sync()
 
     @staticmethod
     def get_multiHLT_prediction(
         image_data: bytes,
     ) -> MultiHLTPredictionResponse:
+        """
+        Gets a multi HLT prediction for the given image data.
+
+        Parameters
+        ----------
+        image_data : bytes
+            The image data as bytes.
+
+        Returns
+        -------
+        MultiHLTPredictionResponse
+            The response containing the multi HLT prediction results.
+            Consists of a mapping of the multi HLT model classes
+            to their respective confidence scores.
+        """
         return MultiHLTPredictionRequest(image_data=image_data).get_sync()
 
 
 class AsyncCropHealthClient:
+    """
+    Client class for asynchronous crop health predictions.
+
+    Methods
+    -------
+    get_binary_prediction(image_data)
+        Gets a binary prediction for the given image data asynchronously.
+    get_singleHLT_prediction(image_data)
+        Gets a single HLT prediction for the given image data asynchronously.
+    get_multiHLT_prediction(image_data)
+        Gets a multi HLT prediction for the given image data asynchronously.
+    """
+
     @staticmethod
     async def get_binary_prediction(
         image_data: bytes,
     ) -> BinaryPredictionResponse:
+        """
+        Gets a binary prediction for the given image data asynchronously.
+
+        Parameters
+        ----------
+        image_data : bytes
+            The image data as bytes.
+
+        Returns
+        -------
+        BinaryPredictionResponse
+            The response containing the binary prediction results.
+            Consists of a mapping of the binary model classes
+            to their respective confidence scores.
+        """
         return await BinaryPredictionRequest(image_data=image_data).get_async()
 
     @staticmethod
     async def get_singleHLT_prediction(
         image_data: bytes,
     ) -> SingleHLTPredictionResponse:
+        """
+        Gets a single HLT prediction for the given image data asynchronously.
+
+        Parameters
+        ----------
+        image_data : bytes
+            The image data as bytes.
+
+        Returns
+        -------
+        SingleHLTPredictionResponse
+            The response containing the single HLT prediction results.
+            Consists of a mapping of the single HLT model classes
+            to their respective confidence scores.
+        """
         return await SingleHLTPredictionRequest(image_data=image_data).get_async()
 
     @staticmethod
     async def get_multiHLT_prediction(
         image_data: bytes,
     ) -> MultiHLTPredictionResponse:
+        """
+        Gets a multi HLT prediction for the given image data asynchronously.
+
+        Parameters
+        ----------
+        image_data : bytes
+            The image data as bytes.
+
+        Returns
+        -------
+        MultiHLTPredictionResponse
+            The response containing the multi HLT prediction results.
+            Consists of a mapping of the multi HLT model classes
+            to their respective confidence scores.
+        """
         return await MultiHLTPredictionRequest(image_data=image_data).get_async()
