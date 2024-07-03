@@ -172,12 +172,12 @@ class SummaryRequest(BaseModel):
     def check_mutually_exclusive(self) -> "SummaryRequest":
         """
         Ensures either geolocation or bounding_box is provided, but not both.
-        
+
         Raises
         ------
         ValueError
             If both geolocation and bounding_box are provided or if neither are provided.
-            
+
         Returns
         -------
         SummaryRequest
