@@ -113,7 +113,7 @@ class BasinRequest(BaseModel):
         Returns
         -------
         DeforestationBasinGeoJSON
-            The deforestation data as a GeoJSON FeatureCollection.
+            The deforestation data as a GeoJSON FeatureCollection object.
             Consists of the estimated deforested area per year
             within a river basin for the given location.
         """
@@ -130,7 +130,7 @@ class BasinRequest(BaseModel):
         Returns
         -------
         DeforestationBasinGeoJSON
-            The deforestation data as a GeoJSON FeatureCollection.
+            The deforestation data as a GeoJSON FeatureCollection object.
             Consists of the estimated deforested area per year
             within a river basin for the given location.
         """
@@ -180,7 +180,7 @@ class DeforestationClient:
         Returns
         -------
         DeforestationBasinGeoJSON
-            The deforestation data as a GeoJSON FeatureCollection.
+            The deforestation data as a GeoJSON FeatureCollection object.
             Consists of the estimated deforested area per year
             within a river basin for the given location.
         """
@@ -229,7 +229,7 @@ class AsyncDeforestationClient:
         Returns
         -------
         DeforestationBasinGeoJSON
-            The deforestation data as a GeoJSON FeatureCollection.
+            The deforestation data as a GeoJSON FeatureCollection object.
             Consists of the estimated deforested area per year
             within a river basin for the given location.
         """
