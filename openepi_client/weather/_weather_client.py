@@ -61,7 +61,7 @@ class SunriseRequest(BaseModel):
         Returns
         -------
         METJSONSunrise
-            The sunrise data.
+            The sunrise data as a GeoJSON Feature object.
             Consists of sunrise time and sunset
             time for the given location and date.
         """
@@ -76,7 +76,7 @@ class SunriseRequest(BaseModel):
         Returns
         -------
         METJSONSunrise
-            The sunrise data.
+            The sunrise data as a GeoJSON Feature object.
             Consists of sunrise time and sunset
             time for the given location and date.
         """
@@ -140,7 +140,7 @@ class LocationForecastRequest(BaseModel):
         Returns
         -------
         METJSONForecast
-            The location forecast data.
+            The location forecast data as a GeoJSON Feature object.
             Consists of the weather forecast for the
             next 9 days for the given location.
         """
@@ -155,7 +155,7 @@ class LocationForecastRequest(BaseModel):
         Returns
         -------
         METJSONForecast
-            The location forecast data.
+            The location forecast data as a GeoJSON Feature object.
             Consists of the weather forecast for the
             next 9 days for the given location.
         """
@@ -196,7 +196,7 @@ class WeatherClient:
         Returns
         -------
         METJSONSunrise
-            The sunrise data.
+            The sunrise data as a GeoJSON Feature object.
             Consists of sunrise time and sunset
             time for the given location and date.
         """
@@ -215,7 +215,7 @@ class WeatherClient:
         Returns
         -------
         METJSONForecast
-            The location forecast data.
+            The location forecast data as a GeoJSON Feature object.
             Consists of the weather forecast for the
             next 9 days for the given location.
         """
@@ -252,7 +252,7 @@ class AsyncWeatherClient:
         Returns
         -------
         METJSONSunrise
-            The sunrise data.
+            The sunrise data as a GeoJSON Feature object.
             Consists of sunrise time and sunset
             time for the given location and date.
         """
@@ -273,7 +273,7 @@ class AsyncWeatherClient:
         Returns
         -------
         METJSONForecast
-            The location forecast data.
+            The location forecast data as a GeoJSON Feature object.
             Consists of the weather forecast for the
             next 9 days for the given location.
         """
