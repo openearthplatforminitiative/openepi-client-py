@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.1.12 (2024-07-03)
+
+### Unknown
+
+* Merge pull request #21 from openearthplatforminitiative/fix/add-weather-docs
+
+Fix/add weather docs ([`5e110b9`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/5e110b91e219e91b693045eabaf118fa67ecb34a))
+
 ## v0.1.11 (2024-07-03)
 
 ### Unknown
@@ -24,11 +32,15 @@ Fix/add geojson flood docs ([`27bee45`](https://github.com/openearthplatforminit
 
 * fix: specify geojson object ([`f96c256`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/f96c256c81182c48ab0be0e210ae8cf578db9852))
 
+* fix: add geojson feature ([`bfd527c`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/bfd527c8a2d72c118ae95ca1152b80481d1aaf76))
+
 * fix: specify geojson object ([`317d102`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/317d1023b6ac95d0f6a91147978242211c03a3ed))
 
 * fix: specify geojson response ([`62724a5`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/62724a56f6b2c6e3b56eb7f1303f62f63f403425))
 
 * fix: add deforestation docstring ([`9e37546`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/9e37546d2903e7d6b20374cbf94ab84e9b5003cb))
+
+* fix: add weather docstring ([`23858c7`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/23858c7e8267153cb07a46a2faf340baeb213a08))
 
 * fix: add geocoding docstring ([`d91f9d7`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/d91f9d7994e856816bcf9cf273d759baecb507ba))
 
@@ -45,6 +57,8 @@ fix: add geocoding docstring ([`548a25a`](https://github.com/openearthplatformin
 * formatting ([`54e7a33`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/54e7a33a8b7bbe73feea581442f5922f9cfcddee))
 
 * formatting ([`4c16fe9`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/4c16fe90f2e123f6a594dddcc5481c4740f5fc71))
+
+* formatting ([`15062c4`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/15062c4b161c3c74fed1a0d2d9c03a9485e4ee53))
 
 * formatting ([`9b695a2`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/9b695a2ca5a7d08f846f9010a50a5c732633d4cb))
 
