@@ -71,7 +71,7 @@ class SoilTypeRequest(BaseModel):
         Returns
         -------
         SoilTypeJSON
-            The soil type response data.
+            The soil type response data as a GeoJSON Feature object.
             Consists of the most probable soil type at the
             queried location, along with the top_k most
             probable soil types. The probability of each
@@ -93,7 +93,7 @@ class SoilTypeRequest(BaseModel):
         Returns
         -------
         SoilTypeJSON
-            The soil type response data.
+            The soil type response data as a GeoJSON Feature object.
             Consists of the most probable soil type at the
             queried location, along with the top_k most
             probable soil types. The probability of each
@@ -164,7 +164,7 @@ class SoilTypeSummaryRequest(BaseModel):
         Returns
         -------
         SoilTypeSummaryJSON
-            The soil type summary response data.
+            The soil type summary response data as a GeoJSON Feature object.
             Consists of a mapping of each soil type present to its
             number of occurrences in the bounding box.
         """
@@ -183,7 +183,7 @@ class SoilTypeSummaryRequest(BaseModel):
         Returns
         -------
         SoilTypeSummaryJSON
-            The soil type summary response data.
+            The soil type summary response data as a GeoJSON Feature object.
             Consists of a mapping of each soil type present to its
             number of occurrences in the bounding box.
         """
@@ -280,7 +280,7 @@ class SoilPropertyRequest(BaseModel):
         Returns
         -------
         SoilPropertyJSON
-            The soil property response data.
+            The soil property response data as a GeoJSON Feature object.
             Consists of the values of the soil properties for the
             given location and depths.
             Note: The ocs (Organic carbon stocks) property is
@@ -303,7 +303,7 @@ class SoilPropertyRequest(BaseModel):
         Returns
         -------
         SoilPropertyJSON
-            The soil property response data.
+            The soil property response data as a GeoJSON Feature object.
             Consists of the values of the soil properties for the
             given location and depths.
             Note: The ocs (Organic carbon stocks) property is
@@ -352,7 +352,7 @@ class SoilClient:
         Returns
         -------
         SoilTypeJSON
-            The soil type response data.
+            The soil type response data as a GeoJSON Feature object.
             Consists of the most probable soil type at the
             queried location, along with the top_k most
             probable soil types. The probability of each
@@ -405,7 +405,7 @@ class SoilClient:
         Returns
         -------
         SoilPropertyJSON
-            The soil property response data.
+            The soil property response data as a GeoJSON Feature object.
             Consists of the values of the soil properties for the
             given location and depths.
             Note: The ocs (Organic carbon stocks) property is
@@ -432,7 +432,7 @@ class SoilClient:
         Returns
         -------
         SoilTypeSummaryJSON
-            The soil type summary response data.
+            The soil type summary response data as a GeoJSON Feature object.
             Consists of a mapping of each soil type present to its
             number of occurrences in the bounding box.
         """
@@ -471,7 +471,7 @@ class AsyncSoilClient:
         Returns
         -------
         SoilTypeJSON
-            The soil type response data.
+            The soil type response data as a GeoJSON Feature object.
             Consists of the most probable soil type at the
             queried location, along with the top_k most
             probable soil types. The probability of each
@@ -524,7 +524,7 @@ class AsyncSoilClient:
         Returns
         -------
         SoilPropertyJSON
-            The soil property response data.
+            The soil property response data as a GeoJSON Feature object.
             Consists of the values of the soil properties for the
             given location and depths.
             Note: The ocs (Organic carbon stocks) property is
@@ -551,7 +551,7 @@ class AsyncSoilClient:
         Returns
         -------
         SoilTypeSummaryJSON
-            The soil type summary response data.
+            The soil type summary response data as a GeoJSON Feature object.
             Consists of a mapping of each soil type present to its
             number of occurrences in the bounding box.
         """
