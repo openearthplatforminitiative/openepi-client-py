@@ -6,6 +6,35 @@ from openepi_client.geocoding._geocoding_types import FeatureCollection
 
 
 class GeocodeRequest(BaseModel):
+    """
+    Request model for geocoding.
+
+    Parameters
+    ----------
+    q : str
+        The query string to geocode.
+    geolocation : GeoLocation, optional
+        The geolocation to query for.
+    lang : str, optional
+        Set preferred language (e.g. 'default', 'en', 'de', 'fr').
+    limit : int, optional
+        The maximum number of results.
+
+    Attributes
+    ----------
+    _geocode_endpoint : str
+        The API endpoint for geocoding requests.
+
+    Methods
+    -------
+    _params()
+        Generates the query parameters for the API request.
+    get_sync()
+        Synchronously retrieves the geocoding data.
+    get_async()
+        Asynchronously retrieves the geocoding data.
+    """
+
     q: str = Field(..., description="The query string to geocode")
     geolocation: GeoLocation | None = Field(
         default=None, description="The geolocation to query for"
@@ -20,6 +49,14 @@ class GeocodeRequest(BaseModel):
     @computed_field
     @property
     def _params(self) -> dict:
+        """
+        Generates the query parameters for the API request.
+
+        Returns
+        -------
+        dict
+            The query parameters.
+        """
         return {
             k: v
             for k, v in {
@@ -33,11 +70,29 @@ class GeocodeRequest(BaseModel):
         }
 
     def get_sync(self) -> FeatureCollection:
+        """
+        Synchronously retrieve geocoding data.
+
+        Returns
+        -------
+        FeatureCollection
+            The geocoding response data.
+            Consists of places matching the query string.
+        """
         with Client() as client:
             response = client.get(self._geocode_endpoint, params=self._params)
             return FeatureCollection(**response.json())
 
     async def get_async(self) -> FeatureCollection:
+        """
+        Asynchronously retrieve geocoding data.
+
+        Returns
+        -------
+        FeatureCollection
+            The geocoding response data.
+            Consists of places matching the query string.
+        """
         async with AsyncClient() as async_client:
             response = await async_client.get(
                 self._geocode_endpoint, params=self._params
@@ -46,6 +101,33 @@ class GeocodeRequest(BaseModel):
 
 
 class ReverseGeocodeRequest(BaseModel):
+    """
+    Request model for reverse geocoding.
+
+    Parameters
+    ----------
+    geolocation : GeoLocation
+        The geolocation to query for.
+    lang : str, optional
+        Set preferred language (e.g. 'default', 'en', 'de', 'fr').
+    limit : int, optional
+        The maximum number of results.
+
+    Attributes
+    ----------
+    _reverse_geocode_endpoint : str
+        The API endpoint for reverse geocoding requests.
+
+    Methods
+    -------
+    _params()
+        Generates the query parameters for the API request.
+    get_sync()
+        Synchronously retrieves the reverse geocoding data.
+    get_async()
+        Asynchronously retrieves the reverse geocoding data.
+    """
+
     geolocation: GeoLocation = Field(..., description="The geolocation to query for")
     lang: str | None = Field(
         default=None,
@@ -57,6 +139,14 @@ class ReverseGeocodeRequest(BaseModel):
     @computed_field
     @property
     def _params(self) -> dict:
+        """
+        Generates the query parameters for the API request.
+
+        Returns
+        -------
+        dict
+            The query parameters.
+        """
         return {
             k: v
             for k, v in {
@@ -69,11 +159,29 @@ class ReverseGeocodeRequest(BaseModel):
         }
 
     def get_sync(self) -> FeatureCollection:
+        """
+        Synchronously retrieve reverse geocoding data.
+
+        Returns
+        -------
+        FeatureCollection
+            The reverse geocoding response data.
+            Consists of places near the provided coordinates.
+        """
         with Client() as client:
             response = client.get(self._reverse_geocode_endpoint, params=self._params)
             return FeatureCollection(**response.json())
 
     async def get_async(self) -> FeatureCollection:
+        """
+        Asynchronously retrieve reverse geocoding data.
+
+        Returns
+        -------
+        FeatureCollection
+            The reverse geocoding response data.
+            Consists of places near the provided coordinates.
+        """
         async with AsyncClient() as async_client:
             response = await async_client.get(
                 self._reverse_geocode_endpoint, params=self._params
@@ -82,6 +190,17 @@ class ReverseGeocodeRequest(BaseModel):
 
 
 class GeocodeClient:
+    """
+    Client for synchronous geocoding and reverse geocoding operations.
+
+    Methods
+    -------
+    geocode(q, geolocation, lang, limit)
+        Perform geocoding operation.
+    reverse_geocode(geolocation, lang, limit)
+        Perform reverse geocoding operation.
+    """
+
     @staticmethod
     def geocode(
         q: str,
@@ -89,6 +208,26 @@ class GeocodeClient:
         lang: str | None = None,
         limit: int | None = None,
     ) -> FeatureCollection:
+        """
+        Perform geocoding operation.
+
+        Parameters
+        ----------
+        q : str
+            The query string to geocode.
+        geolocation : GeoLocation, optional
+            The geolocation to query for.
+        lang : str, optional
+            Set preferred language (e.g. 'default', 'en', 'de', 'fr').
+        limit : int, optional
+            The maximum number of results.
+
+        Returns
+        -------
+        FeatureCollection
+            The geocoding response data.
+            Consists of places matching the query string.
+        """
         return GeocodeRequest(
             q=q, geolocation=geolocation, lang=lang, limit=limit
         ).get_sync()
@@ -99,12 +238,41 @@ class GeocodeClient:
         lang: str | None = None,
         limit: int | None = None,
     ) -> FeatureCollection:
+        """
+        Perform reverse geocoding operation.
+
+        Parameters
+        ----------
+        geolocation : GeoLocation
+            The geolocation to query for.
+        lang : str, optional
+            Set preferred language (e.g. 'default', 'en', 'de', 'fr').
+        limit : int, optional
+            The maximum number of results.
+
+        Returns
+        -------
+        FeatureCollection
+            The reverse geocoding response data.
+            Consists of places near the provided coordinates.
+        """
         return ReverseGeocodeRequest(
             geolocation=geolocation, lang=lang, limit=limit
         ).get_sync()
 
 
 class AsyncGeocodeClient:
+    """
+    Client for asynchronous geocoding and reverse geocoding operations.
+
+    Methods
+    -------
+    geocode(q, geolocation, lang, limit)
+        Perform geocoding operation asynchronously.
+    reverse_geocode(geolocation, lang, limit)
+        Perform reverse geocoding operation asynchronously.
+    """
+
     @staticmethod
     async def geocode(
         q: str,
@@ -112,6 +280,26 @@ class AsyncGeocodeClient:
         lang: str | None = None,
         limit: int | None = None,
     ) -> FeatureCollection:
+        """
+        Perform geocoding operation asynchronously.
+
+        Parameters
+        ----------
+        q : str
+            The query string to geocode.
+        geolocation : GeoLocation, optional
+            The geolocation to query for.
+        lang : str, optional
+            Set preferred language (e.g. 'default', 'en', 'de', 'fr').
+        limit : int, optional
+            The maximum number of results.
+
+        Returns
+        -------
+        FeatureCollection
+            The geocoding response data.
+            Consists of places matching the query string.
+        """
         return await GeocodeRequest(
             q=q, geolocation=geolocation, lang=lang, limit=limit
         ).get_async()
@@ -122,6 +310,24 @@ class AsyncGeocodeClient:
         lang: str | None = None,
         limit: int | None = None,
     ) -> FeatureCollection:
+        """
+        Perform reverse geocoding operation asynchronously.
+
+        Parameters
+        ----------
+        geolocation : GeoLocation
+            The geolocation to query for.
+        lang : str, optional
+            Set preferred language (e.g. 'default', 'en', 'de', 'fr').
+        limit : int, optional
+            The maximum number of results.
+
+        Returns
+        -------
+        FeatureCollection
+            The reverse geocoding response data.
+            Consists of places near the provided coordinates.
+        """
         return await ReverseGeocodeRequest(
             geolocation=geolocation, lang=lang, limit=limit
         ).get_async()
