@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v0.1.7 (2024-07-03)
+
+### Fix
+
+* fix: improve crop docs ([`0835928`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/0835928a5019d7280b9d9755de606d66724e40a1))
+
+### Unknown
+
+* Merge pull request #17 from openearthplatforminitiative/fix/fix-crop-docs
+
+fix: improve crop docs ([`c50babf`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/c50babfb50f8ce451127623127555a5870dbf3be))
+
 ## v0.1.6 (2024-07-03)
 
 ### Fix
