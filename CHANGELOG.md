@@ -1,8 +1,20 @@
 # CHANGELOG
 
+## v0.1.8 (2024-07-03)
+
+### Unknown
+
+* Merge pull request #18 from openearthplatforminitiative/fix/add-flood-docstring
+
+Fix/add flood docstring ([`d4e4707`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/d4e4707c4d0cacbd30b8febe0fd239b054e9bfd7))
+
+* formatting ([`96c4bcb`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/96c4bcb01e54329e37e6b3e2917a2a754adcd3fc))
+
 ## v0.1.7 (2024-07-03)
 
 ### Fix
+
+* fix: add flood docstring ([`ff49606`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/ff4960664a3100d612b1eece7ec9e5d7aa8b48a6))
 
 * fix: improve crop docs ([`0835928`](https://github.com/openearthplatforminitiative/openepi-client-py/commit/0835928a5019d7280b9d9755de606d66724e40a1))
 
