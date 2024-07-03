@@ -39,6 +39,19 @@ class PredictionRequest(BaseModel):
 
     @model_validator(mode="after")
     def check_image_data(self) -> "PredictionRequest":
+        """
+        Validates that image data is provided and non-empty.
+
+        Raises
+        ------
+        ValueError
+            If image data is not provided or is empty.
+
+        Returns
+        -------
+        PredictionRequest
+            The instance of the prediction request.
+        """
         if not self.image_data:
             raise ValueError("Image data must be provided and non-empty")
         return self
@@ -46,6 +59,14 @@ class PredictionRequest(BaseModel):
     @computed_field
     @property
     def _content(self) -> bytes:
+        """
+        Returns the image data as bytes.
+
+        Returns
+        -------
+        bytes
+            The image data as bytes.
+        """
         return self.image_data
 
 
@@ -59,16 +80,19 @@ class BinaryPredictionRequest(PredictionRequest):
         Synchronously gets a binary prediction.
     get_async()
         Asynchronously gets a binary prediction.
-
-    Returns
-    -------
-    BinaryPredictionResponse
-        The response containing the binary prediction.
-        Consists of a mapping of the binary model classes
-        to their respective confidence scores.
     """
 
     def get_sync(self) -> BinaryPredictionResponse:
+        """
+        Synchronously gets a binary prediction.
+
+        Returns
+        -------
+        BinaryPredictionResponse
+            The response containing the binary prediction.
+            Consists of a mapping of the binary model classes
+            to their respective confidence scores.
+        """
         with Client() as client:
             response = client.post(
                 f"{self._prediction_endpoint}/binary", content=self._content
@@ -76,6 +100,16 @@ class BinaryPredictionRequest(PredictionRequest):
             return BinaryPredictionResponse(**response.json())
 
     async def get_async(self) -> BinaryPredictionResponse:
+        """
+        Asynchronously gets a binary prediction.
+
+        Returns
+        -------
+        BinaryPredictionResponse
+            The response containing the binary prediction.
+            Consists of a mapping of the binary model classes
+            to their respective confidence scores.
+        """
         async with AsyncClient() as async_client:
             response = await async_client.post(
                 f"{self._prediction_endpoint}/binary", content=self._content
@@ -93,16 +127,19 @@ class SingleHLTPredictionRequest(PredictionRequest):
         Synchronously gets a single HLT prediction.
     get_async()
         Asynchronously gets a single HLT prediction.
-
-    Returns
-    -------
-    SingleHLTPredictionResponse
-        The response containing the single HLT prediction.
-        Consists of a mapping of the single HLT model classes
-        to their respective confidence scores.
     """
 
     def get_sync(self) -> SingleHLTPredictionResponse:
+        """
+        Synchronously gets a single HLT prediction.
+
+        Returns
+        -------
+        SingleHLTPredictionResponse
+            The response containing the single HLT prediction.
+            Consists of a mapping of the single HLT model classes
+            to their respective confidence scores.
+        """
         with Client() as client:
             response = client.post(
                 f"{self._prediction_endpoint}/single-HLT", content=self._content
@@ -110,6 +147,16 @@ class SingleHLTPredictionRequest(PredictionRequest):
             return SingleHLTPredictionResponse(**response.json())
 
     async def get_async(self) -> SingleHLTPredictionResponse:
+        """
+        Asynchronously gets a single HLT prediction.
+
+        Returns
+        -------
+        SingleHLTPredictionResponse
+            The response containing the single HLT prediction.
+            Consists of a mapping of the single HLT model classes
+            to their respective confidence scores.
+        """
         async with AsyncClient() as async_client:
             response = await async_client.post(
                 f"{self._prediction_endpoint}/single-HLT", content=self._content
@@ -127,16 +174,19 @@ class MultiHLTPredictionRequest(PredictionRequest):
         Synchronously gets a multi HLT prediction.
     get_async()
         Asynchronously gets a multi HLT prediction.
-
-    Returns
-    -------
-    MultiHLTPredictionResponse
-        The response containing the multi HLT prediction.
-        Consists of a mapping of the multi HLT model classes
-        to their respective confidence scores.
     """
 
     def get_sync(self) -> MultiHLTPredictionResponse:
+        """
+        Synchronously gets a multi HLT prediction.
+
+        Returns
+        -------
+        MultiHLTPredictionResponse
+            The response containing the multi HLT prediction.
+            Consists of a mapping of the multi HLT model classes
+            to their respective confidence scores.
+        """
         with Client() as client:
             response = client.post(
                 f"{self._prediction_endpoint}/multi-HLT", content=self._content
@@ -144,6 +194,16 @@ class MultiHLTPredictionRequest(PredictionRequest):
             return MultiHLTPredictionResponse(**response.json())
 
     async def get_async(self) -> MultiHLTPredictionResponse:
+        """
+        Asynchronously gets a multi HLT prediction.
+
+        Returns
+        -------
+        MultiHLTPredictionResponse
+            The response containing the multi HLT prediction.
+            Consists of a mapping of the multi HLT model classes
+            to their respective confidence scores.
+        """
         async with AsyncClient() as async_client:
             response = await async_client.post(
                 f"{self._prediction_endpoint}/multi-HLT", content=self._content
