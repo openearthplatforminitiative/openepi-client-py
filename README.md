@@ -256,13 +256,19 @@ from openepi_client.crop_health import CropHealthClient
 image_path = os.path.abspath("cocoa.jpg")
 
 # Get the predicted health of the crop pictured in cocoa.jpg with the binary model.
-health = CropHealthClient.get_binary_health_prediction(image_path)
+with open(image_path, "rb") as f:
+  image_data = f.read()
+  health = CropHealthClient.get_binary_prediction(image_data)
 
-# Get the predicted health of the crop and a probability of what diseases it might be, based on the singleHLT model.
-health = CropHealthClient.get_singleHLT_health_prediction(image_path)
+# Get the predicted health of the crop pictured in cocoa.jpg with the single-HLT model.
+with open(image_path, "rb") as f:
+  image_data = f.read()
+  health = CropHealthClient.get_singleHLT_prediction(image_data)
 
-# Get the predicted health of the crop and a probability of what diseases it might be, based on the multiHLT model.
-health = CropHealthClient.get_multiHLT_health_prediction(image_path)
+# Get the predicted health of the crop pictured in cocoa.jpg with the multi-HLT model.
+with open(image_path, "rb") as f:
+  image_data = f.read()
+  health = CropHealthClient.get_multiHLT_prediction(image_data)
 ```
 
 
@@ -274,13 +280,19 @@ from openepi_client.crop_health import AsyncCropHealthClient
 image_path = os.path.abspath("cocoa.jpg")
 
 # Get the predicted health of the crop pictured in cocoa.jpg with the binary model.
-health = await AsyncCropHealthClient.get_binary_health_prediction(image_path)
+with open(image_path, "rb") as f:
+  image_data = f.read()
+  health = await AsyncCropHealthClient.get_binary_prediction(image_data)
 
-# Get the predicted health of the crop and a probability of what diseases it might be, based on the singleHLT model.
-health = await AsyncCropHealthClient.get_singleHLT_health_prediction(image_path)
+# Get the predicted health of the crop pictured in cocoa.jpg with the single-HLT model.
+with open(image_path, "rb") as f:
+  image_data = f.read()
+  health = await AsyncCropHealthClient.get_singleHLT_prediction(image_data)
 
-# Get the predicted health of the crop and a probability of what diseases it might be, based on the multiHLT model.
-health = await AsyncCropHealthClient.get_multiHLT_health_prediction(image_path)
+# Get the predicted health of the crop pictured in cocoa.jpg with the multi-HLT model.
+with open(image_path, "rb") as f:
+  image_data = f.read()
+  health = await AsyncCropHealthClient.get_multiHLT_prediction(image_data)
 ```
 
 ## Updating the client
