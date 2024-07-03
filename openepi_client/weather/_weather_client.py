@@ -30,6 +30,7 @@ class SunriseRequest(BaseModel):
     get_async()
         Asynchronously retrieves the sunrise data.
     """
+
     geolocation: GeoLocation = Field(..., description="The geolocation to query for")
     date: datetime | None = Field(
         default_factory=datetime.today, description="The date to query for"
@@ -61,7 +62,7 @@ class SunriseRequest(BaseModel):
         -------
         METJSONSunrise
             The sunrise data.
-            Consists of sunrise time and sunset 
+            Consists of sunrise time and sunset
             time for the given location and date.
         """
         with Client() as client:
@@ -109,6 +110,7 @@ class LocationForecastRequest(BaseModel):
     get_async()
         Asynchronously retrieves the location forecast data.
     """
+
     geolocation: GeoLocation = Field(..., description="The geolocation to query for")
     _location_forecast_endpoint = (
         f"{openepi_settings.api_root_url}/weather/locationforecast"
@@ -139,7 +141,7 @@ class LocationForecastRequest(BaseModel):
         -------
         METJSONForecast
             The location forecast data.
-            Consists of the weather forecast for the 
+            Consists of the weather forecast for the
             next 9 days for the given location.
         """
         with Client() as client:
@@ -267,7 +269,7 @@ class AsyncWeatherClient:
         ----------
         geolocation : GeoLocation
             The geolocation to query for.
-        
+
         Returns
         -------
         METJSONForecast
