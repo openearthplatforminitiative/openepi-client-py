@@ -37,6 +37,7 @@ class BasinRequest(BaseModel):
     get_async()
         Asynchronously retrieves the deforestation data.
     """
+
     geolocation: GeoLocation | None = Field(
         default=None, description="The geolocation to query for"
     )
@@ -113,7 +114,7 @@ class BasinRequest(BaseModel):
         -------
         DeforestationBasinGeoJSON
             The deforestation data as a GeoJSON FeatureCollection.
-            Consists of the estimated deforested area per year 
+            Consists of the estimated deforested area per year
             within a river basin for the given location.
         """
         with Client() as client:
@@ -130,7 +131,7 @@ class BasinRequest(BaseModel):
         -------
         DeforestationBasinGeoJSON
             The deforestation data as a GeoJSON FeatureCollection.
-            Consists of the estimated deforested area per year 
+            Consists of the estimated deforested area per year
             within a river basin for the given location.
         """
         async with AsyncClient() as async_client:
@@ -180,7 +181,7 @@ class DeforestationClient:
         -------
         DeforestationBasinGeoJSON
             The deforestation data as a GeoJSON FeatureCollection.
-            Consists of the estimated deforested area per year 
+            Consists of the estimated deforested area per year
             within a river basin for the given location.
         """
         return BasinRequest(
@@ -229,7 +230,7 @@ class AsyncDeforestationClient:
         -------
         DeforestationBasinGeoJSON
             The deforestation data as a GeoJSON FeatureCollection.
-            Consists of the estimated deforested area per year 
+            Consists of the estimated deforested area per year
             within a river basin for the given location.
         """
         return await BasinRequest(
