@@ -76,7 +76,7 @@ class GeocodeRequest(BaseModel):
         Returns
         -------
         FeatureCollection
-            The geocoding response data.
+            The geocoding response data as a GeoJSON FeatureCollection object.
             Consists of places matching the query string.
         """
         with Client() as client:
@@ -90,7 +90,7 @@ class GeocodeRequest(BaseModel):
         Returns
         -------
         FeatureCollection
-            The geocoding response data.
+            The geocoding response data as a GeoJSON FeatureCollection object.
             Consists of places matching the query string.
         """
         async with AsyncClient() as async_client:
@@ -165,7 +165,7 @@ class ReverseGeocodeRequest(BaseModel):
         Returns
         -------
         FeatureCollection
-            The reverse geocoding response data.
+            The reverse geocoding response data as a GeoJSON FeatureCollection object.
             Consists of places near the provided coordinates.
         """
         with Client() as client:
@@ -179,7 +179,7 @@ class ReverseGeocodeRequest(BaseModel):
         Returns
         -------
         FeatureCollection
-            The reverse geocoding response data.
+            The reverse geocoding response data as a GeoJSON FeatureCollection object.
             Consists of places near the provided coordinates.
         """
         async with AsyncClient() as async_client:
@@ -225,7 +225,7 @@ class GeocodeClient:
         Returns
         -------
         FeatureCollection
-            The geocoding response data.
+            The geocoding response data as a GeoJSON FeatureCollection object.
             Consists of places matching the query string.
         """
         return GeocodeRequest(
@@ -253,7 +253,7 @@ class GeocodeClient:
         Returns
         -------
         FeatureCollection
-            The reverse geocoding response data.
+            The reverse geocoding response data as a GeoJSON FeatureCollection object.
             Consists of places near the provided coordinates.
         """
         return ReverseGeocodeRequest(
@@ -297,7 +297,7 @@ class AsyncGeocodeClient:
         Returns
         -------
         FeatureCollection
-            The geocoding response data.
+            The geocoding response data as a GeoJSON FeatureCollection object.
             Consists of places matching the query string.
         """
         return await GeocodeRequest(
@@ -325,7 +325,7 @@ class AsyncGeocodeClient:
         Returns
         -------
         FeatureCollection
-            The reverse geocoding response data.
+            The reverse geocoding response data as a GeoJSON FeatureCollection object.
             Consists of places near the provided coordinates.
         """
         return await ReverseGeocodeRequest(
