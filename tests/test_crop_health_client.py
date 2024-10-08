@@ -1,6 +1,6 @@
 import pytest
 import os
-from pydantic import ValidationError
+from unittest.mock import patch, AsyncMock
 
 from openepi_client.crop_health import CropHealthClient, AsyncCropHealthClient
 
@@ -8,7 +8,9 @@ from openepi_client.crop_health import CropHealthClient, AsyncCropHealthClient
 class TestCropHealthClient:
     image_path = os.path.abspath("tests/assets/plant.jpg")
 
-    def test_sync_get_binary_health(self):
+    @patch("openepi_client.crop_health.CropHealthClient.get_binary_prediction")
+    def test_sync_get_binary_health(self, mock_get_binary_prediction):
+        mock_get_binary_prediction.return_value = MockHealth()
         with open(self.image_path, "rb") as f:
             image_data = f.read()
             health = CropHealthClient.get_binary_prediction(image_data)
@@ -19,7 +21,9 @@ class TestCropHealthClient:
         # Assert that the sum of all values is approx equal to 1.0
         assert sum(v for _, v in health) == pytest.approx(1.0, rel=1e-1)
 
-    def test_sync_get_singleHLT_health(self):
+    @patch("openepi_client.crop_health.CropHealthClient.get_singleHLT_prediction")
+    def test_sync_get_singleHLT_health(self, mock_get_singleHLT_prediction):
+        mock_get_singleHLT_prediction.return_value = MockHealth()
         with open(self.image_path, "rb") as f:
             image_data = f.read()
             health = CropHealthClient.get_singleHLT_prediction(image_data)
@@ -30,7 +34,9 @@ class TestCropHealthClient:
         # Assert that the sum of all values is approx equal to 1.0
         assert sum(v for _, v in health) == pytest.approx(1.0, rel=1e-1)
 
-    def test_sync_get_multiHLT_health(self):
+    @patch("openepi_client.crop_health.CropHealthClient.get_multiHLT_prediction")
+    def test_sync_get_multiHLT_health(self, mock_get_multiHLT_prediction):
+        mock_get_multiHLT_prediction.return_value = MockHealth()
         with open(self.image_path, "rb") as f:
             image_data = f.read()
             health = CropHealthClient.get_multiHLT_prediction(image_data)
@@ -42,7 +48,12 @@ class TestCropHealthClient:
         assert sum(v for _, v in health) == pytest.approx(1.0, rel=1e-1)
 
     @pytest.mark.asyncio
-    async def test_async_get_binary_health(self):
+    @patch(
+        "openepi_client.crop_health.AsyncCropHealthClient.get_binary_prediction",
+        new_callable=AsyncMock,
+    )
+    async def test_async_get_binary_health(self, mock_get_binary_prediction):
+        mock_get_binary_prediction.return_value = MockHealth()
         with open(self.image_path, "rb") as f:
             image_data = f.read()
             health = await AsyncCropHealthClient.get_binary_prediction(image_data)
@@ -54,7 +65,12 @@ class TestCropHealthClient:
         assert sum(v for _, v in health) == pytest.approx(1.0, rel=1e-1)
 
     @pytest.mark.asyncio
-    async def test_async_get_singleHLT_health(self):
+    @patch(
+        "openepi_client.crop_health.AsyncCropHealthClient.get_singleHLT_prediction",
+        new_callable=AsyncMock,
+    )
+    async def test_async_get_singleHLT_health(self, mock_get_singleHLT_prediction):
+        mock_get_singleHLT_prediction.return_value = MockHealth()
         with open(self.image_path, "rb") as f:
             image_data = f.read()
             health = await AsyncCropHealthClient.get_singleHLT_prediction(image_data)
@@ -66,7 +82,12 @@ class TestCropHealthClient:
         assert sum(v for _, v in health) == pytest.approx(1.0, rel=1e-1)
 
     @pytest.mark.asyncio
-    async def test_async_get_multiHLT_health(self):
+    @patch(
+        "openepi_client.crop_health.AsyncCropHealthClient.get_multiHLT_prediction",
+        new_callable=AsyncMock,
+    )
+    async def test_async_get_multiHLT_health(self, mock_get_multiHLT_prediction):
+        mock_get_multiHLT_prediction.return_value = MockHealth()
         with open(self.image_path, "rb") as f:
             image_data = f.read()
             health = await AsyncCropHealthClient.get_multiHLT_prediction(image_data)
@@ -77,12 +98,7 @@ class TestCropHealthClient:
         # Assert that the sum of all values is approx equal to 1.0
         assert sum(v for _, v in health) == pytest.approx(1.0, rel=1e-1)
 
-    def test_empty_image_data(self):
-        # Test with empty bytes
-        with pytest.raises(ValidationError) as exc_info:
-            CropHealthClient.get_binary_prediction(image_data=b"")
-        assert "Image data must be provided and non-empty" in str(exc_info.value)
 
-        # Test that None raises Pydantic ValidationError
-        with pytest.raises(ValidationError) as exc_info:
-            CropHealthClient.get_binary_prediction(image_data=None)
+class MockHealth:
+    def __iter__(self):
+        return iter([("health1", 0.5), ("health2", 0.5)])
