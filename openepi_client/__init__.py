@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field
 
 
 class OpenEpiSettings(BaseSettings):
-    api_root_url: str = "https://api-test.openepi.io"
+    api_root_url: str = "https://api.openepi.io"
 
 
 openepi_settings = OpenEpiSettings()
