@@ -16,7 +16,7 @@ version_toml = [
 [tool.poetry.dependencies]
 python = "^3.12"
 httpx = "^0.25.2"
-pydantic = "^2.4.2"
+pydantic = "^2.10.3"
 pydantic-settings = "^2.0.3"
 
 
