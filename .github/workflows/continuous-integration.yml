@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Check linting
         uses: rickstaa/action-black@v1
@@ -21,15 +21,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
 
       - name: Install Poetry
         run: curl -sSL https://install.python-poetry.org | python3 -
+
+      - name: Verify Poetry configuration
+        run: |
+          pwd
+          ls -la
+          cat pyproject.toml
 
       - name: Install dependencies
         run: poetry install --no-root
