@@ -31,12 +31,6 @@ jobs:
       - name: Install Poetry
         run: curl -sSL https://install.python-poetry.org | python3 -
 
-      - name: Verify Poetry configuration
-        run: |
-          pwd
-          ls -la
-          cat pyproject.toml
-
       - name: Install dependencies
         run: poetry install --no-root
 
