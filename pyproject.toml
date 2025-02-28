@@ -1,8 +1,11 @@
-[tool.poetry]
+[project]
 name = "openepi-client"
 version = "0.1.15"
 description = "A python library for interacting with the OpenEPI data"
-authors = ["Kenneth Stigen <kenneth.stigen@knowit.no>"]
+authors = [
+    {name = "Kenneth Stigen", email = "kenneth.stigen@knowit.no"},
+    {name = "Daniel Johnsen", email = "daniel.johnsen@knowit.no"},
+]
 readme = "README.md"
 
 [tool.semantic_release]
@@ -16,7 +19,7 @@ version_toml = [
 [tool.poetry.dependencies]
 python = "^3.12"
 httpx = "^0.25.2"
-pydantic = "^2.4.2"
+pydantic = "^2.10.3"
 pydantic-settings = "^2.0.3"
 
 
