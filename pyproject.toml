@@ -3,8 +3,8 @@ name = "openepi-client"
 version = "0.1.15"
 description = "A python library for interacting with the OpenEPI data"
 authors = [
-    {name = "Kenneth Stigen", email = "kenneth.stigen@knowit.no>"},
-    {name = "Daniel Johnsen", email = "daniel.johnsen@knowit.no>"},
+    {name = "Kenneth Stigen", email = "kenneth.stigen@knowit.no"},
+    {name = "Daniel Johnsen", email = "daniel.johnsen@knowit.no"},
 ]
 readme = "README.md"
 
