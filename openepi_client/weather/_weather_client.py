@@ -35,7 +35,7 @@ class SunriseRequest(BaseModel):
     date: datetime | None = Field(
         default_factory=datetime.today, description="The date to query for"
     )
-    _sunrise_endpoint = f"{openepi_settings.api_root_url}/weather/sunrise"
+    _sunrise_endpoint = f"{openepi_settings.met_api_url}/sunrise/3.0/sun"
 
     @computed_field
     @property
@@ -66,7 +66,11 @@ class SunriseRequest(BaseModel):
             time for the given location and date.
         """
         with Client() as client:
-            response = client.get(self._sunrise_endpoint, params=self._params)
+            response = client.get(
+                self._sunrise_endpoint,
+                params=self._params,
+                headers=openepi_settings.met_headers,
+            )
             return METJSONSunrise(**response.json())
 
     async def get_async(self) -> METJSONSunrise:
@@ -82,7 +86,9 @@ class SunriseRequest(BaseModel):
         """
         async with AsyncClient() as async_client:
             response = await async_client.get(
-                self._sunrise_endpoint, params=self._params
+                self._sunrise_endpoint,
+                params=self._params,
+                headers=openepi_settings.met_headers,
             )
             return METJSONSunrise(**response.json())
 
@@ -113,7 +119,7 @@ class LocationForecastRequest(BaseModel):
 
     geolocation: GeoLocation = Field(..., description="The geolocation to query for")
     _location_forecast_endpoint = (
-        f"{openepi_settings.api_root_url}/weather/locationforecast"
+        f"{openepi_settings.met_api_url}/locationforecast/2.0/complete"
     )
 
     @computed_field
@@ -145,7 +151,11 @@ class LocationForecastRequest(BaseModel):
             next 9 days for the given location.
         """
         with Client() as client:
-            response = client.get(self._location_forecast_endpoint, params=self._params)
+            response = client.get(
+                self._location_forecast_endpoint,
+                params=self._params,
+                headers=openepi_settings.met_headers,
+            )
             return METJSONForecast(**response.json())
 
     async def get_async(self) -> METJSONForecast:
@@ -161,7 +171,9 @@ class LocationForecastRequest(BaseModel):
         """
         async with AsyncClient() as async_client:
             response = await async_client.get(
-                self._location_forecast_endpoint, params=self._params
+                self._location_forecast_endpoint,
+                params=self._params,
+                headers=openepi_settings.met_headers,
             )
             return METJSONForecast(**response.json())
 

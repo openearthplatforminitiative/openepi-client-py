@@ -1,8 +1,11 @@
-[tool.poetry]
+[project]
 name = "openepi-client"
 version = "0.1.15"
 description = "A python library for interacting with the OpenEPI data"
-authors = ["Kenneth Stigen <kenneth.stigen@knowit.no>"]
+authors = [
+    {name = "Kenneth Stigen", email = "kenneth.stigen@knowit.no"}
+]
+license = "Apache-2.0"
 readme = "README.md"
 
 [tool.semantic_release]

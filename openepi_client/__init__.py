@@ -4,6 +4,10 @@ from pydantic import BaseModel, Field
 
 class OpenEpiSettings(BaseSettings):
     api_root_url: str = "https://api.openepi.io"
+    met_api_url: str = "https://api.met.no/weatherapi"
+    met_headers: dict[str, str] = {
+        "User-Agent": "openepi.io github.com/openearthplatforminitiative/openepi-client-py"
+    }
 
 
 openepi_settings = OpenEpiSettings()
