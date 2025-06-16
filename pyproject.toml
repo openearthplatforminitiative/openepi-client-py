@@ -1,6 +1,6 @@
 [project]
 name = "openepi-client"
-version = "0.1.15"
+version = "1.0.1"
 description = "A python library for interacting with the OpenEPI data"
 authors = [
     {name = "Kenneth Stigen", email = "kenneth.stigen@knowit.no"}
