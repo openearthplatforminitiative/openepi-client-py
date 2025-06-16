@@ -12,9 +12,7 @@ readme = "README.md"
 version_variables = [
     "setup.py:__version__",
 ]
-version_toml = [
-    "pyproject.toml:tool.poetry.version",
-]
+version_toml = ["pyproject.toml:project.version"]
 
 [tool.poetry.dependencies]
 python = "^3.12"
