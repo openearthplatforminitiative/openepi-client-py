@@ -133,11 +133,15 @@ class LocationForecastRequest(BaseModel):
         dict
             The query parameters for the API request.
         """
-        return {
+        params = {
             "lat": self.geolocation.lat,
             "lon": self.geolocation.lon,
-            "altitude": self.geolocation.alt,
         }
+
+        if self.geolocation.alt is not None:
+            params["altitude"] = self.geolocation.alt
+
+        return params
 
     def get_sync(self) -> METJSONForecast:
         """
