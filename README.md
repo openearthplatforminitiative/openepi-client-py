@@ -295,6 +295,45 @@ with open(image_path, "rb") as f:
   health = await AsyncCropHealthClient.get_multiHLT_prediction(image_data)
 ```
 
+## Global Forest Watch
+### Sync usage
+```python
+from openepi_client.global_forest_watch import GlobalForestWatchClient
+
+# Create an account
+# Note that after doing this, you must verify your email and set a password before you can use your account
+GlobalForestWatchClient().create_account(name="Your Name", email="your@mail.com")
+
+# Create an API key
+gfw = GlobalForestWatchClient(email="your@mail.com", password="your secret password")
+response = gfw.create_api_key(alias="my-alias", organization="Example org", domains=["example.com"])
+print(f"Your API key is: {response.api_key}")
+
+gfw = GlobalForestWatchClient(api_key="your-api-key")
+
+# List datasets
+datasets = gfw.list_datasets()
+
+# Get a specific dataset
+dataset = gfw.get_dataset(dataset_id="<identifier>")
+
+# Get the latest version of a dataset
+latest_version = dataset.get_version(version = dataset.latest_version_id)
+
+# List fields in a dataset version
+fields = latest_version.fields()
+for field in fields:
+    print(fields.description)
+
+# List assets in a dataset version
+assets_response = latest_version.assets()
+
+# download all downloadable assets
+for asset in assets_response.assets:
+    if asset.is_downloadable:
+        asset.download(to="<my_download_path>")
+```
+
 ## Updating the client
 The following commands are used to update the client types. The commands are run from the root of the project.
 ```bash
