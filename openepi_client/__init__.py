@@ -3,7 +3,6 @@ from pydantic_settings import BaseSettings
 
 
 class OpenEpiSettings(BaseSettings):
-    api_root_url: str = "https://api.openepi.io"
 
     gfw_api_url: str = "https://data-api.globalforestwatch.org"
     gfw_email: str | None = None
@@ -12,6 +11,11 @@ class OpenEpiSettings(BaseSettings):
 
     met_api_url: str = "https://api.met.no/weatherapi"
     met_headers: dict[str, str] = {
+        "User-Agent": "openepi.io github.com/openearthplatforminitiative/openepi-client-py"
+    }
+
+    photon_api_url: str = "https://photon.komoot.io"
+    photon_headers: dict[str, str] = {
         "User-Agent": "openepi.io github.com/openearthplatforminitiative/openepi-client-py"
     }
 
