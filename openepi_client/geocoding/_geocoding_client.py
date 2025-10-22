@@ -44,7 +44,7 @@ class GeocodeRequest(BaseModel):
         description="Set preferred language (e.g. 'default', 'en', 'de', 'fr')",
     )
     limit: int | None = Field(default=None, description="The maximum number of results")
-    _geocode_endpoint = f"{openepi_settings.api_root_url}/geocoding/"
+    _geocode_endpoint = f"{openepi_settings.photon_api_url}/api"
 
     @computed_field
     @property
@@ -80,7 +80,11 @@ class GeocodeRequest(BaseModel):
             Consists of places matching the query string.
         """
         with Client() as client:
-            response = client.get(self._geocode_endpoint, params=self._params)
+            response = client.get(
+                self._geocode_endpoint,
+                params=self._params,
+                headers=openepi_settings.photon_headers,
+            )
             return FeatureCollection(**response.json())
 
     async def get_async(self) -> FeatureCollection:
@@ -95,7 +99,9 @@ class GeocodeRequest(BaseModel):
         """
         async with AsyncClient() as async_client:
             response = await async_client.get(
-                self._geocode_endpoint, params=self._params
+                self._geocode_endpoint,
+                params=self._params,
+                headers=openepi_settings.photon_headers,
             )
             return FeatureCollection(**response.json())
 
@@ -134,7 +140,7 @@ class ReverseGeocodeRequest(BaseModel):
         description="Set preferred language (e.g. 'default', 'en', 'de', 'fr')",
     )
     limit: int | None = Field(default=None, description="The maximum number of results")
-    _reverse_geocode_endpoint = f"{openepi_settings.api_root_url}/geocoding/reverse"
+    _reverse_geocode_endpoint = f"{openepi_settings.photon_api_url}/reverse"
 
     @computed_field
     @property
@@ -169,7 +175,11 @@ class ReverseGeocodeRequest(BaseModel):
             Consists of places near the provided coordinates.
         """
         with Client() as client:
-            response = client.get(self._reverse_geocode_endpoint, params=self._params)
+            response = client.get(
+                self._reverse_geocode_endpoint,
+                params=self._params,
+                headers=openepi_settings.photon_headers,
+            )
             return FeatureCollection(**response.json())
 
     async def get_async(self) -> FeatureCollection:
@@ -184,7 +194,9 @@ class ReverseGeocodeRequest(BaseModel):
         """
         async with AsyncClient() as async_client:
             response = await async_client.get(
-                self._reverse_geocode_endpoint, params=self._params
+                self._reverse_geocode_endpoint,
+                params=self._params,
+                headers=openepi_settings.photon_headers,
             )
             return FeatureCollection(**response.json())
 
